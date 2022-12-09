@@ -1,0 +1,15 @@
+name: Deploy to server
+
+on:
+    pull_request:
+        branches:
+            - main
+        paths:
+            - '.github/**'
+            - 'scripts/**'
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - run: 'echo "No build required for this job"'

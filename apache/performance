@@ -1,0 +1,44 @@
+# BEGIN WordPress
+
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+
+# END WordPress
+
+Options -Indexes
+
+#<IfModule mod_php7.c>
+#    php_value opcache.enable 1
+#    php_value opcache.revalidate_freq=60
+#</IfModule>
+
+<IfModule mod_deflate.c>
+    SetOutputFilter DEFLATE
+
+    <IfModule mod_setenvif.c>
+        SetEnvIfNoCase Request_URI "\.(?:gif|jpe?g|png)$" no-gzip
+    </IfModule>
+</IfModule>
+
+<IfModule mod_headers.c>
+    RewriteCond "%{HTTP:Accept-encoding}" "gzip"
+    RewriteCond "%{REQUEST_FILENAME}\.gz" -s
+    RewriteRule "^(.*)\.(css|js)"         "$1\.$2\.gz" [QSA]
+
+    RewriteRule "\.css\.gz$" "-" [T=text/css,E=no-gzip:1]
+    RewriteRule "\.js\.gz$"  "-" [T=text/javascript,E=no-gzip:1]
+
+    <FilesMatch "(\.js\.gz|\.css\.gz)$">
+        Header append Content-Encoding gzip
+        Header append Vary Accept-Encoding
+    </FilesMatch>
+
+    <FilesMatch "\.(js|css|gif|jpe?g|png|svg|eot|woff|woff2|ttf)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+</IfModule>

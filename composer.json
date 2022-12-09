@@ -1,0 +1,32 @@
+{
+    "name": "nextleveldigital/unpack",
+    "description": "Integrates React JS with WordPress",
+    "type": "library",
+    "license": "GPL-2.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Unpack\\": "app/"
+        },
+        "files": [
+            "app/WP/Flow.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Next Level Digital",
+            "email": "support@gotonxtlevel.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "ext-json": "*",
+        "twig/twig": "^3.0",
+        "vlucas/phpdotenv": "^5.5",
+        "guzzlehttp/guzzle": "^7.0",
+        "doctrine/annotations": "^1.13",
+        "phpfastcache/phpfastcache": "^8.1"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "3.*"
+    }
+}

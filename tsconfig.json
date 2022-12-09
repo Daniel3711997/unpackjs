@@ -1,0 +1,31 @@
+{
+    "exclude": ["vendor", "node_modules"],
+
+    "compilerOptions": {
+        "noEmit": true,
+        "strict": true,
+        "allowJs": true,
+        "target": "es5",
+        "jsx": "preserve",
+        "module": "esnext",
+        "baseUrl": "./src",
+        "skipLibCheck": true,
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "isolatedModules": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "noUnusedParameters": true,
+        "moduleResolution": "node",
+        "noUncheckedIndexedAccess": true,
+        "noFallthroughCasesInSwitch": true,
+        "allowSyntheticDefaultImports": true,
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "forceConsistentCasingInFileNames": true,
+        "plugins": [
+            {
+                "name": "typescript-plugin-css-modules"
+            }
+        ]
+    }
+}

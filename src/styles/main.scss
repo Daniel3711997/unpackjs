@@ -1,0 +1,15 @@
+.framework-loader {
+    opacity: 0;
+
+    &.active {
+        opacity: 1;
+    }
+}
+
+.fallback-loader {
+    opacity: 0;
+
+    &.active {
+        opacity: 1;
+    }
+}

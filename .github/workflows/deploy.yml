@@ -1,0 +1,48 @@
+name: Deploy to server
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+        - '.github/**'
+        - 'scripts/**'
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  tools: composer
+                  php-version: 7.4
+
+            - name: Install composer dependencies
+              run: composer install --no-interaction --optimize-autoloader
+
+            - name: Check PHP files
+              run: ./vendor/bin/phpcs app --standard=.php-style.xml
+
+            - name: Setup Node.JS
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 16
+
+            - name: Install Node.JS dependencies
+              run: npm ci
+
+            - name: Build application
+              run: npm run build-action
+
+            - name: Deploy to remote server
+              run: node ./scripts/_deploy.js
+              env:
+                  HOST: ${{ secrets.HOST }}
+                  USER: ${{ secrets.USER }}
+                  TEST: ${{ secrets.TEST }}
+                  PLUGIN_NAME: ${{ secrets.PLUGIN_NAME }}
+                  REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
+                  PRIVATE_KEY_PATH: ${{ secrets.PRIVATE_KEY_PATH }}

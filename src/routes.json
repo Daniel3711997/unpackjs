@@ -1,0 +1,55 @@
+{
+    "$schema": "schema.json",
+    "routes": [
+        {
+            "app": "vanilla",
+            "entry": {
+                "name": "vanilla",
+                "path": "src/vanilla/index.ts"
+            },
+            "tests": [
+                {
+                    "function": "__return_true"
+                }
+            ]
+        },
+        {
+            "app": "react",
+            "tests": [
+                {
+                    "arguments": [2],
+                    "function": "is_single"
+                }
+            ],
+            "entry": {
+                "name": "profile",
+                "path": "src/app/containers/Profile/index.ts"
+            }
+        },
+        {
+            "app": "react",
+            "entry": {
+                "name": "home",
+                "path": "src/app/containers/Home/index.ts"
+            },
+            "server": {
+                "key": "profile",
+                "method": "getUserProfileData"
+            },
+            "tests": [
+                {
+                    "arguments": [1],
+                    "function": "is_single"
+                }
+            ],
+            "rewrites": [
+                {
+                    "after": "top",
+                    "queryVars": ["profile-id"],
+                    "regex": "profile/([0-9]+)/?$",
+                    "query": "index.php?pagename=profile&profile-id=$matches[1]"
+                }
+            ]
+        }
+    ]
+}
