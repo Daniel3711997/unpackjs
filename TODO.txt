@@ -1,8 +1,6 @@
 https://github.dev/Daniel3711997/webpack-encore
 
 - Deploy with RSync ?
-
-- Loadable components
 - Layouts like Next.JS
 - Server side rendering
 - Hybrid client/server rendering
