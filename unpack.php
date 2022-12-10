@@ -60,7 +60,7 @@ if (!file_exists(__DIR__ . '/vendor')) {
 define('UNPACK_PLUGIN_HOME_URL', home_url());
 define('UNPACK_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('UNPACK_PLUGIN_DIRECTORY', plugin_dir_path(__FILE__));
-define('UNPACK_CAN_USER_ATTRIBUTES', version_compare(phpversion(), '8.0.0', '>='));
+define('UNPACK_CAN_USE_ATTRIBUTES', version_compare(phpversion(), '8.0.0', '>='));
 
 require __DIR__ . '/vendor/autoload.php';
 

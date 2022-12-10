@@ -44,15 +44,14 @@ class Actions {
 
             $reflectionClass = new ReflectionClass($class);
 
-            if (UNPACK_CAN_USER_ATTRIBUTES) {
-                $attributes = $reflectionClass->getAttributes(ActionAttribute::class);
+            if (UNPACK_CAN_USE_ATTRIBUTES) {
+                $attributes = $reflectionClass->getAttributes(
+                    ActionAttribute::class,
+                    \ReflectionAttribute::IS_INSTANCEOF
+                );
 
                 foreach ($attributes as $attribute) {
                     $attribute = $attribute->newInstance();
-
-                    if (!($attribute instanceof ActionAttribute)) {
-                        continue;
-                    }
 
                     $this->actions[$attribute->name] = [
                         'admin' => $attribute->admin,

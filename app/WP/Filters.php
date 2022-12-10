@@ -42,15 +42,14 @@ class Filters {
 
             $reflectionClass = new ReflectionClass($class);
 
-            if (UNPACK_CAN_USER_ATTRIBUTES) {
-                $attributes = $reflectionClass->getAttributes(FilterAttribute::class);
+            if (UNPACK_CAN_USE_ATTRIBUTES) {
+                $attributes = $reflectionClass->getAttributes(
+                    FilterAttribute::class,
+                    \ReflectionAttribute::IS_INSTANCEOF
+                );
 
                 foreach ($attributes as $attribute) {
                     $attribute = $attribute->newInstance();
-
-                    if (!($attribute instanceof FilterAttribute)) {
-                        continue;
-                    }
 
                     $this->filters[$attribute->name] = [
                         'admin' => $attribute->admin,

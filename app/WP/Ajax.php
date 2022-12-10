@@ -53,15 +53,14 @@ class Ajax {
 
             $reflectionClass = new ReflectionClass($class);
 
-            if (UNPACK_CAN_USER_ATTRIBUTES) {
-                $attributes = $reflectionClass->getAttributes(AjaxRouteAttribute::class);
+            if (UNPACK_CAN_USE_ATTRIBUTES) {
+                $attributes = $reflectionClass->getAttributes(
+                    AjaxRouteAttribute::class,
+                    \ReflectionAttribute::IS_INSTANCEOF
+                );
 
                 foreach ($attributes as $attribute) {
                     $attribute = $attribute->newInstance();
-
-                    if (!($attribute instanceof AjaxRouteAttribute)) {
-                        continue;
-                    }
 
                     $this->actions[$attribute->name] = [
                         'availability' => $attribute->availability,

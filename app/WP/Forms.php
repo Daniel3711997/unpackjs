@@ -53,15 +53,14 @@ class Forms {
 
             $reflectionClass = new ReflectionClass($class);
 
-            if (UNPACK_CAN_USER_ATTRIBUTES) {
-                $attributes = $reflectionClass->getAttributes(FormRouteAttribute::class);
+            if (UNPACK_CAN_USE_ATTRIBUTES) {
+                $attributes = $reflectionClass->getAttributes(
+                    FormRouteAttribute::class,
+                    \ReflectionAttribute::IS_INSTANCEOF
+                );
 
                 foreach ($attributes as $attribute) {
                     $attribute = $attribute->newInstance();
-
-                    if (!($attribute instanceof FormRouteAttribute)) {
-                        continue;
-                    }
 
                     $this->actions[$attribute->name] = [
                         'controllerMethod' => $attribute->method,

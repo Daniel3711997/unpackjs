@@ -9,6 +9,7 @@ namespace Unpack\Actions;
 use Unpack\Framework\App;
 use Unpack\Annotations\Action;
 use Unpack\Interfaces\Action as ActionInterface;
+use Unpack\Attributes\Action as ActionAttribute;
 
 use function Unpack\{
     isProduction, getPluginDirectory, readDirectory
