@@ -16,8 +16,7 @@ class Init implements FilterInterface {
     /**
      * @used
      */
-    public static function appInit(): void {
-        var_dump('appInit');
-        exit;
+    public static function appInit(): string {
+        return 'Hello World';
     }
 }

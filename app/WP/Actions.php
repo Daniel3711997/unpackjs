@@ -6,7 +6,6 @@ namespace Unpack\WP;
 
 use ReflectionClass;
 use Unpack\Annotations\Action;
-use Unpack\Attributes\Action as ActionAttribute;
 use Doctrine\Common\Annotations\AnnotationReader;
 
 use function Unpack\readDirectory;
@@ -44,9 +43,9 @@ class Actions {
 
             $reflectionClass = new ReflectionClass($class);
 
-            if (UNPACK_PLUGIN_SERVER_SUPPORTS_PHP_ATTRIBUTES) {
+            if (method_exists($reflectionClass, 'getAttributes')) {
                 $attributes = $reflectionClass->getAttributes(
-                    ActionAttribute::class,
+                    Action::class,
                     \ReflectionAttribute::IS_INSTANCEOF
                 );
 

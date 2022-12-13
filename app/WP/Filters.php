@@ -6,7 +6,6 @@ namespace Unpack\WP;
 
 use ReflectionClass;
 use Unpack\Annotations\Filter;
-use Unpack\Attributes\Filter as FilterAttribute;
 use Doctrine\Common\Annotations\AnnotationReader;
 
 use function Unpack\readDirectory;
@@ -42,9 +41,9 @@ class Filters {
 
             $reflectionClass = new ReflectionClass($class);
 
-            if (UNPACK_PLUGIN_SERVER_SUPPORTS_PHP_ATTRIBUTES) {
+            if (method_exists($reflectionClass, 'getAttributes')) {
                 $attributes = $reflectionClass->getAttributes(
-                    FilterAttribute::class,
+                    Filter::class,
                     \ReflectionAttribute::IS_INSTANCEOF
                 );
 

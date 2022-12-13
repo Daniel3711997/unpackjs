@@ -7,7 +7,6 @@ namespace Unpack\WP;
 use ReflectionClass;
 use Unpack\Annotations\AjaxRoute;
 use Doctrine\Common\Annotations\AnnotationReader;
-use Unpack\Attributes\AjaxRoute as AjaxRouteAttribute;
 
 use function  Unpack\readDirectory;
 
@@ -53,9 +52,9 @@ class Ajax {
 
             $reflectionClass = new ReflectionClass($class);
 
-            if (UNPACK_PLUGIN_SERVER_SUPPORTS_PHP_ATTRIBUTES) {
+            if (method_exists($reflectionClass, 'getAttributes')) {
                 $attributes = $reflectionClass->getAttributes(
-                    AjaxRouteAttribute::class,
+                    AjaxRoute::class,
                     \ReflectionAttribute::IS_INSTANCEOF
                 );
 
