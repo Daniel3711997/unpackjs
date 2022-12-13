@@ -44,7 +44,7 @@ class Actions {
 
             $reflectionClass = new ReflectionClass($class);
 
-            if (UNPACK_CAN_USE_ATTRIBUTES) {
+            if (UNPACK_PLUGIN_SERVER_SUPPORTS_PHP_ATTRIBUTES) {
                 $attributes = $reflectionClass->getAttributes(
                     ActionAttribute::class,
                     \ReflectionAttribute::IS_INSTANCEOF

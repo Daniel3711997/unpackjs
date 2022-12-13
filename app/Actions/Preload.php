@@ -15,7 +15,7 @@ use function Unpack\{
 };
 
 /**
- * @Action(name="wp_head", method="construct", priority=4, acceptedArgs=0, admin=false)
+ * @Action(name="wp_head", method="construct", priority=4, acceptedArgs=0)
  */
 class Preload implements ActionInterface {
     public static function inArray(string $search, array $array): bool {
