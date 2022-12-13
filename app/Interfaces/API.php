@@ -5,5 +5,5 @@ declare(strict_types=1);
 namespace Unpack\Interfaces;
 
 interface API {
-    public function register(): void;
+    public function options(): array;
 }

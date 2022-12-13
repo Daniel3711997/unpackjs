@@ -10,12 +10,14 @@ use Unpack\API\Versions\V1\API;
 use Unpack\Interfaces\API as APIInterface;
 
 class Profile extends API implements APIInterface {
-    public function register(): void {
-        register_rest_route("$this->namespace/$this->version", "/$this->route", [
-            'methods' => WP_REST_Server::READABLE,
+    public string $route = 'profile';
+
+    public function options(): array {
+        return [
             'callback' => [$this, 'getProfile'],
+            'methods' => WP_REST_Server::READABLE,
             'permission_callback' => '__return_true',
-        ]);
+        ];
     }
 
     public function getProfile(): WP_REST_Response {
