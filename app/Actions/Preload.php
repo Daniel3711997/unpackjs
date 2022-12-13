@@ -64,7 +64,7 @@ class Preload implements ActionInterface {
                                 $fontsDirectory,
                                 $publicPath,
                                 $font
-                            ) . '" as="font" type="font/woff2" crossorigin/>' . PHP_EOL;
+                            ) . '" as="font" type="font/woff2" crossorigin />' . PHP_EOL;
                     }
                 }
             }
