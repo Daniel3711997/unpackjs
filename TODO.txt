@@ -1,3 +1,5 @@
+- Fix IML files for IDEA
+
 https://github.dev/Daniel3711997/webpack-encore
 
 - Deploy with RSync ?
@@ -6,4 +8,4 @@ https://github.dev/Daniel3711997/webpack-encore
 - Hybrid client/server rendering
 - Docusaurus compiling client/server pattern (https://docusaurus.io/docs)
 - Polyfill SSR fetch (https://www.npmjs.com/package/node-fetch) with keepAlive
-- Add an option to use the PHP attibutes system instead of the doctrine annotations (hybrid)
+[Done] - Add an option to use the PHP attibutes system instead of the doctrine annotations (hybrid)

@@ -20,13 +20,7 @@ if (0 === app.routes.length) {
 
 if (!Encore.isRuntimeEnvironmentConfigured()) {
     console.log(
-        chalk.bgRed(
-            chalk.black(
-                `Encore is not configured, something went wrong! The process.env.NODE_ENV is set to ${
-                    process.env.NODE_ENV || 'dev-server'
-                }`
-            )
-        )
+        chalk.bgRed(chalk.black(`Encore is not configured, something went wrong! The process.env.NODE_ENV is set to ${process.env.NODE_ENV || 'dev-server'}`))
     );
 
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev-server');
@@ -190,6 +184,8 @@ Encore
             },
         ];
         babelConfig.cacheDirectory = path.join(config.cacheDirectory, 'babel');
+    }, {
+        includeNodeModules: pack.includeNodeModules,
     })
     .configureTerserPlugin(options => {
         options.extractComments = false;
@@ -331,9 +327,6 @@ module.exports = {
             };
         }
 
-        return (
-            'WebpackManifestPlugin' !== plugin.constructor.name &&
-            'EnabledButKeepHere_AssetOutputDisplayPlugin' !== plugin.constructor.name
-        );
+        return 'WebpackManifestPlugin' !== plugin.constructor.name && 'EnabledButKeepHere_AssetOutputDisplayPlugin' !== plugin.constructor.name;
     }),
 };

@@ -1,12 +1,12 @@
 name: Deploy to server
 
 on:
-  pull_request:
-    branches:
-      - main
-    paths-ignore:
-        - '.github/**'
-        - 'scripts/**'
+    pull_request:
+        branches:
+            - main
+        paths-ignore:
+            - '.github/**'
+            - 'scripts/**'
 
 jobs:
     deploy:

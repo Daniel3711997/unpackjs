@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk');
 const config = require('../app.config');
 
 const temporaryDirectory = config.outputPath + '_temporary';
@@ -15,3 +16,6 @@ if (fs.existsSync(temporaryDirectory)) {
 }
 
 fs.writeFileSync(path.join(config.outputPath, '.htaccess'), 'Require all granted');
+
+console.log();
+console.log(chalk.magenta('Project built successfully!'));

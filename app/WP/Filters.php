@@ -41,7 +41,7 @@ class Filters {
 
             $reflectionClass = new ReflectionClass($class);
 
-            if (method_exists($reflectionClass, 'getAttributes')) {
+            if ('php-annotations' === UNPACK_SYSTEM && method_exists($reflectionClass, 'getAttributes')) {
                 $attributes = $reflectionClass->getAttributes(
                     Filter::class,
                     \ReflectionAttribute::IS_INSTANCEOF

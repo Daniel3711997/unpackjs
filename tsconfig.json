@@ -2,6 +2,8 @@
     "exclude": ["vendor", "node_modules"],
 
     "compilerOptions": {
+        "rootDirs": [".", "__generated__"],
+
         "noEmit": true,
         "strict": true,
         "allowJs": true,
@@ -21,11 +23,6 @@
         "noFallthroughCasesInSwitch": true,
         "allowSyntheticDefaultImports": true,
         "lib": ["dom", "dom.iterable", "esnext"],
-        "forceConsistentCasingInFileNames": true,
-        "plugins": [
-            {
-                "name": "typescript-plugin-css-modules"
-            }
-        ]
+        "forceConsistentCasingInFileNames": true
     }
 }

@@ -38,7 +38,7 @@
             },
             "tests": [
                 {
-                    "arguments": [1],
+                    "arguments": [5],
                     "function": "is_single"
                 }
             ],

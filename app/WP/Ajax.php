@@ -52,7 +52,7 @@ class Ajax {
 
             $reflectionClass = new ReflectionClass($class);
 
-            if (method_exists($reflectionClass, 'getAttributes')) {
+            if ('php-annotations' === UNPACK_SYSTEM && method_exists($reflectionClass, 'getAttributes')) {
                 $attributes = $reflectionClass->getAttributes(
                     AjaxRoute::class,
                     \ReflectionAttribute::IS_INSTANCEOF

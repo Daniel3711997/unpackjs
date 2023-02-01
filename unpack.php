@@ -57,6 +57,7 @@ if (!file_exists(__DIR__ . '/vendor')) {
     );
 }
 
+define('UNPACK_SYSTEM', 'doctrine'); // 'doctrine' or 'php-annotations'
 define('UNPACK_PLUGIN_HOME_URL', home_url());
 define('UNPACK_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('UNPACK_PLUGIN_DIRECTORY', plugin_dir_path(__FILE__));
