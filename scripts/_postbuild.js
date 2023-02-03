@@ -15,7 +15,18 @@ if (fs.existsSync(temporaryDirectory)) {
     fs.renameSync(temporaryDirectory, config.outputPath);
 }
 
-fs.writeFileSync(path.join(config.outputPath, '.htaccess'), 'Require all granted');
+fs.writeFileSync(
+    path.join(config.outputPath, '.htaccess'),
+    `<IfModule mod_authz_host.c>
+    Require all granted
+</IfModule>
+
+<IfModule !mod_authz_host.c>
+    Order Allow,Deny
+    Allow from all
+</IfModule>
+`
+);
 
 console.log();
 console.log(chalk.magenta('Project built successfully!'));
