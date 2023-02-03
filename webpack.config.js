@@ -170,7 +170,8 @@ Encore
         config.useBuiltIns = 'entry';
     })
     .configureCssLoader(function (config) {
-        config.modules.localIdentName = '[name]__[local]--[hash:base64:5]';
+        config.url = true;
+        config.modules.localIdentName = Encore.isProduction() ? '[hash:base64:5]' : '[name]__[local]--[hash:base64:5]';
     })
     .configureFriendlyErrorsPlugin(options => {
         options.clearConsole = true;
