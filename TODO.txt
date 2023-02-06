@@ -1,4 +1,4 @@
-- Fix IML files for IDEA
+- !!!! Replace Webpack Encore with Vite JS !!!!
 
 https://github.dev/Daniel3711997/webpack-encore
 
@@ -8,4 +8,5 @@ https://github.dev/Daniel3711997/webpack-encore
 - Hybrid client/server rendering
 - Docusaurus compiling client/server pattern (https://docusaurus.io/docs)
 - Polyfill SSR fetch (https://www.npmjs.com/package/node-fetch) with keepAlive
-[Done] - Add an option to use the PHP attibutes system instead of the doctrine annotations (hybrid)
+
+[Done] - Add an option to use the PHP attributes system instead of the doctrine annotations (hybrid)
