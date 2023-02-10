@@ -22,8 +22,5 @@
         <exclude name="PSR12.ControlStructures.ControlStructureSpacing.FirstExpressionLine"/>
         <exclude name="PSR12.ControlStructures.ControlStructureSpacing.CloseParenthesisLine"/>
 
-        <!-- force yoda conditions for equality chekcs -->
-
-
     </rule>
 </ruleset>
