@@ -1,8 +1,11 @@
 <?xml version="1.0" ?>
 
 <ruleset name="NextLevelDigital">
+    <config name="installed_paths" value="vendor/wp-coding-standards/wpcs" />
+
     <description>The "Next Level Digital" Standard</description>
 
+    <rule ref="WordPress.PHP.YodaConditions"/>
     <rule ref="Generic.Classes.OpeningBraceSameLine"/>
     <rule ref="Squiz.NamingConventions.ValidVariableName"/>
     <rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie"/>
@@ -18,6 +21,9 @@
         <exclude name="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore"/>
         <exclude name="PSR12.ControlStructures.ControlStructureSpacing.FirstExpressionLine"/>
         <exclude name="PSR12.ControlStructures.ControlStructureSpacing.CloseParenthesisLine"/>
+
+        <!-- force yoda conditions for equality chekcs -->
+
 
     </rule>
 </ruleset>
