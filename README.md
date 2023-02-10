@@ -4,7 +4,7 @@
 
 ### Idea
 
--   Out of the box support
+-   Requires setup
 
 ### Visual Studio Code
 
