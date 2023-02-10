@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpFullyQualifiedNameUsageInspection */
-
 /**
  * Unpack App
  *

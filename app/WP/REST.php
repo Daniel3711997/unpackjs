@@ -16,8 +16,6 @@ class REST {
     ];
 
     /**
-     * @noinspection PhpFullyQualifiedNameUsageInspection
-     *
      * @throws \ReflectionException
      * @throws \Psr\Cache\InvalidArgumentException
      * @throws \Phpfastcache\Exceptions\PhpfastcacheLogicException

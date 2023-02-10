@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpUnusedLocalVariableInspection */
-
 namespace Unpack\Framework;
 
 use Unpack\WP\{

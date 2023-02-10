@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpUnusedAliasInspection */
-
 declare(strict_types=1);
 
 namespace Unpack\Actions;
@@ -27,8 +25,6 @@ class Preload implements ActionInterface {
     }
 
     /**
-     * @noinspection PhpFullyQualifiedNameUsageInspection
-     *
      * @throws \ReflectionException
      * @throws \Psr\Cache\InvalidArgumentException
      * @throws \Phpfastcache\Exceptions\PhpfastcacheLogicException

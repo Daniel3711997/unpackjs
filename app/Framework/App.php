@@ -1,9 +1,5 @@
 <?php
 
-/** @noinspection JSUnresolvedVariable */
-
-/** @noinspection PhpRedundantOptionalArgumentInspection */
-
 declare(strict_types=1);
 
 namespace Unpack\Framework;
