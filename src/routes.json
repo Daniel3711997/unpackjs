@@ -46,7 +46,7 @@
                 {
                     "after": "top",
                     "queryVars": ["profile-id"],
-                    "regex": "profile/([0-9]+)/?$",
+                    "regex": "^profile/([0-9]+)/?$",
                     "query": "index.php?pagename=profile&profile-id=$matches[1]"
                 }
             ]
