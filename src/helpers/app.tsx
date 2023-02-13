@@ -5,11 +5,12 @@ import type { ComponentType } from 'react';
 
 interface ICreateContainer {
     container: ComponentType;
+    excludeWrapper?: boolean;
     element: string | HTMLElement;
 }
 
 export const createContainer =
-    ({ element, container: ReactAppContainer }: ICreateContainer) =>
+    ({ element, excludeWrapper, container: ReactAppContainer }: ICreateContainer) =>
     () => {
         const rootElement = 'string' === typeof element ? document.getElementById(element) : element;
 
@@ -21,5 +22,5 @@ export const createContainer =
             );
         }
 
-        createRoot(rootElement).render(<App Component={ReactAppContainer} />); // Create a React root and render the App component
+        createRoot(rootElement).render(excludeWrapper ? <ReactAppContainer /> : <App Component={ReactAppContainer} />); // Create a React root and render the App component
     };
