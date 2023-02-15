@@ -55,6 +55,13 @@
         "@tanstack/react-query",
         "@tanstack/query-core"
     ],
+    "overrides": {
+        "typed-scss-modules": {
+            "css-modules-loader-core": {
+                "postcss": "^7.0.0"
+            }
+        }
+    },
     "dependencies": {
         "@loadable/component": "^5.15.3",
         "@tanstack/react-query": "^4.24.4",
@@ -103,8 +110,9 @@
         "lint-staged": "^13.1.0",
         "mini-css-extract-plugin": "^2.7.2",
         "node-ssh": "^13.0.1",
+        "postcss": "^8.3.0",
         "postcss-flexbugs-fixes": "^5.0.2",
-        "postcss-loader": "^7.0.2",
+        "postcss-loader": "^7.0.0",
         "postcss-logical": "^5.0.4",
         "postcss-preset-env": "^7.8.3",
         "prettier": "^2.8.3",
