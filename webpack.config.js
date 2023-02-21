@@ -118,7 +118,6 @@ Encore
     .splitEntryChunks()
     .enableReactPreset()
     .enablePostCssLoader()
-    .disableCssExtraction(!Encore.isProduction())
     .enableTypeScriptLoader(options => {
         if (Encore.isProduction()) {
             options.transpileOnly = false;
@@ -136,6 +135,7 @@ Encore
             };
         }
     })
+    .disableCssExtraction(config.disableCssExtraction && !Encore.isProduction())
     .enableBuildCache(
         {
             config: [__filename],

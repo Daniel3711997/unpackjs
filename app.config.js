@@ -17,6 +17,7 @@ module.exports = {
     purgeCSSIgnore: [],
     useBundleAnalyzer: false,
     manifestKeyPrefix: 'build/',
+    disableCssExtraction: false,
     /**
      * @param {typeof import('@symfony/webpack-encore')} Encore
      */
