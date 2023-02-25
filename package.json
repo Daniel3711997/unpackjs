@@ -58,7 +58,7 @@
     "overrides": {
         "typed-scss-modules": {
             "css-modules-loader-core": {
-                "postcss": "^7.0.0"
+                "postcss": "^7.0.39"
             }
         }
     },
