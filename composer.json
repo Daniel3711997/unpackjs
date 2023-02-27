@@ -20,7 +20,7 @@
     "minimum-stability": "stable",
     "require": {
         "ext-json": "*",
-        "twig/twig": "^3.0",
+        "eftec/bladeone": "^4.8",
         "vlucas/phpdotenv": "^5.5",
         "guzzlehttp/guzzle": "^7.0",
         "doctrine/annotations": "^1.13",

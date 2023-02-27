@@ -146,13 +146,20 @@ add_shortcode(
     function ($reactJSShortCodeAttributes) {
         $attributes = shortcode_atts([
             'id' => 'root',
+            'echo' => false,
             'loader' => '<div class="framework-loader"><p>Loading...</p></div>',
         ], $reactJSShortCodeAttributes);
 
         /**
          * Do not escape the loader because we want to allow HTML to be passed in
          */
-        return '<div id="' . esc_attr($attributes['id']) . '">' . $attributes['loader'] . '</div>';
+        $html =  '<div id="' . esc_attr($attributes['id']) . '">' . $attributes['loader'] . '</div>';
+
+        if ($attributes['echo']) {
+            echo $html;
+        } else {
+            return $html;
+        }
     }
 );
 

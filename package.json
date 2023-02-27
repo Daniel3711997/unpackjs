@@ -9,14 +9,14 @@
         "prebuild": "npm run check-php",
         "build-action": "encore production",
         "vanilla-start": "encore dev-server",
-        "prestart": "php composer.phar dump-autoload",
+        "prestart": "composer dump-autoload",
         "postbuild-action": "node ./scripts/_postbuild.js",
         "postconfigure-production": "node ./scripts/_postconfigure.js",
         "postconfigure-development": "node ./scripts/_postconfigure.js",
         "check-php": "./vendor/bin/phpcs app --standard=.php-style.xml",
-        "configure-development": "npm install && php composer.phar install",
-        "postbuild": "php composer.phar dump-autoload --optimize && node ./scripts/_postbuild.js",
-        "configure-production": "npm ci && php composer.phar install --no-interaction --optimize-autoloader",
+        "configure-development": "npm install && composer install",
+        "postbuild": "composer dump-autoload --optimize && node ./scripts/_postbuild.js",
+        "configure-production": "npm ci && composer install --no-interaction --optimize-autoloader",
         "start": "concurrently -r -k \"typed-scss-modules \\\"**/*.module.scss\\\" -L silent -n none -e default -w -o __generated__\" \"encore dev-server\""
     },
     "sideEffects": [
@@ -56,10 +56,8 @@
         "@tanstack/query-core"
     ],
     "overrides": {
-        "typed-scss-modules": {
-            "css-modules-loader-core": {
-                "postcss": "^7.0.39"
-            }
+        "css-modules-loader-core": {
+            "postcss": "^7.0.39"
         }
     },
     "dependencies": {

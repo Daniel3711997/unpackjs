@@ -5,6 +5,10 @@
 
     <description>The "Next Level Digital" Standard</description>
 
+    <rule ref="Internal.NoCodeFound">
+        <severity>0</severity>
+    </rule>
+
     <rule ref="WordPress.PHP.YodaConditions"/>
     <rule ref="Generic.Classes.OpeningBraceSameLine"/>
     <rule ref="Squiz.NamingConventions.ValidVariableName"/>

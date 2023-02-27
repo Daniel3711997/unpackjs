@@ -17,8 +17,8 @@
             "app": "react",
             "tests": [
                 {
-                    "arguments": [2],
-                    "function": "is_single"
+                    "function": "is_page_template",
+                    "arguments": ["unpack-template.php"]
                 }
             ],
             "entry": {

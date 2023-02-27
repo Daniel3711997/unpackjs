@@ -10,15 +10,6 @@ use Phpfastcache\Config\ConfigurationOption;
 class Engine {
     public static ?Psr16Adapter $instance = null;
 
-    /**
-     * @throws \ReflectionException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheLogicException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheDriverException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheDriverCheckException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheDriverNotFoundException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheInvalidArgumentException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheInvalidConfigurationException
-     */
     public static function getInstance(): Psr16Adapter {
         if (null === self::$instance) {
             self::$instance = new Psr16Adapter(

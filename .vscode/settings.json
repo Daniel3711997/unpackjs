@@ -96,5 +96,8 @@
         "zip",
         "zlib",
         "wordpress"
-    ]
+    ],
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow.json": "file:///Users/onofreicostineldanut/Documents/Studio/UnpackJS/.github/workflows/deploy.yml"
+    }
 }

@@ -1,7 +1,8 @@
 const path = require('path');
-const pckg = require('./package.json');
 
 module.exports = {
+    name: 'UnpackJSDevelopmentPlugin',
+
     devServer: {
         port: '4000',
         transport: 'ws',
@@ -29,5 +30,7 @@ module.exports = {
     useTypeCheckInDev: false,
     outputPath: path.resolve(__dirname, 'build'),
     cacheDirectory: path.resolve(__dirname, 'cache'),
-    publicPath: `/wp-content/plugins/${pckg.name}/build`,
+    get publicPath() {
+        return `/wp-content/plugins/${this.name}/build`;
+    },
 };
