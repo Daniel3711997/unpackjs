@@ -23,7 +23,7 @@ ssh.connect({
         console.log('Removing the old temporary plugin folder');
 
         // Delete the old temporary directory if exists
-        await ssh.execCommand(`rm -rf ${process.env.pluginPath}_temporary`, {
+        await ssh.execCommand(`rm -rf ${pluginPath}_temporary`, {
             cwd: process.env.REMOTE_PATH,
         });
 
@@ -38,17 +38,17 @@ ssh.connect({
         console.log('Removing the old plugin folder before renaming the temporary folder to the plugin folder');
 
         // Delete the old build folder
-        await ssh.execCommand(`rm -rf ${process.env.pluginPath}`, {
+        await ssh.execCommand(`rm -rf ${pluginPath}`, {
             cwd: process.env.REMOTE_PATH,
         });
 
         console.log('Renaming the temporary folder to the plugin folder after removing the old plugin folder');
 
         // Rename the temporary build folder to the correct name
-        await ssh.execCommand(`mv ${process.env.pluginPath}_temporary ${process.env.pluginPath}`, {
+        await ssh.execCommand(`mv ${pluginPath}_temporary ${pluginPath}`, {
             cwd: process.env.REMOTE_PATH,
         });
     })
     .catch(error => {
-        throw new Error('Something went wrong', error);
+        throw new Error(`An error occurred while deploying the plugin: ${error.message}`); // Throw the error to the app console
     });
