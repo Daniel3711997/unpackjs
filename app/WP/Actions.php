@@ -40,6 +40,7 @@ class Actions {
                     $attribute = $attribute->newInstance();
 
                     $this->actions[$attribute->name] = [
+                        'id' => $attribute->id,
                         'admin' => $attribute->admin,
                         'priority' => $attribute->priority,
                         'controllerMethod' => $attribute->method,
@@ -62,11 +63,12 @@ class Actions {
             }
 
             $this->actions[$annotation->name] = [
+                'id' => $annotation->id,
                 'admin' => $annotation->admin,
                 'priority' => $annotation->priority,
-                'accepted_args' => $annotation->acceptedArgs,
-                'controller' => $reflectionClass->getName(),
                 'controllerMethod' => $annotation->method,
+                'controller' => $reflectionClass->getName(),
+                'accepted_args' => $annotation->acceptedArgs,
             ];
         }
 
@@ -77,9 +79,28 @@ class Actions {
                     $options['controller'],
                     $options['controllerMethod']
                 )) {
+                $callback = $this->registerCallbackMethod($options);
+
+                if (!empty($options['id'])) {
+                    if (!isset($GLOBALS['removeAction'])) {
+                        $GLOBALS['removeAction'] = [
+                            // Actions
+                        ];
+                    }
+
+                    $GLOBALS['removeAction'][$options['id']] = function () use ($action, $callback, $options) {
+                        return remove_action(
+                            $action,
+                            $callback,
+                            $options['priority'] ?? 10,
+                            $options['accepted_args'] ?? 0
+                        );
+                    };
+                }
+
                 add_action(
                     $action,
-                    $this->registerCallbackMethod($options),
+                    $callback,
                     $options['priority'] ?? 10,
                     $options['accepted_args'] ?? 0
                 );

@@ -13,6 +13,7 @@ use Attribute;
  */
 #[Attribute(Attribute::TARGET_CLASS | Attribute::IS_REPEATABLE)]
 final class Filter {
+    public ?string $id;
     public bool $admin;
     public string $name;
     public int $priority;
@@ -20,7 +21,8 @@ final class Filter {
     public bool $disabled;
     public int $acceptedArgs;
 
-    public function __construct($name, $method, $priority, $acceptedArgs, $admin = false, $disabled = false) {
+    public function __construct($name, $method, $priority, $acceptedArgs, $admin = false, $disabled = false, $id = null) {
+        $this->id = $id;
         $this->name = $name;
         $this->admin = $admin;
         $this->method = $method;
