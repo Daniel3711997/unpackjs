@@ -99,18 +99,6 @@ function isDevelopment(): bool {
     return 'development' === UNPACK_PLUGIN_ENVIRONMENT;
 }
 
-/**
- * @throws \ReflectionException
- * @throws \InvalidArgumentException
- * @throws \Psr\Cache\InvalidArgumentException
- * @throws \Phpfastcache\Exceptions\PhpfastcacheLogicException
- * @throws \Phpfastcache\Exceptions\PhpfastcacheDriverException
- * @throws \Phpfastcache\Exceptions\PhpfastcacheDriverCheckException
- * @throws \Phpfastcache\Exceptions\PhpfastcacheSimpleCacheException
- * @throws \Phpfastcache\Exceptions\PhpfastcacheDriverNotFoundException
- * @throws \Phpfastcache\Exceptions\PhpfastcacheInvalidArgumentException
- * @throws \Phpfastcache\Exceptions\PhpfastcacheInvalidConfigurationException
- */
 function readDirectory(string $directory): array {
     $cache = CacheEngine::getInstance();
     $cacheKey = md5('readDirectory' . '-' . $directory);

@@ -14,17 +14,6 @@ class Filters {
     private array $filters = [
     ];
 
-    /**
-     * @throws \ReflectionException
-     * @throws \Psr\Cache\InvalidArgumentException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheLogicException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheDriverException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheDriverCheckException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheSimpleCacheException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheDriverNotFoundException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheInvalidArgumentException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheInvalidConfigurationException
-     */
     public function __construct() {
         $directory = UNPACK_PLUGIN_DIRECTORY . '/app/Filters';
 
