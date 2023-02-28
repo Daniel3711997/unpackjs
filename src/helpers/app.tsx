@@ -22,7 +22,7 @@ export const createContainer =
             );
         }
 
-        window.addEventListener('load', () => {
+        window.addEventListener('DOMContentLoaded', () => {
             createRoot(rootElement).render(excludeWrapper ? <ReactAppContainer /> : <App Component={ReactAppContainer} />);
         });
     };
