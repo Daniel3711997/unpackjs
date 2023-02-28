@@ -22,5 +22,7 @@ export const createContainer =
             );
         }
 
-        createRoot(rootElement).render(excludeWrapper ? <ReactAppContainer /> : <App Component={ReactAppContainer} />); // Create a React root and render the App component
+        window.addEventListener('load', () => {
+            createRoot(rootElement).render(excludeWrapper ? <ReactAppContainer /> : <App Component={ReactAppContainer} />);
+        });
     };
