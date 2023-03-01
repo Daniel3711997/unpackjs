@@ -82,9 +82,9 @@ class App {
                     wp_enqueue_style(
                         $id,
                         isDevelopment() ? $entrypoint : UNPACK_PLUGIN_HOME_URL . $entrypoint,
-                        [],
+                        $route['cssDependencies'] ?? [],
                         isDevelopment() ? time() : null,
-                        'all'
+                        $route['cssMedia'] ?? 'all'
                     );
                 }
 
@@ -100,9 +100,9 @@ class App {
                     wp_enqueue_script(
                         $id,
                         isDevelopment() ? $entrypoint : UNPACK_PLUGIN_HOME_URL . $entrypoint,
-                        [],
+                        $route['jsDependencies'] ?? [],
                         isDevelopment() ? time() : null,
-                        false
+                        $route['jsInFooter'] ?? true
                     );
 
                     if (!$alreadyInjected && isProduction() && 'react' === $route['app']) {

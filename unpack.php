@@ -188,8 +188,11 @@ add_filter(
         foreach ($entrypoints as $entrypoint) {
             if (isset($entrypoint['js']) && is_array($entrypoint['js'])) {
                 foreach ($entrypoint['js'] as $script) {
-                    if (strpos($url, $script) !== false) {
-                        return str_replace(' src', ' defer src', $url);
+                    $search = ' src';
+                    $replace = ' defer src';
+
+                    if (false !== strpos($url, $script) && false === strpos($url, $replace)) {
+                        return str_replace($search, $replace, $url);
                     }
                 }
             }
