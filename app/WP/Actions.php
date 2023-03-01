@@ -8,14 +8,17 @@ use ReflectionClass;
 use Unpack\Annotations\Action;
 use Doctrine\Common\Annotations\AnnotationReader;
 
-use function Unpack\readDirectory;
+use function Unpack\{
+    readDirectory,
+    getPluginDirectory
+};
 
 class Actions {
     private array $actions = [
     ];
 
     public function __construct() {
-        $directory = UNPACK_PLUGIN_DIRECTORY . '/app/Actions';
+        $directory = getPluginDirectory() . 'app/Actions';
 
         $classes = readDirectory(
             $directory

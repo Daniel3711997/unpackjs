@@ -6,7 +6,10 @@ namespace Unpack\Blade;
 
 use eftec\bladeone\BladeOne;
 
-use function Unpack\isProduction;
+use function Unpack\{
+    isProduction,
+    getPluginDirectory
+};
 
 class Engine {
     private BladeOne $bladeEngine;
@@ -26,8 +29,8 @@ class Engine {
     }
 
     public function __construct() {
-        $viewsFolder = UNPACK_PLUGIN_DIRECTORY . 'app/Blade/Views';
-        $cacheFolder = UNPACK_PLUGIN_DIRECTORY . 'build/cache/Blade';
+        $cacheFolder = getPluginDirectory() . 'cache/blade';
+        $viewsFolder = getPluginDirectory() . 'app/Blade/Views';
 
         if (!is_dir($cacheFolder)) {
             mkdir(

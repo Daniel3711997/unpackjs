@@ -6,7 +6,10 @@ namespace Unpack\WP;
 
 use ReflectionClass;
 
-use function Unpack\readDirectory;
+use function Unpack\{
+    readDirectory,
+    getPluginDirectory
+};
 
 // https://developer.wordpress.org/reference/classes/wp_rest_controller/
 // https://developer.wordpress.org/rest-api/extending-the-rest-api/adding-custom-endpoints/
@@ -16,7 +19,7 @@ class REST {
     ];
 
     public function __construct() {
-        $APIDirectory = UNPACK_PLUGIN_DIRECTORY . '/app/API/Versions';
+        $APIDirectory = getPluginDirectory() . 'app/API/Versions';
 
         $directories = readDirectory($APIDirectory);
 

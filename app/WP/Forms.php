@@ -8,7 +8,10 @@ use ReflectionClass;
 use Unpack\Annotations\FormRoute;
 use Doctrine\Common\Annotations\AnnotationReader;
 
-use function Unpack\readDirectory;
+use function Unpack\{
+    readDirectory,
+    getPluginDirectory
+};
 
 class Forms {
     /**
@@ -24,7 +27,7 @@ class Forms {
     }
 
     public function __construct() {
-        $directory = UNPACK_PLUGIN_DIRECTORY . '/app/Forms';
+        $directory = getPluginDirectory() . 'app/Forms';
 
         $classes = readDirectory(
             $directory

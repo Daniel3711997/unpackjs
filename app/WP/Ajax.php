@@ -8,7 +8,10 @@ use ReflectionClass;
 use Unpack\Annotations\AjaxRoute;
 use Doctrine\Common\Annotations\AnnotationReader;
 
-use function  Unpack\readDirectory;
+use function  Unpack\{
+    readDirectory,
+    getPluginDirectory
+};
 
 class Ajax {
     /**
@@ -24,7 +27,7 @@ class Ajax {
     }
 
     public function __construct() {
-        $directory = UNPACK_PLUGIN_DIRECTORY . '/app/Ajax';
+        $directory = getPluginDirectory() . 'app/Ajax';
 
         $classes = readDirectory(
             $directory

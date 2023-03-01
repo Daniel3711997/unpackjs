@@ -8,14 +8,17 @@ use ReflectionClass;
 use Unpack\Annotations\Filter;
 use Doctrine\Common\Annotations\AnnotationReader;
 
-use function Unpack\readDirectory;
+use function Unpack\{
+    readDirectory,
+    getPluginDirectory
+};
 
 class Filters {
     private array $filters = [
     ];
 
     public function __construct() {
-        $directory = UNPACK_PLUGIN_DIRECTORY . '/app/Filters';
+        $directory = getPluginDirectory() . 'app/Filters';
 
         $classes = readDirectory($directory);
 

@@ -7,6 +7,8 @@ namespace Unpack\Cache;
 use Phpfastcache\Helper\Psr16Adapter;
 use Phpfastcache\Config\ConfigurationOption;
 
+use function Unpack\getPluginDirectory;
+
 class Engine {
     public static ?Psr16Adapter $instance = null;
 
@@ -16,7 +18,7 @@ class Engine {
                 'Files',
                 new ConfigurationOption([
                     'defaultTtl' => 0,
-                    'path' => UNPACK_PLUGIN_DIRECTORY . '/build/cache/unpack',
+                    'path' => getPluginDirectory() . 'cache/unpack',
                 ])
             );
         }
