@@ -29,6 +29,7 @@ declare(strict_types=1);
 namespace Unpack;
 
 use Dotenv\Dotenv;
+use Unpack\Database\CLI;
 use Unpack\Framework\App;
 use Unpack\Cache\Engine as CacheEngine;
 use Doctrine\Common\Annotations\AnnotationRegistry;
@@ -118,6 +119,10 @@ function readDirectory(string $directory): array {
     }
 
     return $files;
+}
+
+if (defined('WP_CLI')) {
+    \WP_CLI::add_command('unpack', CLI::class);
 }
 
 // function isUsingOPCache(): bool {

@@ -1,6 +1,6 @@
-import 'styles/main.scss';
-
 import { loadSuspense } from 'helpers/suspense';
+
+import 'styles/main.scss';
 
 loadSuspense();
 

@@ -1,3 +1,9 @@
+<?php
+if (!defined('ABSPATH')) {
+    exit;
+}
+?>
+
 <h1>{{$HelloWorldVersion}}</h1>
 
 <?php

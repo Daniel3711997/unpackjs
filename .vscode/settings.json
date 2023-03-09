@@ -5,6 +5,8 @@
     "editor.wordWrapColumn": 160,
     "files.trimFinalNewlines": true,
     "files.insertFinalNewline": true,
+    "javascript.suggest.paths": false,
+    "typescript.suggest.paths": false,
     "javascript.validate.enable": true,
     "typescript.validate.enable": true,
     "files.trimTrailingWhitespace": true,
@@ -21,7 +23,7 @@
     // PHP Intelephense
     "intelephense.format.braces": "k&r",
     "intelephense.diagnostics.enable": true,
-    "intelephense.environment.phpVersion": "8.2.2",
+    "intelephense.environment.phpVersion": "7.4",
     "intelephense.stubs": [
         "apache",
         "bcmath",
@@ -97,7 +99,10 @@
         "zlib",
         "wordpress"
     ],
-    "yaml.schemas": {
-        "https://json.schemastore.org/github-workflow.json": "file:///Users/onofreicostineldanut/Documents/Studio/UnpackJS/.github/workflows/deploy.yml"
-    }
+    "intelephense.environment.includePaths": [
+        "vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php",
+        "vendor/php-stubs/wp-cli-stubs/wp-cli-i18n-stubs.php",
+        "vendor/php-stubs/wordpress-stubs/wordpress-stubs.php",
+        "vendor/php-stubs/php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php"
+    ]
 }

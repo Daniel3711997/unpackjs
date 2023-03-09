@@ -1,0 +1,130 @@
+{
+    "folders": [
+        {
+            "name": "Root Plugin",
+            "path": "./" // This is the path to the root of the plugin
+        },
+        {
+            "name": "Development Workspace",
+            "path": "../../" // This is the path to the root of the project
+        }
+    ],
+    "extensions": {
+        "recommendations": [
+            "esbenp.prettier-vscode",
+            "dbaeumer.vscode-eslint",
+            "valeryanm.vscode-phpsab",
+            "shardulm94.trailing-spaces",
+            "christian-kohler.path-intellisense",
+            "bmewburn.vscode-intelephense-client"
+        ]
+    },
+    "settings": {
+        // General
+        "editor.formatOnSave": true,
+        "editor.wordWrap": "bounded",
+        "editor.wordWrapColumn": 160,
+        "files.trimFinalNewlines": true,
+        "files.insertFinalNewline": true,
+        "javascript.suggest.paths": false,
+        "typescript.suggest.paths": false,
+        "javascript.validate.enable": true,
+        "typescript.validate.enable": true,
+        "files.trimTrailingWhitespace": true,
+        "typescript.tsdk": "node_modules/typescript/lib",
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+        // PHP Code Sniffer
+        "phpsab.snifferShowSources": true,
+        "phpsab.standard": ".php-style.xml",
+        "[php]": {
+            "editor.defaultFormatter": "valeryanm.vscode-phpsab"
+        },
+
+        // PHP Intelephense
+        "intelephense.format.braces": "k&r",
+        "intelephense.diagnostics.enable": true,
+        "intelephense.environment.phpVersion": "7.4",
+        "intelephense.stubs": [
+            "apache",
+            "bcmath",
+            "bz2",
+            "calendar",
+            "com_dotnet",
+            "Core",
+            "ctype",
+            "curl",
+            "date",
+            "dba",
+            "dom",
+            "enchant",
+            "exif",
+            "FFI",
+            "fileinfo",
+            "filter",
+            "fpm",
+            "ftp",
+            "gd",
+            "gettext",
+            "gmp",
+            "hash",
+            "iconv",
+            "imap",
+            "intl",
+            "json",
+            "ldap",
+            "libxml",
+            "mbstring",
+            "meta",
+            "mysqli",
+            "oci8",
+            "odbc",
+            "openssl",
+            "pcntl",
+            "pcre",
+            "PDO",
+            "pdo_ibm",
+            "pdo_mysql",
+            "pdo_pgsql",
+            "pdo_sqlite",
+            "pgsql",
+            "Phar",
+            "posix",
+            "pspell",
+            "random",
+            "readline",
+            "Reflection",
+            "session",
+            "shmop",
+            "SimpleXML",
+            "snmp",
+            "soap",
+            "sockets",
+            "sodium",
+            "SPL",
+            "sqlite3",
+            "standard",
+            "superglobals",
+            "sysvmsg",
+            "sysvsem",
+            "sysvshm",
+            "tidy",
+            "tokenizer",
+            "xml",
+            "xmlreader",
+            "xmlrpc",
+            "xmlwriter",
+            "xsl",
+            "Zend OPcache",
+            "zip",
+            "zlib",
+            "wordpress"
+        ],
+        "intelephense.environment.includePaths": [
+            "vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php",
+            "vendor/php-stubs/wp-cli-stubs/wp-cli-i18n-stubs.php",
+            "vendor/php-stubs/wordpress-stubs/wordpress-stubs.php",
+            "vendor/php-stubs/php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php"
+        ]
+    }
+}
