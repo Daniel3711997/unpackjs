@@ -20,6 +20,7 @@
             "naumovs.color-highlight",
             "aaron-bond.better-comments",
             "shardulm94.trailing-spaces",
+            "stylelint.vscode-stylelint",
             "formulahendry.auto-close-tag",
             "rangav.vscode-thunder-client",
             "formulahendry.auto-rename-tag",
