@@ -166,8 +166,8 @@ Encore
         })
     )
     .configureBabelPresetEnv(config => {
-        config.corejs = 3;
-        config.useBuiltIns = 'entry';
+        config.corejs = "3.29.0";
+        config.useBuiltIns = 'usage';
     })
     .configureCssLoader(function (config) {
         config.url = true;
