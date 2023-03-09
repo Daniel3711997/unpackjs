@@ -269,7 +269,7 @@ module.exports = {
         infrastructureLogging: {
             level: 'warn',
         },
-        devtool: 'eval-source-map', // 'inline-source-map',
+        devtool: 'eval-source-map',
     }),
     output: {
         ...webpackConfig.output,
