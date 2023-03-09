@@ -64,7 +64,7 @@
     "dependencies": {
         "@loadable/component": "^5.15.3",
         "@tanstack/react-query": "^4.26.1",
-        "classnames": "^2.3.2",
+        "clsx": "^1.2.1",
         "final-form": "^4.20.9",
         "immer": "^9.0.19",
         "jquery": "^3.6.4",

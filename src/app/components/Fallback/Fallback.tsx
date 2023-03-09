@@ -1,4 +1,5 @@
-import classNames from 'classnames';
+import { clsx } from 'clsx';
+
 import { useEffect, useState } from 'react';
 
 export const Fallback = () => {
@@ -17,7 +18,7 @@ export const Fallback = () => {
     return (
         <div
             id="fallback-loader"
-            className={classNames('fallback-loader', {
+            className={clsx('fallback-loader', {
                 active: show,
             })}
         >
