@@ -11,10 +11,19 @@
     ],
     "extensions": {
         "recommendations": [
+            "eamodio.gitlens",
+            "mhutchie.git-graph",
+            "mrmlnc.vscode-apache",
             "esbenp.prettier-vscode",
             "dbaeumer.vscode-eslint",
             "valeryanm.vscode-phpsab",
+            "naumovs.color-highlight",
+            "aaron-bond.better-comments",
             "shardulm94.trailing-spaces",
+            "formulahendry.auto-close-tag",
+            "rangav.vscode-thunder-client",
+            "formulahendry.auto-rename-tag",
+            "vincaslt.highlight-matching-tag",
             "christian-kohler.path-intellisense",
             "bmewburn.vscode-intelephense-client"
         ]
@@ -31,6 +40,8 @@
         "javascript.validate.enable": true,
         "typescript.validate.enable": true,
         "files.trimTrailingWhitespace": true,
+        "editor.occurrencesHighlight": false,
+        "typescript.enablePromptUseWorkspaceTsdk": true,
         "typescript.tsdk": "node_modules/typescript/lib",
         "editor.defaultFormatter": "esbenp.prettier-vscode",
 

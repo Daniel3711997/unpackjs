@@ -10,6 +10,8 @@
     "javascript.validate.enable": true,
     "typescript.validate.enable": true,
     "files.trimTrailingWhitespace": true,
+    "editor.occurrencesHighlight": false,
+    "typescript.enablePromptUseWorkspaceTsdk": true,
     "typescript.tsdk": "node_modules/typescript/lib",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
 
