@@ -14,6 +14,8 @@ class WP implements ActionInterface {
     public static function construct(): void {
         global $removeAction;
 
+        // echo 'Hello World!';
+
         $removeAction['appPreload'](); // "appPreload" is the id of the action id in the Preload class
     }
 }
