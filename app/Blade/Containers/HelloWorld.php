@@ -28,13 +28,13 @@ class HelloWorld implements Renderer, RendererArguments {
 
         try {
             echo Engine::getInstance()
-            ->getEngine()
-            ->run('HelloWorld.Example', array_merge($params, self::getArguments($params)));
+                ->getEngine()
+                ->run('HelloWorld.Example', array_merge($params, self::getArguments($params)));
         } catch (\Exception  $e) {
             wp_die(
                 $e->getMessage(),
                 'Unpack App Error',
-                [ 'response' => 500, 'back_link' => true ]
+                ['response' => 500, 'back_link' => true]
             );
         }
 

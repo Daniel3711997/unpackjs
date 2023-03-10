@@ -15,8 +15,7 @@ use function Unpack\{
 // https://developer.wordpress.org/rest-api/extending-the-rest-api/adding-custom-endpoints/
 
 class REST {
-    private array $endpoints = [
-    ];
+    private array $endpoints = [];
 
     public function __construct() {
         $APIDirectory = getPluginDirectory() . 'app/API/Versions';

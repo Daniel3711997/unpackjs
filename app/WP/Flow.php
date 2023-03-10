@@ -16,11 +16,11 @@ function wrapFormHandler(string $action, array $params = [], array $customFormPa
     return array_merge($params, [
         'action_link' => admin_url('admin-post.php'),
         'form_handler' =>
-            wp_nonce_field(
-                $action,
-                'security',
-                true,
-                false
-            ) . '<input type="hidden" name="action" value="' . $action . '"/>' . implode('', $customInputs)
+        wp_nonce_field(
+            $action,
+            'security',
+            true,
+            false
+        ) . '<input type="hidden" name="action" value="' . $action . '"/>' . implode('', $customInputs)
     ]);
 }

@@ -23,7 +23,7 @@
         "eftec/bladeone": "^4.8",
         "vlucas/phpdotenv": "^5.5",
         "guzzlehttp/guzzle": "^7.0",
-        "doctrine/annotations": "^1.13",
+        "doctrine/annotations": "^2.0",
         "phpfastcache/phpfastcache": "^8.1"
     },
     "require-dev": {

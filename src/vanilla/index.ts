@@ -6,10 +6,6 @@ loadSuspense();
 
 console.log('Hello world');
 
-// $(() => {
-//     console.log('jQuery is ready!');
-// });
-
 /**
  * Do not remove this helper function as it is used by the build process
  */

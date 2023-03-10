@@ -19,10 +19,11 @@
     "phpsab.snifferShowSources": true,
     "phpsab.standard": ".php-style.xml",
     "[php]": {
-        "editor.defaultFormatter": "valeryanm.vscode-phpsab"
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
     },
 
     // PHP Intelephense
+    "intelephense.format.enable": true,
     "intelephense.format.braces": "k&r",
     "intelephense.diagnostics.enable": true,
     "intelephense.environment.phpVersion": "7.4",

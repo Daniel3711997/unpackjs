@@ -14,13 +14,14 @@ use function Unpack\{
 };
 
 class Filters {
-    private array $filters = [
-    ];
+    private array $filters = [];
 
     public function __construct() {
         $directory = getPluginDirectory() . 'app/Filters';
 
-        $classes = readDirectory($directory);
+        $classes = readDirectory(
+            $directory
+        );
 
         foreach ($classes as $class) {
             $class = Loader::findClass($directory . '/' . $class);
@@ -40,12 +41,19 @@ class Filters {
                 foreach ($attributes as $attribute) {
                     $attribute = $attribute->newInstance();
 
+                    if (
+                        $attribute->disabled
+                        || !isset($attribute->name, $attribute->method)
+                    ) {
+                        continue 2;
+                    }
+
                     $this->filters[$attribute->name] = [
                         'id' => $attribute->id,
                         'admin' => $attribute->admin,
                         'priority' => $attribute->priority,
                         'controllerMethod' => $attribute->method,
-                        'accepted_args' => $attribute->acceptedArgs,
+                        'acceptedArgs' => $attribute->acceptedArgs,
                         'controller' => $reflectionClass->getName(),
                     ];
 
@@ -57,9 +65,10 @@ class Filters {
             $annotation = $reader->getClassAnnotation($reflectionClass, Filter::class);
 
             if (
-                null === $annotation ||
-                (isset($annotation->disabled) && $annotation->disabled) ||
-                !isset($annotation->name, $annotation->method, $annotation->priority, $annotation->acceptedArgs, $annotation->admin)) {
+                null === $annotation
+                || $annotation->disabled
+                || !isset($annotation->name, $annotation->method)
+            ) {
                 continue;
             }
 
@@ -69,17 +78,17 @@ class Filters {
                 'priority' => $annotation->priority,
                 'controllerMethod' => $annotation->method,
                 'controller' => $reflectionClass->getName(),
-                'accepted_args' => $annotation->acceptedArgs,
+                'acceptedArgs' => $annotation->acceptedArgs,
             ];
         }
 
         foreach ($this->filters as $action => $options) {
             if (isset($options['controller'], $options['controllerMethod']) && class_exists(
-                    $options['controller']
-                ) && method_exists(
-                    $options['controller'],
-                    $options['controllerMethod']
-                )) {
+                $options['controller']
+            ) && method_exists(
+                $options['controller'],
+                $options['controllerMethod']
+            )) {
                 $callback = $this->registerCallbackMethod($options);
 
                 if (!empty($options['id'])) {
@@ -93,16 +102,17 @@ class Filters {
                         return remove_filter(
                             $action,
                             $callback,
-                            $options['priority'] ?? 10,
-                            $options['accepted_args'] ?? 0
+                            $options['priority'],
+                            $options['acceptedArgs']
                         );
                     };
                 }
+
                 add_action(
                     $action,
                     $callback,
-                    $options['priority'] ?? 10,
-                    $options['accepted_args'] ?? 0
+                    $options['priority'],
+                    $options['acceptedArgs']
                 );
             }
         }

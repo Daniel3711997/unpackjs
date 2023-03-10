@@ -18,9 +18,9 @@ class Runtime {
 
         foreach ($actions as $action => $options) {
             if (isset($options['controller'], $options['controllerMethod'], $options['availability']) && 1 === $options['availability'] && method_exists(
-                    $options['controller'],
-                    $options['controllerMethod']
-                )) {
+                $options['controller'],
+                $options['controllerMethod']
+            )) {
                 $ajaxNonces[$action] = wp_create_nonce("ajax-$action");
             }
         }

@@ -107,9 +107,7 @@ if (Encore.isDevServer()) {
         })
     );
 
-    Encore.configureBabel(babelConfig => {
-        babelConfig.plugins.push('react-refresh/babel', '@babel/plugin-transform-runtime');
-    });
+    Encore.configureBabel(babelConfig => babelConfig.plugins.push('react-refresh/babel'));
 }
 
 // prettier-ignore
@@ -269,7 +267,7 @@ module.exports = {
         infrastructureLogging: {
             level: 'warn',
         },
-        devtool: 'eval-source-map',
+        devtool: 'inline-source-map',
     }),
     output: {
         ...webpackConfig.output,

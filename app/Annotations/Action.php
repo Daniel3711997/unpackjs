@@ -11,7 +11,7 @@ use Attribute;
  * @Target("CLASS")
  * @NamedArgumentConstructor
  */
-#[Attribute(Attribute::TARGET_CLASS | Attribute::IS_REPEATABLE)]
+#[Attribute(Attribute::TARGET_CLASS)]
 final class Action {
     public ?string $id;
     public bool $admin;
@@ -21,7 +21,7 @@ final class Action {
     public bool $disabled;
     public int $acceptedArgs;
 
-    public function __construct($name, $method, $priority, $acceptedArgs, $admin = false, $disabled = false, $id = null) {
+    public function __construct($name, $method, $priority = 10, $acceptedArgs = 0, $id = null, $admin = false, $disabled = false) {
         $this->id = $id;
         $this->name = $name;
         $this->admin = $admin;

@@ -8,7 +8,7 @@ use Unpack\Annotations\Action;
 use Unpack\Interfaces\Action as ActionInterface;
 
 /**
- * @Action(name="wp", method="construct", priority=10, acceptedArgs=0, disabled=true)
+ * @Action(name="wp", method="construct")
  */
 class WP implements ActionInterface {
     public static function construct(): void {

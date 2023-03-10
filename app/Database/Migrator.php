@@ -10,7 +10,7 @@ class Migrator {
     public static function seed(array $options = [
         'files' => [],
         'rollback' => false
-        ]) {
+    ]) {
         self::run(
             array_merge($options, [
                 'type' => 'seed'
@@ -21,7 +21,7 @@ class Migrator {
     public static function migrate(array $options = [
         'files' => [],
         'rollback' => false
-        ]) {
+    ]) {
         self::run(
             array_merge($options, [
                 'type' => 'migrate'
@@ -38,7 +38,7 @@ class Migrator {
 
         $isMigration = 'migrate' === $options['type'];
         $runPath = getPluginDirectory()
-                            . 'app/Database' . ($isMigration ? '/Migrations' : '/DbSeeds');
+            . 'app/Database' . ($isMigration ? '/Migrations' : '/DbSeeds');
 
         if (!file_exists($runPath)) {
             throw new \Exception(
@@ -81,7 +81,7 @@ class Migrator {
                     );
                 }
 
-                call_user_func([ $namespace, $method ]);
+                call_user_func([$namespace, $method]);
                 update_option(($isMigration ? "migration" : "seed") . "_{$fileName}", $method);
             }
         }

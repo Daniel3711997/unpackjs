@@ -12,9 +12,13 @@
     "extensions": {
         "recommendations": [
             "eamodio.gitlens",
+            "mikestead.dotenv",
+            "xdebug.php-debug",
             "mhutchie.git-graph",
+            "redhat.vscode-yaml",
             "mrmlnc.vscode-apache",
             "esbenp.prettier-vscode",
+            "Gruntfuggly.todo-tree",
             "dbaeumer.vscode-eslint",
             "valeryanm.vscode-phpsab",
             "naumovs.color-highlight",
@@ -50,10 +54,11 @@
         "phpsab.snifferShowSources": true,
         "phpsab.standard": ".php-style.xml",
         "[php]": {
-            "editor.defaultFormatter": "valeryanm.vscode-phpsab"
+            "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
         },
 
         // PHP Intelephense
+        "intelephense.format.enable": true,
         "intelephense.format.braces": "k&r",
         "intelephense.diagnostics.enable": true,
         "intelephense.environment.phpVersion": "7.4",

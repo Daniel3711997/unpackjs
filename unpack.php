@@ -32,7 +32,6 @@ use Dotenv\Dotenv;
 use Unpack\Database\CLI;
 use Unpack\Framework\App;
 use Unpack\Cache\Engine as CacheEngine;
-use Doctrine\Common\Annotations\AnnotationRegistry;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -56,7 +55,11 @@ if (!file_exists(__DIR__ . '/vendor')) {
     );
 }
 
-define('UNPACK_SYSTEM', 'doctrine'); // 'doctrine' or 'php-annotations'
+/**
+ * @param 'doctrine' || 'php-annotations'
+ */
+define('UNPACK_SYSTEM', 'doctrine');
+
 define('UNPACK_PLUGIN_HOME_URL', home_url());
 define('UNPACK_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('UNPACK_PLUGIN_DIRECTORY', plugin_dir_path(__FILE__));
@@ -121,19 +124,6 @@ function readDirectory(string $directory): array {
     return $files;
 }
 
-if (defined('WP_CLI')) {
-    \WP_CLI::add_command('unpack', CLI::class);
-}
-
-// function isUsingOPCache(): bool {
-//     if (function_exists('opcache_get_status')) {
-//         $status = opcache_get_status();
-//         return $status && $status['opcache_enabled'];
-//     }
-//
-//     return false;
-// }
-
 add_shortcode(
     'framework-app',
     function ($reactJSShortCodeAttributes) {
@@ -156,34 +146,16 @@ add_shortcode(
     }
 );
 
-// if (!isUsingOPCache()) {
-//     ini_set('opcache.enable', '1');
-// }
-//
-// ini_set('opcache.revalidate_freq', isProduction() ? '60' : '0');
 
 add_action('init', [App::class, 'registerRules']);
 add_action('wp_enqueue_scripts', [App::class, 'load']);
 add_action('admin_enqueue_scripts', [App::class, 'load']);
 add_filter('query_vars', [App::class, 'registerQueryVars']);
 
-AnnotationRegistry::registerLoader('class_exists');
+if (defined('WP_CLI')) {
+    \WP_CLI::add_command('unpack', CLI::class);
+}
 register_theme_directory(UNPACK_PLUGIN_DIRECTORY . 'themes');
-
-/**
- * Prevents to return the resolved symlink path
- *
- * __FILE__
- *
- * The full path and filename of the file with symlinks resolved. If used inside an include, the name of the included file is returned
- */
-add_filter('theme_root_uri', function (string $themeRootURI): string {
-    if (false === strpos($themeRootURI, 'http') && false !== strpos($themeRootURI, 'unpack/themes')) {
-        return UNPACK_PLUGIN_URL . 'themes';
-    }
-
-    return $themeRootURI;
-});
 
 add_filter(
     'script_loader_tag',
@@ -206,3 +178,11 @@ add_filter(
         return $url;
     }
 );
+
+add_filter('theme_root_uri', function (string $themeRootURI): string {
+    if (false === strpos($themeRootURI, 'http') && false !== strpos($themeRootURI, '/themes')) {
+        $themeRootURI =  UNPACK_PLUGIN_URL . 'themes';
+    }
+
+    return $themeRootURI;
+});

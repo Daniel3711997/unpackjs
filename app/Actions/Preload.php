@@ -9,11 +9,13 @@ use Unpack\Annotations\Action;
 use Unpack\Interfaces\Action as ActionInterface;
 
 use function Unpack\{
-    isProduction, getPluginDirectory, readDirectory
+    isProduction,
+    getPluginDirectory,
+    readDirectory
 };
 
 /**
- * @Action(name="wp_head", method="construct", priority=4, acceptedArgs=0, id="appPreload")
+ * @Action(name="wp_head", method="construct", priority=4, id="appPreload")
  */
 class Preload implements ActionInterface {
     public static function inArray(string $search, array $array): bool {
@@ -33,23 +35,21 @@ class Preload implements ActionInterface {
             $publicPath = App::getManifest()['publicPath'] . '/assets/fonts';
 
             if ($preloadFonts && file_exists($fontsDirectory)) {
-                foreach (
-                    array_map(function ($font) use ($fontsDirectory, $preloadFonts, $publicPath) {
-                        $fontInfo = pathinfo($font);
+                foreach (array_map(function ($font) use ($fontsDirectory, $preloadFonts, $publicPath) {
+                    $fontInfo = pathinfo($font);
 
-                        if ('woff2' === $fontInfo['extension'] && self::inArray($font, $preloadFonts)) {
-                            return $fontsDirectory . '/' . $font;
-                        }
+                    if ('woff2' === $fontInfo['extension'] && self::inArray($font, $preloadFonts)) {
+                        return $fontsDirectory . '/' . $font;
+                    }
 
-                        return null;
-                    }, readDirectory($fontsDirectory)) as $font
-                ) {
+                    return null;
+                }, readDirectory($fontsDirectory)) as $font) {
                     if ($font && is_file($font)) {
                         echo '<link rel="preload" href="' . str_replace(
-                                $fontsDirectory,
-                                $publicPath,
-                                $font
-                            ) . '" as="font" type="font/woff2" crossorigin />' . PHP_EOL;
+                            $fontsDirectory,
+                            $publicPath,
+                            $font
+                        ) . '" as="font" type="font/woff2" crossorigin />' . PHP_EOL;
                     }
                 }
             }

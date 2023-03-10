@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "port": 9000,
+            "type": "php",
+            "request": "launch",
+            "name": "Listen for Xdebug"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "url": "https://unpack.dev",
+            "webRoot": "${workspaceFolder}",
+            "name": "Launch Chrome against Root"
+        }
+    ]
+}

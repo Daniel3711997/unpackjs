@@ -19,8 +19,7 @@ class Forms {
      * 2 - Register the action only for logged out users
      * 3 - Register the action for both logged in and logged out users
      */
-    private array $actions = [
-    ];
+    private array $actions = [];
 
     public function getActions(): array {
         return $this->actions;
@@ -51,6 +50,13 @@ class Forms {
                 foreach ($attributes as $attribute) {
                     $attribute = $attribute->newInstance();
 
+                    if (
+                        $attribute->disabled
+                        || !isset($attribute->name, $attribute->method)
+                    ) {
+                        continue 2;
+                    }
+
                     $this->actions[$attribute->name] = [
                         'controllerMethod' => $attribute->method,
                         'availability' => $attribute->availability,
@@ -65,9 +71,10 @@ class Forms {
             $annotation = $reader->getClassAnnotation($reflectionClass, FormRoute::class);
 
             if (
-                null === $annotation ||
-                (isset($annotation->disabled) && $annotation->disabled) ||
-                !isset($annotation->name, $annotation->method, $annotation->availability)) {
+                null === $annotation
+                || $annotation->disabled
+                || !isset($annotation->name, $annotation->method)
+            ) {
                 continue;
             }
 

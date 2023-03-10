@@ -8,7 +8,7 @@ use Unpack\Interfaces\Ajax;
 use Unpack\Annotations\AjaxRoute;
 
 /**
- * @AjaxRoute(name="getProfile", method="getProfileAjax", availability=1)
+ * @AjaxRoute(name="getProfile", method="getProfileAjax")
  */
 class Profile implements Ajax {
     public static function getProfileAjax(): array {

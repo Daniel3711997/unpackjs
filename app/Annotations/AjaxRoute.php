@@ -11,14 +11,14 @@ use Attribute;
  * @Target("CLASS")
  * @NamedArgumentConstructor
  */
-#[Attribute(Attribute::TARGET_CLASS | Attribute::IS_REPEATABLE)]
+#[Attribute(Attribute::TARGET_CLASS)]
 final class AjaxRoute {
     public string $name;
     public string $method;
     public bool $disabled;
     public int $availability;
 
-    public function __construct($name, $method, $availability, $disabled = false) {
+    public function __construct($name, $method, $availability = 3, $disabled = false) {
         $this->name = $name;
         $this->method = $method;
         $this->disabled = $disabled;

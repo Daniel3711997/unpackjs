@@ -20,14 +20,7 @@ ssh.connect({
     .then(async () => {
         const pluginPath = `${process.env.REMOTE_PATH}/${process.env.PLUGIN_NAME}`;
 
-        console.log('Removing the old temporary plugin folder');
-
-        // Delete the old temporary directory if exists
-        await ssh.execCommand(`rm -rf ${pluginPath}_temporary`, {
-            cwd: process.env.REMOTE_PATH,
-        });
-
-        console.log('Creating a new temporary plugin folder and copying the plugin files');
+        console.log('Creating a temporary plugin folder and copying the plugin files');
 
         // Upload the build folder to the server
         await ssh.putDirectory(process.cwd(), `${pluginPath}_temporary`, {
@@ -35,17 +28,36 @@ ssh.connect({
             recursive: true,
         });
 
-        console.log('Removing the old plugin folder before renaming the temporary folder to the plugin folder');
+        /**
+         * **********************************************************************
+         */
 
-        // Delete the old build folder
-        await ssh.execCommand(`rm -rf ${pluginPath}`, {
+        console.log('Renaming the obsolete plugin folder before renaming the temporary folder to the plugin folder');
+
+        // Rename the obsolete build folder
+        await ssh.execCommand(`mv ${pluginPath} ${pluginPath}_obsolete`, {
             cwd: process.env.REMOTE_PATH,
         });
 
-        console.log('Renaming the temporary folder to the plugin folder after removing the old plugin folder');
+        /**
+         * **********************************************************************
+         */
+
+        console.log('Renaming the temporary folder to the plugin folder after renaming the obsolete plugin folder');
 
         // Rename the temporary build folder to the correct name
         await ssh.execCommand(`mv ${pluginPath}_temporary ${pluginPath}`, {
+            cwd: process.env.REMOTE_PATH,
+        });
+
+        /**
+         * **********************************************************************
+         */
+
+        console.log('Removing the obsolete plugin folder before renaming the temporary folder to the plugin folder');
+
+        // Delete the obsolete build folder
+        await ssh.execCommand(`rm -rf ${pluginPath}_obsolete`, {
             cwd: process.env.REMOTE_PATH,
         });
     })

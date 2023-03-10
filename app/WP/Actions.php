@@ -14,8 +14,7 @@ use function Unpack\{
 };
 
 class Actions {
-    private array $actions = [
-    ];
+    private array $actions = [];
 
     public function __construct() {
         $directory = getPluginDirectory() . 'app/Actions';
@@ -42,12 +41,19 @@ class Actions {
                 foreach ($attributes as $attribute) {
                     $attribute = $attribute->newInstance();
 
+                    if (
+                        $attribute->disabled
+                        || !isset($attribute->name, $attribute->method)
+                    ) {
+                        continue 2;
+                    }
+
                     $this->actions[$attribute->name] = [
                         'id' => $attribute->id,
                         'admin' => $attribute->admin,
                         'priority' => $attribute->priority,
                         'controllerMethod' => $attribute->method,
-                        'accepted_args' => $attribute->acceptedArgs,
+                        'acceptedArgs' => $attribute->acceptedArgs,
                         'controller' => $reflectionClass->getName(),
                     ];
 
@@ -59,9 +65,10 @@ class Actions {
             $annotation = $reader->getClassAnnotation($reflectionClass, Action::class);
 
             if (
-                null === $annotation ||
-                (isset($annotation->disabled) && $annotation->disabled) ||
-                !isset($annotation->name, $annotation->method, $annotation->priority, $annotation->acceptedArgs, $annotation->admin)) {
+                null === $annotation
+                || $annotation->disabled
+                || !isset($annotation->name, $annotation->method)
+            ) {
                 continue;
             }
 
@@ -70,18 +77,18 @@ class Actions {
                 'admin' => $annotation->admin,
                 'priority' => $annotation->priority,
                 'controllerMethod' => $annotation->method,
+                'acceptedArgs' => $annotation->acceptedArgs,
                 'controller' => $reflectionClass->getName(),
-                'accepted_args' => $annotation->acceptedArgs,
             ];
         }
 
         foreach ($this->actions as $action => $options) {
             if (isset($options['controller'], $options['controllerMethod']) && class_exists(
-                    $options['controller']
-                ) && method_exists(
-                    $options['controller'],
-                    $options['controllerMethod']
-                )) {
+                $options['controller']
+            ) && method_exists(
+                $options['controller'],
+                $options['controllerMethod']
+            )) {
                 $callback = $this->registerCallbackMethod($options);
 
                 if (!empty($options['id'])) {
@@ -95,8 +102,8 @@ class Actions {
                         return remove_action(
                             $action,
                             $callback,
-                            $options['priority'] ?? 10,
-                            $options['accepted_args'] ?? 0
+                            $options['priority'],
+                            $options['acceptedArgs']
                         );
                     };
                 }
@@ -104,8 +111,8 @@ class Actions {
                 add_action(
                     $action,
                     $callback,
-                    $options['priority'] ?? 10,
-                    $options['accepted_args'] ?? 0
+                    $options['priority'],
+                    $options['acceptedArgs']
                 );
             }
         }
