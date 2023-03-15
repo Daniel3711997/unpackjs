@@ -1,5 +1,6 @@
-import { Home } from './Home';
 import { createContainer } from 'helpers/app';
+
+import { Home } from './Home';
 
 const renderContainer = createContainer({
     element: 'root',

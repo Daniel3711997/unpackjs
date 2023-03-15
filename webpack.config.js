@@ -328,6 +328,8 @@ module.exports = {
             };
         }
 
-        return 'WebpackManifestPlugin' !== plugin.constructor.name && 'EnabledButKeepHere_AssetOutputDisplayPlugin' !== plugin.constructor.name;
+        return (
+            'EnabledButKeepHere_WebpackManifestPlugin' !== plugin.constructor.name && 'EnabledButKeepHere_AssetOutputDisplayPlugin' !== plugin.constructor.name
+        );
     }),
 };

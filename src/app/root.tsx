@@ -1,8 +1,7 @@
-import { RequestBoundary } from 'app/components/RequestBoundary';
-
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
 import { type ComponentType, StrictMode } from 'react';
+
+import { RequestBoundary } from 'app/components/RequestBoundary';
 
 // https://webpack.js.org/api/module-methods/#magic-comments
 // https://webpack.js.org/guides/code-splitting/#prefetchingpreloading-modules

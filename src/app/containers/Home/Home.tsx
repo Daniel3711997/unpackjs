@@ -1,7 +1,8 @@
 import styles from './Home.module.scss';
+import image from './image.jpg';
 
 export const Home = () => {
-    console.log(styles);
+    console.log(styles, image);
 
     return (
         <div>
