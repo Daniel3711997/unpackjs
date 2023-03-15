@@ -47,14 +47,18 @@
         "files.trimFinalNewlines": true,
         "files.insertFinalNewline": true,
         "javascript.suggest.paths": false,
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": true,
+            "source.fixAll.stylelint": true
+        },
         "typescript.suggest.paths": false,
         "javascript.validate.enable": true,
         "typescript.validate.enable": true,
         "files.trimTrailingWhitespace": true,
         "editor.occurrencesHighlight": false,
         "typescript.enablePromptUseWorkspaceTsdk": true,
-        "typescript.tsdk": "node_modules/typescript/lib",
         "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "typescript.tsdk": "Root Plugin/node_modules/typescript/lib",
 
         // Error Lens
         "errorLens.margin": "25px",
