@@ -2,20 +2,5 @@
     "tabWidth": 4,
     "printWidth": 160,
     "singleQuote": true,
-    "arrowParens": "avoid",
-    "importOrder": [
-        "^[./]",
-        "^app/(.*)$",
-        "^assets/(.*)$",
-        "^helpers/(.*)$",
-        "^styles/(.*)$",
-        "^vanilla/(.*)$",
-        "<THIRD_PARTY_MODULES>",
-        "^(react|react-dom/(.*))$"
-    ],
-    "importOrderSeparation": true,
-    "importOrderSortSpecifiers": true,
-    "importOrderCaseInsensitive": false,
-    "importOrderGroupNamespaceSpecifiers": true,
-    "importOrderParserPlugins": ["jsx", "typescript"]
+    "arrowParens": "avoid"
 }

@@ -1,3 +1,5 @@
+/* eslint-disable import/order */
+
 // https://github.com/symfony/webpack-encore/blob/main/index.js
 
 const path = require('path');
@@ -107,7 +109,7 @@ if (Encore.isDevServer()) {
         })
     );
 
-    Encore.configureBabel(babelConfig => babelConfig.plugins.push('react-refresh/babel'));
+    Encore.configureBabel(babelConfig => babelConfig.plugins.push('react-refresh/babel', '@babel/plugin-transform-runtime'));
 }
 
 // prettier-ignore

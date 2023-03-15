@@ -47,7 +47,45 @@
         "no-use-before-define": "off",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
-        "@typescript-eslint/no-var-requires": "off"
+        "@typescript-eslint/no-var-requires": "off",
+
+        "import/order": [
+            "error",
+            {
+                "newlines-between": "always",
+                "pathGroups": [
+                    {
+                        "pattern": "app/**",
+                        "group": "unknown",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "assets/**",
+                        "group": "unknown",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "helpers/**",
+                        "group": "unknown",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "styles/**",
+                        "group": "unknown",
+                        "position": "after"
+                    }
+                ],
+                "distinctGroup": true,
+                "alphabetize": {
+                    "order": "asc",
+                    "orderImportKind": "asc",
+                    "caseInsensitive": true
+                },
+                "warnOnUnassignedImports": true,
+                "pathGroupsExcludedImportTypes": [],
+                "groups": ["builtin", "external", "internal", "unknown", "parent", "sibling", "index", "object", "type"]
+            }
+        ]
     },
     "overrides": [
         {
