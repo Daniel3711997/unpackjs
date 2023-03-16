@@ -72,7 +72,7 @@
         "errorLens.statusBarIconsPriority": 90000,
         "errorLens.messageBackgroundMode": "message",
         "errorLens.statusBarMessagePriority": -100000,
-        "errorLens.enabledDiagnosticLevels": ["error", "warning", "info", "hint"],
+        "errorLens.enabledDiagnosticLevels": ["error", "warning" /* "info", "hint" */],
 
         // PHP Code Sniffer
         "phpsab.snifferShowSources": true,
