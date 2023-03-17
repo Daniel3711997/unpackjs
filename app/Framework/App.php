@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Unpack\Framework;
 
+use Unpack\Server\ServerClient;
+
 use function Unpack\{
     isProduction,
     isDevelopment
@@ -127,8 +129,8 @@ JS;
                 if (isset($route['server'])) {
                     $server = $route['server'];
 
-                    if (method_exists(Server::class, $server['method'])) {
-                        self::$server[$server['key']] = call_user_func([Server::class, $server['method']]);
+                    if (method_exists(ServerClient::class, $server['method'])) {
+                        self::$server[$server['key']] = call_user_func([ServerClient::class, $server['method']]);
                     }
                 }
             }

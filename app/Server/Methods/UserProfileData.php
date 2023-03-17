@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Unpack\Framework;
+namespace Unpack\Server\Methods;
 
-class Server {
-    public static function getUserProfileData(): array {
+class UserProfileData {
+    public static function run(): array {
         return [
             "success" => true,
             "data" => [
