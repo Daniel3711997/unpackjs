@@ -3,6 +3,7 @@ export interface Server {
 }
 
 export interface Runtime {
+    pluginURI: string;
     rest: {
         root: string;
         nonce: string;

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Unpack\Framework;
 
+use function Unpack\getPluginURI;
+
 class Runtime {
     public static function getRuntimeConfig(): array {
         global $ajaxInstance, $registeredVars, $formsNonces;
@@ -27,6 +29,7 @@ class Runtime {
 
         return [
             'vars' => $queryVars,
+            'pluginURI' => getPluginURI(),
             'forms' => [
                 'nonces' => $formsNonces,
                 'url' => admin_url('admin-post.php'),
