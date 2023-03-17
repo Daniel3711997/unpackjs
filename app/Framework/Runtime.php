@@ -28,14 +28,14 @@ class Runtime {
         }
 
         return [
-            'vars' => $queryVars,
+            'vars' => (object) $queryVars,
             'pluginURI' => getPluginURI(),
             'forms' => [
-                'nonces' => $formsNonces,
+                'nonces' => (object) $formsNonces,
                 'url' => admin_url('admin-post.php'),
             ],
             'ajax' => [
-                'nonces' => $ajaxNonces,
+                'nonces' => (object) $ajaxNonces,
                 'url' => admin_url('admin-ajax.php'),
             ],
             'rest' => [

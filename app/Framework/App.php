@@ -146,7 +146,39 @@ JS;
         foreach ($routes as $route) {
             global $registeredVars;
 
-            if (isset($route['rewrites']) && is_array($route['rewrites'])) {
+            if (is_admin() && empty($route['admin'])) {
+                continue;
+            }
+
+            $includeFramework = false;
+
+            if (isset($route['tests']) && is_array($route['tests'])) {
+                $operator = $route['operator'] ?? 'AND';
+
+                foreach ($route['tests'] as $test) {
+                    if (function_exists($test['function'])) {
+                        $result = call_user_func_array(
+                            $test['function'],
+                            $test['arguments'] ?? []
+                        );
+
+                        if ('AND' === $operator) {
+                            $includeFramework = true === $result;
+
+                            if (false === $includeFramework) {
+                                break;
+                            }
+                        }
+
+                        if ('OR' === $operator && true === $result) {
+                            $includeFramework = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if ($includeFramework && isset($route['rewrites']) && is_array($route['rewrites'])) {
                 foreach ($route['rewrites'] as $rewrite) {
                     if (isset($rewrite['queryVars']) && is_array($rewrite['queryVars'])) {
                         foreach ($rewrite['queryVars'] as $queryVar) {
@@ -160,6 +192,7 @@ JS;
 
         return $vars;
     }
+
     public static function registerRules(): void {
         $routes = self::getRoutes();
 
