@@ -28,13 +28,13 @@
         },
         {
             "app": "react",
-            "entry": {
-                "name": "home",
-                "path": "src/app/containers/Home/index.ts"
-            },
             "server": {
                 "key": "profile",
                 "method": "getUserProfileData"
+            },
+            "entry": {
+                "name": "home",
+                "path": "src/app/containers/Home/index.ts"
             },
             "tests": [
                 {
