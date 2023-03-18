@@ -94,6 +94,21 @@
                 "no-unused-vars": "error",
                 "no-use-before-define": "error"
             }
+        },
+        {
+            "plugins": ["sort-exports"],
+            "files": ["**/index.js", "**/index.ts"],
+            "rules": {
+                "sort-exports/sort-exports": [
+                    "error",
+                    {
+                        "sortDir": "asc",
+                        "ignoreCase": true,
+                        "disableAutofixer": false,
+                        "sortExportKindFirst": "value"
+                    }
+                ]
+            }
         }
     ],
     "settings": {
