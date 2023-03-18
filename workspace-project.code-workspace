@@ -60,6 +60,10 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "typescript.tsdk": "Root Plugin/node_modules/typescript/lib",
 
+        // Stylelint
+        "stylelint.snippet": ["css", "less", "postcss", "scss", "sass"],
+        "stylelint.validate": ["css", "less", "postcss", "scss", "sass"],
+
         // Error Lens
         "errorLens.margin": "25px",
         "errorLens.fontSize": "12px",

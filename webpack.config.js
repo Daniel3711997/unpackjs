@@ -2,8 +2,8 @@
 
 // https://github.com/symfony/webpack-encore/blob/main/index.js
 
-const path = require('path');
 const chalk = require('chalk');
+const path = require('node:path');
 const pack = require('./package.json');
 const config = require('./app.config');
 const app = require('./src/routes.json');
@@ -29,7 +29,7 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 }
 
 app.routes.forEach(route => {
-    Encore.addEntry(route.entry.name, path.resolve(__dirname, route.entry.path));
+    Encore.addEntry(route.entry.name, path.join(__dirname, route.entry.path));
 
     console.log(`Loading route ${chalk.yellow(route.entry.name)} from ${chalk.yellow(route.entry.path)}`);
 });
@@ -286,7 +286,7 @@ module.exports = {
         providedExports: true,
     },
     snapshot: {
-        managedPaths: [path.resolve(__dirname, 'node_modules')],
+        managedPaths: [path.join(__dirname, 'node_modules')],
     },
     resolve: {
         ...webpackConfig.resolve,

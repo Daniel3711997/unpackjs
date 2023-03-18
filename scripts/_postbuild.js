@@ -1,6 +1,8 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('node:fs');
+const path = require('node:path');
+
 const chalk = require('chalk');
+
 const config = require('../app.config');
 
 const temporaryDirectory = config.outputPath + '_temporary';

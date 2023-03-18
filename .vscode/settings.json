@@ -24,6 +24,10 @@
     "typescript.tsdk": "node_modules/typescript/lib",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
 
+    // Stylelint
+    "stylelint.snippet": ["css", "less", "postcss", "scss", "sass"],
+    "stylelint.validate": ["css", "less", "postcss", "scss", "sass"],
+
     // Error Lens
     "errorLens.margin": "25px",
     "errorLens.fontSize": "12px",
