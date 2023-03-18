@@ -46,19 +46,19 @@
         "editor.wordWrapColumn": 160,
         "files.trimFinalNewlines": true,
         "files.insertFinalNewline": true,
-        "javascript.suggest.paths": false,
         "editor.codeActionsOnSave": {
             "source.fixAll.eslint": true,
             "source.fixAll.stylelint": true
         },
+        "javascript.suggest.paths": false,
         "typescript.suggest.paths": false,
         "javascript.validate.enable": true,
         "typescript.validate.enable": true,
         "files.trimTrailingWhitespace": true,
         "editor.occurrencesHighlight": false,
         "typescript.enablePromptUseWorkspaceTsdk": true,
+        "typescript.tsdk": "node_modules/typescript/lib",
         "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "typescript.tsdk": "Root Plugin/node_modules/typescript/lib",
 
         // Stylelint
         "stylelint.snippet": ["css", "less", "postcss", "scss", "sass"],
@@ -81,8 +81,6 @@
         // PHP Code Sniffer
         "phpsab.snifferShowSources": true,
         "phpsab.standard": ".php-style.xml",
-
-        // PHP Settings
         "[php]": {
             "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
         },
@@ -91,7 +89,7 @@
         "intelephense.format.enable": true,
         "intelephense.format.braces": "k&r",
         "intelephense.diagnostics.enable": true,
-        "intelephense.environment.phpVersion": "7.4",
+        "intelephense.environment.phpVersion": "8.2",
         "intelephense.stubs": [
             "apache",
             "bcmath",
@@ -170,8 +168,9 @@
         "intelephense.environment.includePaths": [
             "vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php",
             "vendor/php-stubs/wp-cli-stubs/wp-cli-i18n-stubs.php",
-            "vendor/php-stubs/wordpress-stubs/wordpress-stubs.php",
-            "vendor/php-stubs/php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php"
+            "vendor/php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php"
+
+            // "vendor/php-stubs/wordpress-stubs/wordpress-stubs.php"
         ]
     }
 }

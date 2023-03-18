@@ -53,7 +53,7 @@
     "intelephense.format.enable": true,
     "intelephense.format.braces": "k&r",
     "intelephense.diagnostics.enable": true,
-    "intelephense.environment.phpVersion": "7.4",
+    "intelephense.environment.phpVersion": "8.2",
     "intelephense.stubs": [
         "apache",
         "bcmath",
