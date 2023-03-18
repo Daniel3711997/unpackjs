@@ -236,12 +236,15 @@ Encore
         test: /[\\/]node_modules[\\/]/,
         name: !Encore.isProduction() ? 'node_modules' : false,
     })
+    /**
+     * https://github.com/vercel/next.js/blob/54ca8f41cee490989cdd8d5df8db96307075296c/packages/next/build/webpack-config.ts#L776
+     */
     .addCacheGroup('framework', {
         priority: 40,
         enforce: true,
         name: 'framework',
         reuseExistingChunk: true,
-        test: /(?<!node_modules.*)[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription|object-assign)[\\/]/,
+        test: /(?<!node_modules.*)[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
     });
 
 const webpackConfig = config.extra(Encore);
