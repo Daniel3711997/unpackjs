@@ -90,7 +90,8 @@
         "intelephense.format.braces": "k&r",
         "intelephense.files.maxSize": 10000000,
         "intelephense.diagnostics.enable": true,
-        "intelephense.environment.phpVersion": "8.2",
+        "intelephense.diagnostics.run": "onSave",
+        "intelephense.environment.phpVersion": "7.4",
         "intelephense.stubs": [
             "apache",
             "bcmath",
@@ -165,6 +166,19 @@
             "zip",
             "zlib",
             "wordpress"
+        ],
+        "intelephense.files.exclude": [
+            "**/app/WP/**",
+            "**/.git/**",
+            "**/.svn/**",
+            "**/.hg/**",
+            "**/CVS/**",
+            "**/.DS_Store/**",
+            "**/node_modules/**",
+            "**/bower_components/**",
+            "**/vendor/**/{Tests,tests}/**",
+            "**/.history/**",
+            "**/vendor/**/vendor/**"
         ],
         "intelephense.environment.includePaths": [
             "vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php",
