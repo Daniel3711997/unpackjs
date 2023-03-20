@@ -109,8 +109,12 @@ if (Encore.isDevServer()) {
         })
     );
 
-    Encore.configureBabel(babelConfig => babelConfig.plugins.push('react-refresh/babel', '@babel/plugin-transform-runtime'));
+    Encore.configureBabel(babelConfig => babelConfig.plugins.push('react-refresh/babel'));
 }
+
+Encore.configureBabel(babelConfig => {
+    babelConfig.plugins.push('@babel/plugin-transform-runtime', ['transform-imports', config.transformImports]);
+});
 
 // prettier-ignore
 Encore

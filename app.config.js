@@ -1,3 +1,5 @@
+/* eslint-disable no-template-curly-in-string */
+
 const path = require('node:path');
 
 module.exports = {
@@ -24,6 +26,13 @@ module.exports = {
      */
     extra(Encore) {
         return Encore.getWebpackConfig();
+    },
+
+    transformImports: {
+        lodash: {
+            preventFullImport: true,
+            transform: 'lodash/${member}',
+        },
     },
 
     // Change this to true if you want error checking...
