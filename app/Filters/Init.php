@@ -8,7 +8,7 @@ use Unpack\Annotations\Filter;
 use Unpack\Interfaces\Filter as FilterInterface;
 
 /**
- * @Filter(name="init", method="appInit", priority=10, acceptedArgs=0, admin=true, disabled=true)
+ * @Filter(name="init", method="appInit", disabled=true)
  */
 class Init implements FilterInterface {
     public static function appInit(): string {
