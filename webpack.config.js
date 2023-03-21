@@ -78,6 +78,24 @@ if (config.useTypeCheckInDev || Encore.isProduction()) {
     );
 }
 
+if (Encore.isProduction()) {
+    Encore.configureBabel(
+        babelConfig => {
+            babelConfig.presets[1] = [
+                '@babel/preset-react',
+                {
+                    runtime: 'automatic',
+                },
+            ];
+            babelConfig.cacheDirectory = path.join(config.cacheDirectory, 'babel');
+            babelConfig.plugins.push('@babel/plugin-transform-runtime', ['transform-imports', config.transformImports]);
+        },
+        {
+            includeNodeModules: pack.includeNodeModules,
+        }
+    );
+}
+
 if (Encore.isDevServer()) {
     Encore.configureDevServerOptions(options => {
         options.hot = true;
@@ -109,12 +127,22 @@ if (Encore.isDevServer()) {
         })
     );
 
-    Encore.configureBabel(babelConfig => babelConfig.plugins.push('react-refresh/babel'));
+    Encore.configureBabel(
+        babelConfig => {
+            babelConfig.presets[1] = [
+                '@babel/preset-react',
+                {
+                    runtime: 'automatic',
+                },
+            ];
+            babelConfig.cacheDirectory = path.join(config.cacheDirectory, 'babel');
+            babelConfig.plugins.push('react-refresh/babel', '@babel/plugin-transform-runtime', ['transform-imports', config.transformImports]);
+        },
+        {
+            includeNodeModules: pack.includeNodeModules,
+        }
+    );
 }
-
-Encore.configureBabel(babelConfig => {
-    babelConfig.plugins.push('@babel/plugin-transform-runtime', ['transform-imports', config.transformImports]);
-});
 
 // prettier-ignore
 Encore
@@ -180,17 +208,6 @@ Encore
     .configureFriendlyErrorsPlugin(options => {
         options.clearConsole = true;
         options.logLevel = 'WARNING';
-    })
-    .configureBabel(babelConfig => {
-        babelConfig.presets[1] = [
-            '@babel/preset-react',
-            {
-                runtime: 'automatic',
-            },
-        ];
-        babelConfig.cacheDirectory = path.join(config.cacheDirectory, 'babel');
-    }, {
-        includeNodeModules: pack.includeNodeModules,
     })
     .configureTerserPlugin(options => {
         options.extractComments = false;
