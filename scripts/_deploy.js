@@ -1,8 +1,10 @@
+const path = require('node:path');
+
+const { NodeSSH } = require('node-ssh');
+
 if (process.env.TEST) {
     console.log('Successfully built the application') || process.exit(0);
 }
-
-const { NodeSSH } = require('node-ssh');
 
 const ssh = new NodeSSH();
 
@@ -26,6 +28,9 @@ ssh.connect({
         await ssh.putDirectory(process.cwd(), `${pluginPath}_temporary`, {
             concurrency: 4,
             recursive: true,
+            validate: function (itemPath) {
+                return 'node_modules' !== path.basename(itemPath);
+            },
         });
 
         /**
