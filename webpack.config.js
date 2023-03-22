@@ -151,6 +151,13 @@ Encore
     .enableReactPreset()
     .enablePostCssLoader()
     .enableTypeScriptLoader(options => {
+        options.experimentalWatchApi = true;
+
+        options.compilerOptions = {
+            ...options.compilerOptions,
+            tsBuildInfoFile: path.join(config.cacheDirectory, 'typescript' , '.tsbuildinfo'),
+        }
+
         if (Encore.isProduction()) {
             options.transpileOnly = false;
             options.compilerOptions = {

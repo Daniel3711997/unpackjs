@@ -11,6 +11,7 @@
         "jsx": "preserve",
         "module": "esnext",
         "baseUrl": "./src",
+        "incremental": true,
         "skipLibCheck": true,
         "noImplicitAny": true,
         "noUnusedLocals": true,

@@ -25,15 +25,17 @@
         "*.scss"
     ],
     "lint-staged": {
-        "**/*.json": [
-            "npx prettier --write"
-        ],
-        "**/*.{js,jsx,ts,tsx}": [
-            "npx eslint --fix",
-            "npx prettier --write"
-        ],
         "**/*.php": [
             "./vendor/bin/phpcs --standard=.php-style.xml"
+        ],
+        "**/*.{js,jsx,ts,tsx}": [
+            "npx eslint --fix --cache --cache-location \"cache/eslint/cache\""
+        ],
+        "**/*.{css,scss}": [
+            "npx stylelint --fix --cache --cache-location \"cache/stylelint/cache\""
+        ],
+        "**/*.{js,jsx,ts,tsx,json,css,scss}": [
+            "npx prettier --write --cache --cache-location \"cache/prettier/cache\""
         ]
     },
     "browserslist": {
