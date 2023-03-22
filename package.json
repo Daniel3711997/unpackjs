@@ -35,7 +35,7 @@
             "npx stylelint --fix --cache --cache-strategy metadata --cache-location \"cache/stylelint/\""
         ],
         "**/*.{js,jsx,ts,tsx,json,css,scss}": [
-            "npx prettier --write --cache --cache-strategy metadata --cache-location \"cache/prettier/\""
+            "npx prettier --write --cache --cache-strategy metadata --cache-location \"cache/tools/prettier\""
         ]
     },
     "browserslist": {
