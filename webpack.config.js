@@ -11,7 +11,7 @@ const DotEnv = require('dotenv-webpack');
 const WebpackBar = require('webpackbar');
 const Encore = require('@symfony/webpack-encore');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const StylelintPlugin = require('stylelint-webpack-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 const TSConfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -66,7 +66,7 @@ if (config.useTypeCheckInDev || Encore.isProduction()) {
     );
 
     Encore.addPlugin(
-        new StylelintPlugin({
+        new StyleLintPlugin({
             cache: true,
             failOnError: true,
             failOnWarning: false,

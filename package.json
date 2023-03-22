@@ -29,13 +29,13 @@
             "./vendor/bin/phpcs --standard=.php-style.xml"
         ],
         "**/*.{js,jsx,ts,tsx}": [
-            "npx eslint --fix --cache --cache-location \"cache/eslint/cache\""
+            "npx eslint --fix --cache --cache-strategy metadata --cache-location \"cache/eslint/cache\""
         ],
         "**/*.{css,scss}": [
-            "npx stylelint --fix --cache --cache-location \"cache/stylelint/cache\""
+            "npx stylelint --fix --cache --cache-strategy metadata --cache-location \"cache/stylelint/cache\""
         ],
         "**/*.{js,jsx,ts,tsx,json,css,scss}": [
-            "npx prettier --write --cache --cache-location \"cache/prettier/cache\""
+            "npx prettier --write --cache --cache-strategy metadata --cache-location \"cache/prettier/cache\""
         ]
     },
     "browserslist": {
