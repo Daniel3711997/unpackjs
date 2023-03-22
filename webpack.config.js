@@ -151,8 +151,11 @@ Encore
     .enableReactPreset()
     .enablePostCssLoader()
     .enableTypeScriptLoader(options => {
-        options.experimentalWatchApi = true;
+        /**
+         * https://www.npmjs.com/package/ts-loader
+         */
 
+        options.experimentalWatchApi = true;
         options.compilerOptions = {
             ...options.compilerOptions,
             tsBuildInfoFile: path.join(config.cacheDirectory, 'typescript' , '.tsbuildinfo'),
