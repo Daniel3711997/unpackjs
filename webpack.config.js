@@ -61,7 +61,7 @@ if (config.useTypeCheckInDev || Encore.isProduction()) {
             context: './src/app',
             cacheStrategy: 'metadata',
             extensions: ['js', 'jsx', 'ts', 'tsx'],
-            cacheLocation: path.join(config.cacheDirectory, 'eslint', 'cache'),
+            cacheLocation: path.join(config.cacheDirectory, 'eslint/'),
         })
     );
 
@@ -73,7 +73,7 @@ if (config.useTypeCheckInDev || Encore.isProduction()) {
             context: './src/styles',
             cacheStrategy: 'metadata',
             extensions: ['css', 'scss'],
-            cacheLocation: path.join(config.cacheDirectory, 'stylelint', 'cache'),
+            cacheLocation: path.join(config.cacheDirectory, 'stylelint/'),
         })
     );
 }
@@ -327,7 +327,7 @@ module.exports = {
 
         plugins: (webpackConfig.resolve.plugins || []).concat([
             new TSConfigPathsPlugin({
-                extensions: ['.ts', '.tsx', '.js', '.jsx'],
+                extensions: ['.ts', '.tsx'],
             }),
         ]),
     },
