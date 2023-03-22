@@ -60,6 +60,34 @@ ssh.connect({
         await ssh.execCommand(`rm -rf ${pluginPath}_obsolete`, {
             cwd: process.env.REMOTE_PATH,
         });
+
+        /**
+         * **********************************************************************
+         */
+
+        console.log('Executing database migrations');
+
+        // Execute database migrations
+        await ssh.execCommand(`wp unpack migrate`, {
+            cwd: `${process.env.REMOTE_PATH}/../../`, // The path to the WordPress root folder
+        });
+
+        /**
+         * **********************************************************************
+         */
+
+        console.log('Executing database seeds');
+
+        // Execute database seeds
+        await ssh.execCommand(`wp unpack seed`, {
+            cwd: `${process.env.REMOTE_PATH}/../../`, // The path to the WordPress root folder
+        });
+
+        /**
+         * **********************************************************************
+         */
+
+        console.log('Successfully deployed the plugin');
     })
     .catch(error => {
         throw new Error(`An error occurred while deploying the plugin: ${error.message}`); // Throw the error to the app console
