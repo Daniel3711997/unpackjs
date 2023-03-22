@@ -26,7 +26,7 @@
     ],
     "lint-staged": {
         "**/*.php": [
-            "./vendor/bin/phpcs --standard=.php-style.xml"
+            "./vendor/bin/phpcs --standard=.php-style.xml --cache=\"cache/php/cache\""
         ],
         "**/*.{js,jsx,ts,tsx}": [
             "npx eslint --fix --cache --cache-strategy metadata --cache-location \"cache/eslint/cache\""

@@ -131,19 +131,6 @@
         "zlib",
         "wordpress"
     ],
-    "intelephense.files.exclude": [
-        "**/app/WP/**",
-        "**/.git/**",
-        "**/.svn/**",
-        "**/.hg/**",
-        "**/CVS/**",
-        "**/.DS_Store/**",
-        "**/node_modules/**",
-        "**/bower_components/**",
-        "**/vendor/**/{Tests,tests}/**",
-        "**/.history/**",
-        "**/vendor/**/vendor/**"
-    ],
     "intelephense.environment.includePaths": [
         "vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php",
         "vendor/php-stubs/wp-cli-stubs/wp-cli-i18n-stubs.php",
