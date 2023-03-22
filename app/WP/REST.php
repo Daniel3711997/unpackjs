@@ -11,7 +11,6 @@ use function Unpack\{
     getPluginDirectory
 };
 
-// 123
 // https://developer.wordpress.org/reference/classes/wp_rest_controller/
 // https://developer.wordpress.org/rest-api/extending-the-rest-api/adding-custom-endpoints/
 
