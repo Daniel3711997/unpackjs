@@ -29,10 +29,10 @@
             "./vendor/bin/phpcs --standard=.php-style.xml --cache"
         ],
         "**/*.{js,jsx,ts,tsx}": [
-            "npx eslint --fix --cache --cache-strategy metadata --cache-location \"cache/eslint/\""
+            "npx eslint --cache --cache-strategy metadata --cache-location \"cache/eslint/\""
         ],
         "**/*.{css,scss}": [
-            "npx stylelint --fix --cache --cache-strategy metadata --cache-location \"cache/stylelint/\""
+            "npx stylelint --cache --cache-strategy metadata --cache-location \"cache/stylelint/\""
         ],
         "**/*.{js,jsx,ts,tsx,json,css,scss}": [
             "npx prettier --write --cache --cache-strategy metadata --cache-location \"cache/tools/prettier\""

@@ -32,34 +32,34 @@ class Actions {
 
             $reflectionClass = new ReflectionClass($class);
 
-            // if ('php-annotations' === UNPACK_SYSTEM && method_exists($reflectionClass, 'getAttributes')) {
-            //     $attributes = $reflectionClass->getAttributes(
-            //         Action::class,
-            //         \ReflectionAttribute::IS_INSTANCEOF
-            //     );
+            if ('php-annotations' === UNPACK_SYSTEM && method_exists($reflectionClass, 'getAttributes')) {
+                $attributes = $reflectionClass->getAttributes(
+                    Action::class,
+                    \ReflectionAttribute::IS_INSTANCEOF
+                );
 
-            //     foreach ($attributes as $attribute) {
-            //         $attribute = $attribute->newInstance();
+                foreach ($attributes as $attribute) {
+                    $attribute = $attribute->newInstance();
 
-            //         if (
-            //             $attribute->disabled
-            //             || !isset($attribute->name, $attribute->method)
-            //         ) {
-            //             continue 2;
-            //         }
+                    if (
+                        $attribute->disabled
+                        || !isset($attribute->name, $attribute->method)
+                    ) {
+                        continue 2;
+                    }
 
-            //         $this->actions[$attribute->name] = [
-            //             'id' => $attribute->id,
-            //             'admin' => $attribute->admin,
-            //             'priority' => $attribute->priority,
-            //             'controllerMethod' => $attribute->method,
-            //             'acceptedArgs' => $attribute->acceptedArgs,
-            //             'controller' => $reflectionClass->getName(),
-            //         ];
+                    $this->actions[$attribute->name] = [
+                        'id' => $attribute->id,
+                        'admin' => $attribute->admin,
+                        'priority' => $attribute->priority,
+                        'controllerMethod' => $attribute->method,
+                        'acceptedArgs' => $attribute->acceptedArgs,
+                        'controller' => $reflectionClass->getName(),
+                    ];
 
-            //         continue 2;
-            //     }
-            // }
+                    continue 2;
+                }
+            }
 
             $reader = new AnnotationReader();
             $annotation = $reader->getClassAnnotation($reflectionClass, Action::class);

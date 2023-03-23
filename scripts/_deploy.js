@@ -24,7 +24,6 @@ ssh.connect({
 
         console.log('Creating a temporary plugin folder and copying the plugin files');
 
-        // Upload the build folder to the server
         await ssh.putDirectory(process.cwd(), `${pluginPath}_temporary`, {
             concurrency: 4,
             recursive: true,
@@ -33,66 +32,37 @@ ssh.connect({
             },
         });
 
-        /**
-         * **********************************************************************
-         */
-
         console.log('Renaming the obsolete plugin folder before renaming the temporary folder to the plugin folder');
 
-        // Rename the obsolete build folder
         await ssh.execCommand(`mv ${pluginPath} ${pluginPath}_obsolete`, {
             cwd: process.env.REMOTE_PATH,
         });
 
-        /**
-         * **********************************************************************
-         */
-
         console.log('Renaming the temporary folder to the plugin folder after renaming the obsolete plugin folder');
 
-        // Rename the temporary build folder to the correct name
         await ssh.execCommand(`mv ${pluginPath}_temporary ${pluginPath}`, {
             cwd: process.env.REMOTE_PATH,
         });
 
-        /**
-         * **********************************************************************
-         */
-
         console.log('Removing the obsolete plugin folder before renaming the temporary folder to the plugin folder');
 
-        // Delete the obsolete build folder
         await ssh.execCommand(`rm -rf ${pluginPath}_obsolete`, {
             cwd: process.env.REMOTE_PATH,
         });
 
-        /**
-         * **********************************************************************
-         */
+        console.log('Executing the database migrations');
 
-        console.log('Executing database migrations');
-
-        // Execute database migrations
         await ssh.execCommand(`wp unpack migrate`, {
-            cwd: `${process.env.REMOTE_PATH}/../../`, // The path to the WordPress root folder
+            cwd: `${process.env.REMOTE_PATH}/../../`,
         });
 
-        /**
-         * **********************************************************************
-         */
+        console.log('Executing the database seeds');
 
-        console.log('Executing database seeds');
-
-        // Execute database seeds
         await ssh.execCommand(`wp unpack seed`, {
-            cwd: `${process.env.REMOTE_PATH}/../../`, // The path to the WordPress root folder
+            cwd: `${process.env.REMOTE_PATH}/../../`,
         });
 
-        /**
-         * **********************************************************************
-         */
-
-        console.log('Successfully deployed the plugin');
+        console.log('Successfully deployed the plugin to the server and executed the database migrations & seeds');
     })
     .catch(error => {
         throw new Error(`An error occurred while deploying the plugin: ${error.message}`); // Throw the error to the app console

@@ -41,31 +41,31 @@ class Ajax {
 
             $reflectionClass = new ReflectionClass($class);
 
-            // if ('php-annotations' === UNPACK_SYSTEM && method_exists($reflectionClass, 'getAttributes')) {
-            //     $attributes = $reflectionClass->getAttributes(
-            //         AjaxRoute::class,
-            //         \ReflectionAttribute::IS_INSTANCEOF
-            //     );
+            if ('php-annotations' === UNPACK_SYSTEM && method_exists($reflectionClass, 'getAttributes')) {
+                $attributes = $reflectionClass->getAttributes(
+                    AjaxRoute::class,
+                    \ReflectionAttribute::IS_INSTANCEOF
+                );
 
-            //     foreach ($attributes as $attribute) {
-            //         $attribute = $attribute->newInstance();
+                foreach ($attributes as $attribute) {
+                    $attribute = $attribute->newInstance();
 
-            //         if (
-            //             $attribute->disabled
-            //             || !isset($attribute->name, $attribute->method)
-            //         ) {
-            //             continue 2;
-            //         }
+                    if (
+                        $attribute->disabled
+                        || !isset($attribute->name, $attribute->method)
+                    ) {
+                        continue 2;
+                    }
 
-            //         $this->actions[$attribute->name] = [
-            //             'controllerMethod' => $attribute->method,
-            //             'availability' => $attribute->availability,
-            //             'controller' => $reflectionClass->getName(),
-            //         ];
+                    $this->actions[$attribute->name] = [
+                        'controllerMethod' => $attribute->method,
+                        'availability' => $attribute->availability,
+                        'controller' => $reflectionClass->getName(),
+                    ];
 
-            //         continue 2;
-            //     }
-            // }
+                    continue 2;
+                }
+            }
 
             $reader = new AnnotationReader();
             $annotation = $reader->getClassAnnotation($reflectionClass, AjaxRoute::class);

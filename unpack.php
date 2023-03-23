@@ -55,16 +55,61 @@ if (!file_exists(__DIR__ . '/vendor')) {
     );
 }
 
-/**
- * @param 'doctrine' || 'php-annotations'
- */
-define('UNPACK_SYSTEM', 'doctrine');
+set_error_handler(
+    function (int $errorNumber, string $errorString, string $errorFile, int $errorLine) {
+        error_log(
+            sprintf(
+                '(%d) There was an error in the file %s on line %d: %s',
+                $errorNumber,
+                $errorFile,
+                $errorLine,
+                $errorString
+            )
+        );
 
+        wp_die(
+            sprintf(
+                '(%d) There was an error in the file %s on line %d: %s',
+                $errorNumber,
+                $errorFile,
+                $errorLine,
+                $errorString
+            )
+        );
+    }
+);
+
+
+set_exception_handler(
+    function (\Throwable $exception) {
+        error_log(
+            sprintf(
+                '(%d) There was an error in the file %s on line %d: %s',
+                $exception->getCode(),
+                $exception->getFile(),
+                $exception->getLine(),
+                $exception->getMessage()
+            )
+        );
+
+        wp_die(
+            sprintf(
+                '(%d) There was an error in the file %s on line %d: %s',
+                $exception->getCode(),
+                $exception->getFile(),
+                $exception->getLine(),
+                $exception->getMessage()
+            )
+        );
+    }
+);
+
+define('UNPACK_SYSTEM', 'doctrine'); // or php-annotations
 define('UNPACK_PLUGIN_HOME_URL', home_url());
 define('UNPACK_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('UNPACK_PLUGIN_DIRECTORY', plugin_dir_path(__FILE__));
 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php'; // Autoload files using Composer autoload
 
 define(
     'UNPACK_PLUGIN_ENVIRONMENT',
