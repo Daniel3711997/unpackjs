@@ -11,24 +11,13 @@
     ],
     "extensions": {
         "recommendations": [
-            "eamodio.gitlens",
-            "mikestead.dotenv",
-            "xdebug.php-debug",
-            "mhutchie.git-graph",
-            "redhat.vscode-yaml",
-            "usernamehw.errorlens",
             "mrmlnc.vscode-apache",
+            "usernamehw.errorlens",
             "esbenp.prettier-vscode",
-            "Gruntfuggly.todo-tree",
             "dbaeumer.vscode-eslint",
             "valeryanm.vscode-phpsab",
-            "naumovs.color-highlight",
-            "aaron-bond.better-comments",
-            "shardulm94.trailing-spaces",
             "stylelint.vscode-stylelint",
-            "formulahendry.auto-close-tag",
-            "rangav.vscode-thunder-client",
-            "formulahendry.auto-rename-tag",
+            "shardulm94.trailing-spaces",
             "vincaslt.highlight-matching-tag",
             "christian-kohler.path-intellisense",
             "bmewburn.vscode-intelephense-client"
@@ -166,19 +155,6 @@
             "zip",
             "zlib",
             "wordpress"
-        ],
-        "intelephense.files.exclude": [
-            "**/app/WP/**",
-            "**/.git/**",
-            "**/.svn/**",
-            "**/.hg/**",
-            "**/CVS/**",
-            "**/.DS_Store/**",
-            "**/node_modules/**",
-            "**/bower_components/**",
-            "**/vendor/**/{Tests,tests}/**",
-            "**/.history/**",
-            "**/vendor/**/vendor/**"
         ],
         "intelephense.environment.includePaths": [
             "vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php",
