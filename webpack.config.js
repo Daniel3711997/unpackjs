@@ -180,7 +180,7 @@ Encore
     .disableCssExtraction(config.disableCssExtraction && !Encore.isProduction())
     .enableBuildCache(
         {
-            config: [__filename],
+            config: [path.join(__dirname, 'app.config.js'), __filename],
         },
 
         appConfig => {
