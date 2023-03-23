@@ -87,6 +87,9 @@ if (Encore.isProduction()) {
                     runtime: 'automatic',
                 },
             ];
+            // https://webpack.js.org/loaders/babel-loader/
+            // babelConfig.cacheIdentifier = `${Encore.isProduction() ? 'prod' : 'dev'}~${pack.version}`;
+
             babelConfig.cacheDirectory = path.join(config.cacheDirectory, 'babel');
             babelConfig.plugins.push('@babel/plugin-transform-runtime', ['transform-imports', config.transformImports]);
         },
@@ -135,6 +138,9 @@ if (Encore.isDevServer()) {
                     runtime: 'automatic',
                 },
             ];
+            // https://webpack.js.org/loaders/babel-loader/
+            // babelConfig.cacheIdentifier = `${Encore.isProduction() ? 'prod' : 'dev'}~${pack.version}`;
+
             babelConfig.cacheDirectory = path.join(config.cacheDirectory, 'babel');
             babelConfig.plugins.push('react-refresh/babel', '@babel/plugin-transform-runtime', ['transform-imports', config.transformImports]);
         },
