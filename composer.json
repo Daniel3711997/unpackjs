@@ -19,6 +19,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
+        "php": ">=7.4",
         "ext-json": "*",
         "eftec/bladeone": "^4.8",
         "vlucas/phpdotenv": "^5.5",
