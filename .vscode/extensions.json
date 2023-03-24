@@ -1,0 +1,14 @@
+{
+    "recommendations": [
+        "mrmlnc.vscode-apache",
+        "usernamehw.errorlens",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "valeryanm.vscode-phpsab",
+        "stylelint.vscode-stylelint",
+        "shardulm94.trailing-spaces",
+        "vincaslt.highlight-matching-tag",
+        "christian-kohler.path-intellisense",
+        "bmewburn.vscode-intelephense-client"
+    ]
+}
