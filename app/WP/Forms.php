@@ -117,7 +117,7 @@ class Forms {
 
         if (!isset($privateAction['availability'], $privateAction['controller'], $privateAction['controllerMethod'])) {
             wp_send_json_error(
-                __('A controller, method or availability was not found for this action', 'unpack')
+                __('A controller, method and availability was not found for this action', 'unpack')
             );
         }
 
