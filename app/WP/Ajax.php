@@ -124,7 +124,7 @@ class Ajax {
         }
 
         if (1 === $privateAction['availability']) {
-            check_ajax_referer($action, 'security');
+            check_ajax_referer("ajax-{$action}", 'security');
         }
 
         if (!method_exists($privateAction['controller'], $privateAction['controllerMethod'])) {

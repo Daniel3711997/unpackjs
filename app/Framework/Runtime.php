@@ -23,7 +23,7 @@ class Runtime {
                 $options['controller'],
                 $options['controllerMethod']
             )) {
-                $ajaxNonces[$action] = wp_create_nonce("ajax-$action");
+                $ajaxNonces[$action] = wp_create_nonce("ajax-{$action}");
             }
         }
 

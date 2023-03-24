@@ -122,7 +122,7 @@ class Forms {
         }
 
         if (1 === $privateAction['availability']) {
-            check_admin_referer($action, 'security');
+            check_admin_referer("forms-{$action}", 'security');
         }
 
         if (!method_exists($privateAction['controller'], $privateAction['controllerMethod'])) {

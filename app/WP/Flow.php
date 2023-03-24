@@ -17,7 +17,7 @@ function wrapFormHandler(string $action, array $params = [], array $customFormPa
         'action_link' => admin_url('admin-post.php'),
         'form_handler' =>
         wp_nonce_field(
-            $action,
+            "forms-{$action}",
             'security',
             true,
             false
