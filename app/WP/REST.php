@@ -48,6 +48,7 @@ class REST {
             add_action('rest_api_init', function () use ($endpoint) {
                 if (class_exists($endpoint)) {
                     $endpoint = new $endpoint();
+
                     if (method_exists($endpoint, 'register')) {
                         $endpoint->register();
                     }
