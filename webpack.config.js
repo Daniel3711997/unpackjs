@@ -215,7 +215,7 @@ Encore
     .disableCssExtraction(config.disableCssExtraction && !Encore.isProduction())
     .enableBuildCache(
         {
-            config: [path.join(__dirname, 'app.config.js'), __filename],
+            config: [__filename, path.join(__dirname, 'tsconfig.json'), path.join(__dirname, 'app.config.js')],
         },
 
         appConfig => {

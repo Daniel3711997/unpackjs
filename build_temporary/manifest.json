@@ -1,0 +1,14 @@
+{
+    "build/vanilla.js": "/wp-content/plugins/UnpackJSDevelopmentPlugin/build/module~vanilla.e36f748833c4.js",
+    "build/profile.css": "/wp-content/plugins/UnpackJSDevelopmentPlugin/build/module~profile.3fbaaff6dde7.css",
+    "build/profile.js": "/wp-content/plugins/UnpackJSDevelopmentPlugin/build/module~profile.99eb36eb259e.js",
+    "build/home.css": "/wp-content/plugins/UnpackJSDevelopmentPlugin/build/module~home.c62d6efd1d6b.css",
+    "build/home.js": "/wp-content/plugins/UnpackJSDevelopmentPlugin/build/module~home.8fe7de1a7404.js",
+    "build/runtime.js": "/wp-content/plugins/UnpackJSDevelopmentPlugin/build/module~runtime.7323ded5050c.js",
+    "build/framework.js": "/wp-content/plugins/UnpackJSDevelopmentPlugin/build/module~framework.d3f42599f196.js",
+    "build/module~298.2ca38c2b90bd.js": "/wp-content/plugins/UnpackJSDevelopmentPlugin/build/module~298.2ca38c2b90bd.js",
+    "build/module~249.474eaa0b4837.js": "/wp-content/plugins/UnpackJSDevelopmentPlugin/build/module~249.474eaa0b4837.js",
+    "build/module~729.ccce00a71413.css": "/wp-content/plugins/UnpackJSDevelopmentPlugin/build/module~729.ccce00a71413.css",
+    "build/assets/images/image.jpg": "/wp-content/plugins/UnpackJSDevelopmentPlugin/build/assets/images/image.a71e4d7b479b.jpg",
+    "build/../cache/typescript/.tsbuildinfo": "/wp-content/plugins/UnpackJSDevelopmentPlugin/build/../cache/typescript/.tsbuildinfo"
+}
