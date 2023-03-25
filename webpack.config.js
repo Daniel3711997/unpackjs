@@ -95,6 +95,7 @@ if (Encore.isProduction()) {
                 [
                     '@babel/plugin-transform-runtime',
                     {
+                        version: '^7.21.0',
                         regenerator: false,
                     },
                 ],
@@ -165,6 +166,7 @@ if (Encore.isDevServer()) {
                 [
                     '@babel/plugin-transform-runtime',
                     {
+                        version: '^7.21.0',
                         regenerator: false,
                     },
                 ],
