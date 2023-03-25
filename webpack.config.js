@@ -215,7 +215,12 @@ Encore
     .disableCssExtraction(config.disableCssExtraction && !Encore.isProduction())
     .enableBuildCache(
         {
-            config: [__filename, path.join(__dirname, 'tsconfig.json'), path.join(__dirname, 'app.config.js')],
+            config: [
+                __filename,
+                path.join(__dirname, 'tsconfig.json'),
+                path.join(__dirname, 'app.config.js'),
+                path.join(__dirname, 'postcss.config.js'),
+            ],
         },
 
         appConfig => {
@@ -343,7 +348,9 @@ module.exports = {
     output: {
         ...webpackConfig.output,
 
+        globalObject: 'self',
         chunkLoadingGlobal: 'unpack',
+
         ...(!Encore.isProduction() && {
             publicPath: `http://${config.devServer.host}:${config.devServer.port}${config.publicPath}`,
         }),
