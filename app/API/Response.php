@@ -37,6 +37,8 @@ class Response {
         /**
          * https://developer.wordpress.org/reference/classes/wp_rest_response/
          */
-        return new WP_REST_Response($response, $response['status'], $headers);
+        return new WP_REST_Response($response, $response['status'], array_merge($headers, [
+            'Cache-Control' => 'no-cache, no-store, max-age=0, must-revalidate',
+        ]));
     }
 }
