@@ -130,6 +130,16 @@ if (Encore.isDevServer()) {
         options.host = config.devServer.host;
         options.port = config.devServer.port;
         options.webSocketServer = config.devServer.transport;
+        options.headers = [
+            {
+                key: 'Access-Control-Allow-Origin',
+                value: '*',
+            },
+            {
+                key: 'Cache-Control',
+                value: 'no-cache, no-store, max-age=0, must-revalidate',
+            },
+        ];
     });
 
     Encore.addPlugin(
