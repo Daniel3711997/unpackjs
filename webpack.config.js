@@ -91,7 +91,15 @@ if (Encore.isProduction()) {
             // babelConfig.cacheIdentifier = `${Encore.isProduction() ? 'prod' : 'dev'}~${pack.version}`;
 
             babelConfig.cacheDirectory = path.join(config.cacheDirectory, 'babel');
-            babelConfig.plugins.push('@babel/plugin-transform-runtime', ['transform-imports', config.transformImports]);
+            babelConfig.plugins.push(
+                [
+                    '@babel/plugin-transform-runtime',
+                    {
+                        regenerator: false,
+                    },
+                ],
+                ['transform-imports', config.transformImports]
+            );
         },
         {
             includeNodeModules: pack.includeNodeModules,
@@ -142,7 +150,16 @@ if (Encore.isDevServer()) {
             // babelConfig.cacheIdentifier = `${Encore.isProduction() ? 'prod' : 'dev'}~${pack.version}`;
 
             babelConfig.cacheDirectory = path.join(config.cacheDirectory, 'babel');
-            babelConfig.plugins.push('react-refresh/babel', '@babel/plugin-transform-runtime', ['transform-imports', config.transformImports]);
+            babelConfig.plugins.push(
+                'react-refresh/babel',
+                [
+                    '@babel/plugin-transform-runtime',
+                    {
+                        regenerator: false,
+                    },
+                ],
+                ['transform-imports', config.transformImports]
+            );
         },
         {
             includeNodeModules: pack.includeNodeModules,
