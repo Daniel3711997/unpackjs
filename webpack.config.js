@@ -1,9 +1,14 @@
 /* eslint-disable import/order */
 
 // https://github.com/symfony/webpack-encore/blob/main/index.js
+// https://github.com/symfony/webpack-encore/blob/main/CHANGELOG.md
+
+// npm install webpack webpack-cli @babel/core @babel/preset-env --save-dev
+// npm remove @babel/plugin-syntax-dynamic-import @babel/plugin-proposal-class-properties
 
 const chalk = require('chalk');
 const path = require('node:path');
+const crypto = require('node:crypto');
 const pack = require('./package.json');
 const config = require('./app.config');
 const app = require('./src/routes.json');
@@ -19,6 +24,11 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 if (0 === app.routes.length) {
     throw new Error('No routes defined');
 }
+
+const babelCoreVersion = require('@babel/core/package.json').version;
+const babelLoaderVersion = require('babel-loader/package.json').version;
+const contentOfWebpackConfig = crypto.createHash('md5').update(require('fs').readFileSync(__filename, 'utf8')).digest('hex');
+const babelCacheIdentifier = `${Encore.isProduction() ? 'prod' : 'dev'}-${babelCoreVersion}~${babelLoaderVersion}-${contentOfWebpackConfig}`;
 
 if (!Encore.isRuntimeEnvironmentConfigured()) {
     console.log(
@@ -81,15 +91,14 @@ if (config.useTypeCheckInDev || Encore.isProduction()) {
 if (Encore.isProduction()) {
     Encore.configureBabel(
         babelConfig => {
+            // https://webpack.js.org/loaders/babel-loader/
             babelConfig.presets[1] = [
                 '@babel/preset-react',
                 {
                     runtime: 'automatic',
                 },
             ];
-            // https://webpack.js.org/loaders/babel-loader/
-            // babelConfig.cacheIdentifier = `${Encore.isProduction() ? 'prod' : 'dev'}~${pack.version}`;
-
+            babelConfig.cacheIdentifier = babelCacheIdentifier;
             babelConfig.cacheDirectory = path.join(config.cacheDirectory, 'babel');
             babelConfig.plugins.push(
                 [
@@ -151,15 +160,14 @@ if (Encore.isDevServer()) {
 
     Encore.configureBabel(
         babelConfig => {
+            // https://webpack.js.org/loaders/babel-loader/
             babelConfig.presets[1] = [
                 '@babel/preset-react',
                 {
                     runtime: 'automatic',
                 },
             ];
-            // https://webpack.js.org/loaders/babel-loader/
-            // babelConfig.cacheIdentifier = `${Encore.isProduction() ? 'prod' : 'dev'}~${pack.version}`;
-
+            babelConfig.cacheIdentifier = babelCacheIdentifier;
             babelConfig.cacheDirectory = path.join(config.cacheDirectory, 'babel');
             babelConfig.plugins.push(
                 'react-refresh/babel',
