@@ -24,6 +24,14 @@ if (0 === app.routes.length) {
     throw new Error('No routes defined');
 }
 
+// prettier-ignore
+process.env.NODE_ENV = Encore.isProduction()
+                    ? 'production' : 'development';
+
+process.env.BABEL_ENV = process.env.NODE_ENV;
+process.env.UNPACK_ENV = process.env.NODE_ENV;
+process.env.BROWSERSLIST_ENV = process.env.NODE_ENV;
+
 // https://github.com/symfony/webpack-encore/blob/main/index.js
 // https://github.com/symfony/webpack-encore/blob/main/CHANGELOG.md
 
@@ -36,11 +44,16 @@ const contentOfWebpackConfig = crypto.createHash('md5').update(require('fs').rea
 const babelCacheIdentifier = `${Encore.isProduction() ? 'prod' : 'dev'}-${babelCoreVersion}~${babelLoaderVersion}-${contentOfWebpackConfig}`;
 
 if (!Encore.isRuntimeEnvironmentConfigured()) {
+    // prettier-ignore
     console.log(
-        chalk.bgRed(chalk.black(`Encore is not configured, something went wrong! The process.env.NODE_ENV is set to ${process.env.NODE_ENV || 'dev-server'}`))
+        chalk.bgRed(
+            chalk.black(
+                `Encore is not configured, something went wrong!`
+            )
+        )
     );
 
-    Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev-server');
+    Encore.configureRuntimeEnvironment(process.env.UNPACK_ENV || 'dev-server');
 }
 
 app.routes.forEach(route => {
