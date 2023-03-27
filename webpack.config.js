@@ -94,7 +94,7 @@ if (config.useTypeCheckInDev || Encore.isProduction()) {
 }
 
 if (Encore.isProduction()) {
-    Encore.enablePostCssLoader().configureBabel(
+    Encore.configureBabel(
         babelConfig => {
             // https://webpack.js.org/loaders/babel-loader/
             babelConfig.cacheIdentifier = babelCacheIdentifier;
@@ -181,6 +181,7 @@ Encore
     .enableSassLoader()
     .splitEntryChunks()
     .enableReactPreset()
+    .enablePostCssLoader()
     // https://www.npmjs.com/package/ts-loader
     .enableTypeScriptLoader(options => {
         options.experimentalWatchApi = true;
