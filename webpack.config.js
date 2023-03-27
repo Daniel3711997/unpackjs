@@ -94,7 +94,7 @@ if (config.useTypeCheckInDev || Encore.isProduction()) {
 }
 
 if (Encore.isProduction()) {
-    Encore.configureBabel(
+    Encore.enablePostCssLoader().configureBabel(
         babelConfig => {
             // https://webpack.js.org/loaders/babel-loader/
             babelConfig.cacheIdentifier = babelCacheIdentifier;
@@ -123,7 +123,7 @@ if (Encore.isDevServer()) {
             logging: 'none',
 
             webSocketURL: {
-                ...options.client.webSocketURL,
+                ...options.client?.webSocketURL,
 
                 port: config.devServer.port,
                 hostname: config.devServer.host,
@@ -139,7 +139,7 @@ if (Encore.isDevServer()) {
         options.port = config.devServer.port;
         options.webSocketServer = config.devServer.transport;
         options.headers = [
-            ...(options.headers || []),
+            // ...(options?.headers || []),
             {
                 key: 'Access-Control-Allow-Origin',
                 value: '*',
@@ -181,7 +181,6 @@ Encore
     .enableSassLoader()
     .splitEntryChunks()
     .enableReactPreset()
-    .enablePostCssLoader()
     // https://www.npmjs.com/package/ts-loader
     .enableTypeScriptLoader(options => {
         options.experimentalWatchApi = true;
