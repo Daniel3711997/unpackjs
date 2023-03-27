@@ -310,7 +310,7 @@ Encore
         options.maxInitialRequests = 40;
     })
     .addCacheGroup('unpack', {
-        priority: 10,
+        priority: 30,
         enforce: false,
         reuseExistingChunk: true,
         test: /[\\/]src[\\/](?!styles)/,
@@ -325,7 +325,7 @@ Encore
         test: /[\\/]src[\\/]styles[\\/]|[\\/]node_modules[\\/]/,
     })
     .addCacheGroup('modules', {
-        priority: 30,
+        priority: 10,
         enforce: false,
         reuseExistingChunk: true,
         test: /[\\/]node_modules[\\/]/,
