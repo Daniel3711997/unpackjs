@@ -405,20 +405,20 @@ module.exports = {
     },
 
     plugins: webpackConfig.plugins.filter(plugin => {
-        if (Encore.isProduction() && 'AssetsWebpackPlugin' === plugin.constructor.name) {
+        if ('AssetsWebpackPlugin' === plugin.constructor.name) {
             const processOutput = plugin.options.processOutput;
 
-            const replacer = (key, value) => {
-                if ('string' !== typeof value) {
-                    return value;
-                }
+            // const replacer = (key, value) => {
+            //     if ('string' !== typeof value) {
+            //         return value;
+            //     }
 
-                return Encore.isProduction()
-                    ? value
-                    : value
-                          .replace(/localhost:/g, `${config.devServer.host}:`)
-                          .replace(/:8080/g, `:${'auto' !== config.devServer.port ? config.devServer.port : '8080'}`);
-            };
+            //     return Encore.isProduction()
+            //         ? value
+            //         : value
+            //               .replace(/localhost:/g, `${config.devServer.host}:`)
+            //               .replace(/:8080/g, `:${'auto' !== config.devServer.port ? config.devServer.port : '8080'}`);
+            // };
 
             plugin.options.processOutput = assets => {
                 if ('function' === typeof processOutput) {
@@ -426,12 +426,15 @@ module.exports = {
                 }
 
                 assets = {
-                    [Encore.isProduction() ? 'production' : 'development']: Encore.isProduction(),
+                    // prettier-ignore
+                    [Encore.isProduction()
+                        ? 'production'
+                        : 'development']: Encore.isProduction(),
                     publicPath: config.publicPath,
                     ...assets,
                 };
 
-                return JSON.stringify(assets, replacer, 4);
+                return JSON.stringify(assets, null /* replacer */, 4);
             };
         }
 
