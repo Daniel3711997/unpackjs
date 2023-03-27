@@ -6,7 +6,7 @@ module.exports = {
     plugins: {
         'postcss-logical': {},
         'postcss-preset-env': {
-            stage: 3,
+            stage: 2,
         },
         'postcss-flexbugs-fixes': {},
         ...(config.usePurgeCSS && {
