@@ -1,10 +1,6 @@
+'use strict';
+
 /* eslint-disable import/order */
-
-// https://github.com/symfony/webpack-encore/blob/main/index.js
-// https://github.com/symfony/webpack-encore/blob/main/CHANGELOG.md
-
-// npm install webpack webpack-cli @babel/core @babel/preset-env --save-dev
-// npm remove @babel/plugin-syntax-dynamic-import @babel/plugin-proposal-class-properties
 
 const chalk = require('chalk');
 const path = require('node:path');
@@ -24,6 +20,12 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 if (0 === app.routes.length) {
     throw new Error('No routes defined');
 }
+
+// https://github.com/symfony/webpack-encore/blob/main/index.js
+// https://github.com/symfony/webpack-encore/blob/main/CHANGELOG.md
+
+// npm install webpack webpack-cli @babel/core @babel/preset-env --save-dev
+// npm remove @babel/plugin-syntax-dynamic-import @babel/plugin-proposal-class-properties
 
 const babelCoreVersion = require('@babel/core/package.json').version;
 const babelLoaderVersion = require('babel-loader/package.json').version;
@@ -193,11 +195,8 @@ Encore
     .splitEntryChunks()
     .enableReactPreset()
     .enablePostCssLoader()
+    // https://www.npmjs.com/package/ts-loader
     .enableTypeScriptLoader(options => {
-        /**
-         * https://www.npmjs.com/package/ts-loader
-         */
-
         options.experimentalWatchApi = true;
         options.compilerOptions = {
             ...options.compilerOptions,
@@ -315,9 +314,7 @@ Encore
         test: /[\\/]node_modules[\\/]/,
         name: !Encore.isProduction() ? 'node_modules' : false,
     })
-    /**
-     * https://github.com/vercel/next.js/blob/54ca8f41cee490989cdd8d5df8db96307075296c/packages/next/build/webpack-config.ts#L776
-     */
+    // https://github.com/vercel/next.js/blob/54ca8f41cee490989cdd8d5df8db96307075296c/packages/next/build/webpack-config.ts#L776
     .addCacheGroup('framework', {
         priority: 40,
         enforce: true,
@@ -328,9 +325,7 @@ Encore
 
 const webpackConfig = config.extra(Encore);
 
-/**
- * Enable CSS Modules
- */
+// Enable CSS Modules
 delete webpackConfig.module.rules[4].oneOf[0].resourceQuery;
 webpackConfig.module.rules[4].oneOf[0].test = /\.module\.s[ac]ss$/;
 

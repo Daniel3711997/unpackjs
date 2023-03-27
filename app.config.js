@@ -1,3 +1,5 @@
+'use strict';
+
 /* eslint-disable no-template-curly-in-string */
 
 const path = require('node:path');
