@@ -5,7 +5,6 @@
     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
     "scripts": {
         "prepare": "husky install",
-        "build": "encore production",
         "prebuild": "npm run check-php",
         "build-action": "encore production",
         "vanilla-start": "encore dev-server",
@@ -17,8 +16,9 @@
         "postconfigure-development": "node ./scripts/_postconfigure.js",
         "check-php": "./vendor/bin/phpcs app --standard=.php-style.xml --cache",
         "postbuild": "composer dump-autoload --optimize && node ./scripts/_postbuild.js",
+        "build": "cross-env NODE_ENV=production BROWSERSLIST_ENV=production encore production",
         "configure-production": "npm ci && composer install --no-interaction --optimize-autoloader",
-        "start": "concurrently -r -k \"typed-scss-modules \\\"**/*.module.scss\\\" -L silent -n none -e default -w -o __generated__\" \"encore dev-server\""
+        "start": "concurrently -r -k \"typed-scss-modules \\\"**/*.module.scss\\\" -L silent -n none -e default -w -o __generated__\" \"cross-env NODE_ENV=development BROWSERSLIST_ENV=development encore dev-server\""
     },
     "sideEffects": [
         "*.css",
@@ -100,6 +100,7 @@
         "chalk": "^4.1.2",
         "concurrently": "^7.6.0",
         "core-js": "^3.29.1",
+        "cross-env": "^7.0.3",
         "dotenv-webpack": "^8.0.1",
         "eslint": "^8.36.0",
         "eslint-config-prettier": "^8.8.0",
