@@ -10,6 +10,9 @@ const config = require('./app.config');
 const app = require('./src/routes.json');
 const DotEnv = require('dotenv-webpack');
 const WebpackBar = require('webpackbar');
+/**
+ * @type {typeof import('@symfony/webpack-encore')}
+ */
 const Encore = require('@symfony/webpack-encore');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
@@ -94,23 +97,13 @@ if (Encore.isProduction()) {
     Encore.configureBabel(
         babelConfig => {
             // https://webpack.js.org/loaders/babel-loader/
-            babelConfig.presets[1] = [
-                '@babel/preset-react',
-                {
-                    runtime: 'automatic',
-                },
-            ];
             babelConfig.cacheIdentifier = babelCacheIdentifier;
             babelConfig.cacheDirectory = path.join(config.cacheDirectory, 'babel');
+            babelConfig.presets[1] = ['@babel/preset-react', { runtime: 'automatic' }];
+
             babelConfig.plugins.push(
-                [
-                    '@babel/plugin-transform-runtime',
-                    {
-                        version: '^7.21.0',
-                        regenerator: false,
-                    },
-                ],
-                ['transform-imports', config.transformImports]
+                ['transform-imports', config.transformImports],
+                ['@babel/plugin-transform-runtime', { version: '^7.21.0', regenerator: false }]
             );
         },
         {
@@ -125,10 +118,13 @@ if (Encore.isDevServer()) {
 
         options.client = {
             ...options.client,
+
             overlay: false,
             logging: 'none',
 
             webSocketURL: {
+                ...options.client.webSocketURL,
+
                 port: config.devServer.port,
                 hostname: config.devServer.host,
                 protocol: config.devServer.transport,
@@ -143,6 +139,7 @@ if (Encore.isDevServer()) {
         options.port = config.devServer.port;
         options.webSocketServer = config.devServer.transport;
         options.headers = [
+            ...(options.headers || []),
             {
                 key: 'Access-Control-Allow-Origin',
                 value: '*',
@@ -163,24 +160,14 @@ if (Encore.isDevServer()) {
     Encore.configureBabel(
         babelConfig => {
             // https://webpack.js.org/loaders/babel-loader/
-            babelConfig.presets[1] = [
-                '@babel/preset-react',
-                {
-                    runtime: 'automatic',
-                },
-            ];
             babelConfig.cacheIdentifier = babelCacheIdentifier;
             babelConfig.cacheDirectory = path.join(config.cacheDirectory, 'babel');
+            babelConfig.presets[1] = ['@babel/preset-react', { runtime: 'automatic' }];
+
             babelConfig.plugins.push(
                 'react-refresh/babel',
-                [
-                    '@babel/plugin-transform-runtime',
-                    {
-                        version: '^7.21.0',
-                        regenerator: false,
-                    },
-                ],
-                ['transform-imports', config.transformImports]
+                ['transform-imports', config.transformImports],
+                ['@babel/plugin-transform-runtime', { version: '^7.21.0', regenerator: false }]
             );
         },
         {
@@ -198,22 +185,28 @@ Encore
     // https://www.npmjs.com/package/ts-loader
     .enableTypeScriptLoader(options => {
         options.experimentalWatchApi = true;
+
         options.compilerOptions = {
             ...options.compilerOptions,
-            tsBuildInfoFile: path.join(config.cacheDirectory, 'typescript' , '.tsbuildinfo'),
-        }
+
+            tsBuildInfoFile: path.join(config.cacheDirectory, 'typescript', '.tsbuildinfo'),
+        };
 
         if (Encore.isProduction()) {
             options.transpileOnly = false;
+
             options.compilerOptions = {
                 ...options.compilerOptions,
+
                 noEmit: false,
                 sourceMap: false,
             };
         } else {
             options.transpileOnly = true;
+
             options.compilerOptions = {
                 ...options.compilerOptions,
+
                 noEmit: true,
                 sourceMap: true,
             };
@@ -222,12 +215,7 @@ Encore
     .disableCssExtraction(config.disableCssExtraction && !Encore.isProduction())
     .enableBuildCache(
         {
-            config: [
-                __filename,
-                path.join(__dirname, 'tsconfig.json'),
-                path.join(__dirname, 'app.config.js'),
-                path.join(__dirname, 'postcss.config.js'),
-            ],
+            config: [__filename, path.join(__dirname, 'tsconfig.json'), path.join(__dirname, 'app.config.js'), path.join(__dirname, 'postcss.config.js')],
         },
 
         appConfig => {
@@ -255,12 +243,17 @@ Encore
         })
     )
     .configureBabelPresetEnv(config => {
-        config.corejs = "3.29.0";
+        config.corejs = '3.29.0';
         config.useBuiltIns = 'usage';
     })
     .configureCssLoader(function (config) {
         config.url = true;
-        config.modules.localIdentName = Encore.isProduction() ? '[hash:base64:7]' : '[name]__[local]--[hash:base64:7]';
+
+        config.modules = {
+            ...config.modules,
+
+            localIdentName: Encore.isProduction() ? '[hash:base64:7]' : '[name]__[local]--[hash:base64:7]'
+        };
     })
     .configureFriendlyErrorsPlugin(options => {
         options.clearConsole = true;
@@ -268,7 +261,18 @@ Encore
     })
     .configureTerserPlugin(options => {
         options.extractComments = false;
-        options.terserOptions = { format: { comments: false }, compress: { drop_console: true } };
+
+        options.terserOptions = {
+            ...options.terserOptions,
+            format: {
+                ...options.terserOptions?.format,
+                comments: false,
+            },
+            compress: {
+                ...options.terserOptions?.compress,
+                drop_console: true,
+            },
+        };
     })
     .configureFontRule({
         type: 'asset',
@@ -331,7 +335,9 @@ webpackConfig.module.rules[4].oneOf[0].test = /\.module\.s[ac]ss$/;
 
 module.exports = {
     ...webpackConfig,
+
     target: 'browserslist',
+
     ...(Encore.isProduction() && {
         bail: true,
         optimization: {
@@ -341,13 +347,16 @@ module.exports = {
             emitOnErrors: false,
         },
     }),
+
     ...(!Encore.isProduction() && {
         stats: 'none',
         infrastructureLogging: {
+            ...webpackConfig.infrastructureLogging,
             level: 'warn',
         },
         devtool: 'inline-source-map',
     }),
+
     output: {
         ...webpackConfig.output,
 
@@ -358,15 +367,20 @@ module.exports = {
             publicPath: `http://${config.devServer.host}:${config.devServer.port}${config.publicPath}`,
         }),
     },
+
     optimization: {
         ...webpackConfig.optimization,
 
         usedExports: true,
         providedExports: true,
     },
+
     snapshot: {
+        ...webpackConfig.snapshot,
+
         managedPaths: [path.join(__dirname, 'node_modules')],
     },
+
     resolve: {
         ...webpackConfig.resolve,
 
@@ -376,6 +390,7 @@ module.exports = {
             }),
         ]),
     },
+
     plugins: webpackConfig.plugins.filter(plugin => {
         if (Encore.isProduction() && 'AssetsWebpackPlugin' === plugin.constructor.name) {
             const processOutput = plugin.options.processOutput;
