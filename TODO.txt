@@ -1,4 +1,4 @@
-- !!!! Replace Webpack Encore with Vite JS !!!!
+!!!! Replace Webpack Encore with Vite JS or change Babel with SWC/ESBuild !!!!
 
 https://github.dev/Daniel3711997/webpack-encore
 
@@ -10,3 +10,17 @@ https://github.dev/Daniel3711997/webpack-encore
 - Polyfill SSR fetch (https://www.npmjs.com/package/node-fetch) with keepAlive
 
 [Done] - Add an option to use the PHP attributes system instead of the doctrine annotations (hybrid)
+
+- !!!! Remove overrides when the package owner will update their dependencies
+
+"overrides": {
+    "css-modules-loader-core": {
+        "postcss": "^7.0.39"
+    },
+    "@symfony/webpack-encore": {
+        "typescript": "^5.0.0",
+        "eslint-webpack-plugin": "^4.0.0",
+        "css-minimizer-webpack-plugin": "^5.0.0",
+        "fork-ts-checker-webpack-plugin": "^8.0.0"
+    }
+}
