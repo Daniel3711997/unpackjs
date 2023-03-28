@@ -27,5 +27,6 @@
         "forceConsistentCasingInFileNames": true
     },
 
-    "include": ["index.d.ts", "unpack.d.ts", "src", "__generated__"]
+    "exclude": ["vendor", "node_modules"],
+    "include": ["index.d.ts", "unpack.d.ts", "**/*.ts", "**/*.tsx"]
 }
