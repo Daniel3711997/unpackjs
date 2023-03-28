@@ -1,6 +1,4 @@
 {
-    "exclude": ["vendor", "node_modules"],
-
     "compilerOptions": {
         "rootDirs": [".", "__generated__"],
 
@@ -27,5 +25,7 @@
         "allowSyntheticDefaultImports": true,
         "lib": ["DOM", "DOM.Iterable", "ESNext"],
         "forceConsistentCasingInFileNames": true
-    }
+    },
+
+    "include": ["index.d.ts", "unpack.d.ts", "src", "__generated__"]
 }
