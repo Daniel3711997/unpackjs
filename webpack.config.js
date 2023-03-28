@@ -431,14 +431,18 @@ module.exports = {
                     assets = JSON.parse(processOutput(assets));
                 }
 
-                assets = {
-                    // prettier-ignore
-                    [Encore.isProduction()
-                        ? 'production'
-                        : 'development']: Encore.isProduction(),
-                    publicPath: config.publicPath,
-                    ...assets,
-                };
+                if (Encore.isProduction()) {
+                    assets = {
+                        // prettier-ignore
+                        // [Encore.isProduction()
+                        //     ? 'production'
+                        //     : 'development']: Encore.isProduction(),
+
+                        production: true,
+                        publicPath: config.publicPath,
+                        ...assets,
+                    };
+                }
 
                 return JSON.stringify(assets, null /* replacer */, 4);
             };
