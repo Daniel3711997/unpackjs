@@ -272,21 +272,21 @@ Encore
         options.clearConsole = true;
         options.logLevel = 'WARNING';
     })
-    .configureTerserPlugin(options => {
-        options.extractComments = false;
+    // .configureTerserPlugin(options => {
+    //     options.extractComments = false;
 
-        options.terserOptions = {
-            ...options.terserOptions,
-            format: {
-                ...options.terserOptions?.format,
-                comments: false,
-            },
-            compress: {
-                ...options.terserOptions?.compress,
-                drop_console: true,
-            },
-        };
-    })
+    //     options.terserOptions = {
+    //         ...options.terserOptions,
+    //         format: {
+    //             ...options.terserOptions?.format,
+    //             comments: false,
+    //         },
+    //         compress: {
+    //             ...options.terserOptions?.compress,
+    //             drop_console: true,
+    //         },
+    //     };
+    // })
     .configureFontRule({
         type: 'asset',
         maxSize: 12 * 1024,
@@ -399,7 +399,7 @@ module.exports = {
 
         plugins: (webpackConfig.resolve.plugins || []).concat([
             new TSConfigPathsPlugin({
-                extensions: ['.ts', '.tsx'],
+                extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.css', '.scss', '.png', '.jpg', '.jpeg', '.gif', '.svg'],
             }),
         ]),
     },
