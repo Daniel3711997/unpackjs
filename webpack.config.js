@@ -267,8 +267,10 @@ Encore
         })
     )
     .configureBabelPresetEnv(config => {
+        config.modules = "auto";
         config.corejs = '3.29.1';
         config.useBuiltIns = 'usage';
+        config.targets = pack.browserslist;
     })
     .configureCssLoader(function (config) {
         config.url = true;

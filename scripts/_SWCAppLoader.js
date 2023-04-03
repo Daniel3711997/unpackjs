@@ -13,21 +13,25 @@ const swcDirectory = path.join(__dirname, '..', '.swc');
 pack.scripts.build = shouldEnableSWC ? 'tsc && encore production' : 'encore production';
 tsconfig.compilerOptions = {
     ...tsconfig.compilerOptions,
-    downlevelIteration: !shouldEnableSWC,
-    target: shouldEnableSWC ? 'ESNext' : 'ES5',
     tsBuildInfoFile: shouldEnableSWC ? 'cache/typescript/.tsbuildinfo' : undefined,
 };
 
 if (fs.existsSync(swcDirectory)) {
-    fs.rmSync(swcDirectory, { recursive: true });
+    fs.rmSync(swcDirectory, {
+        recursive: true,
+    });
 }
 
 if (fs.existsSync(config.outputPath)) {
-    fs.rmSync(config.outputPath, { recursive: true });
+    fs.rmSync(config.outputPath, {
+        recursive: true,
+    });
 }
 
 if (fs.existsSync(config.cacheDirectory)) {
-    fs.rmSync(config.cacheDirectory, { recursive: true });
+    fs.rmSync(config.cacheDirectory, {
+        recursive: true,
+    });
 }
 
 fs.writeFileSync(path.join(__dirname, '..', 'package.json'), JSON.stringify(pack, null, 4));
@@ -36,9 +40,9 @@ fs.writeFileSync(path.join(__dirname, '..', 'tsconfig.json'), JSON.stringify(tsc
 console.log(chalk.magenta(`SWC ${shouldEnableSWC ? 'enabled' : 'disabled'} successfully!`));
 console.log();
 
-console.log(`In ${chalk.yellow('app.config.js')} change the ${chalk.yellow('useSWC')} directive to ${chalk.yellow(shouldEnableSWC ? 'true' : 'false')}`);
-console.log();
-
 console.log(`Run ${chalk.yellow('npm start')} to start the development server`);
 console.log(`Run ${chalk.yellow('npm run build')} to build the project for production`);
+console.log();
+
+console.log(`In ${chalk.yellow('app.config.js')} change the ${chalk.yellow('useSWC')} directive to ${chalk.yellow(shouldEnableSWC ? 'true' : 'false')}`);
 console.log();
