@@ -96,6 +96,7 @@
         "@symfony/webpack-encore": "^4.2.0",
         "@tanstack/eslint-plugin-query": "^4.28.1",
         "@types/jquery": "^3.5.16",
+        "@types/loadable__component": "^5.13.4",
         "@types/node": "^18.15.11",
         "@types/react": "^18.0.32",
         "@types/react-dom": "^18.0.11",
