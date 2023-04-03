@@ -1,3 +1,4 @@
+# (Done, Experimental)
 !!!! Replace Webpack Encore with Vite JS or change Babel with SWC/ESBuild !!!!
 
 https://github.dev/Daniel3711997/webpack-encore
