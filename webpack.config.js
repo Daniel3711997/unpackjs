@@ -14,9 +14,11 @@ const WebpackBar = require('webpackbar');
  * @type {typeof import('@symfony/webpack-encore')}
  */
 const Encore = require('@symfony/webpack-encore');
+const TerserPlugin = require('terser-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const Logger = require('@symfony/webpack-encore/lib/logger');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TSConfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -281,21 +283,30 @@ Encore
         options.clearConsole = true;
         options.logLevel = 'WARNING';
     })
-    // .configureTerserPlugin(options => {
-    //     options.extractComments = false;
+    .configureTerserPlugin(options => {
+        if (config.useESBuildMinifier) {
+            options.minify = TerserPlugin.swcMinify;
+        } else {
+            options.extractComments = false;
 
-    //     options.terserOptions = {
-    //         ...options.terserOptions,
-    //         format: {
-    //             ...options.terserOptions?.format,
-    //             comments: false,
-    //         },
-    //         compress: {
-    //             ...options.terserOptions?.compress,
-    //             drop_console: true,
-    //         },
-    //     };
-    // })
+            options.terserOptions = {
+                ...options.terserOptions,
+                format: {
+                    ...options.terserOptions?.format,
+                    comments: false,
+                },
+                compress: {
+                    ...options.terserOptions?.compress,
+                    drop_console: false,
+                },
+            };
+        }
+    })
+    .configureCssMinimizerPlugin(options => {
+        if (config.useESBuildMinifier) {
+            options.minify = CssMinimizerPlugin.esbuildMinify;
+        }
+    })
     .configureFontRule({
         type: 'asset',
         maxSize: 12 * 1024,
@@ -359,11 +370,17 @@ if (config.useSWC) {
                     runtime: 'automatic',
                 },
             },
+            experimental: {
+                plugins: [['@swc/plugin-transform-imports', config.transformImports]],
+            },
         },
         env: {
             mode: 'usage',
             coreJs: '3.29.1',
-            targets: Encore.isProduction() ? pack.browserslist.production : pack.browserslist.development,
+            targets: pack.browserslist,
+
+            // This is for the old browserslist config
+            // targets: Encore.isProduction() ? pack.browserslist.production : pack.browserslist.development,
         },
     };
 
@@ -391,7 +408,7 @@ if (config.useSWC) {
                 jsc: {
                     ...options.jsc,
                     parser: {
-                        jsx: true,
+                        tsx: true,
                         syntax: 'typescript',
                     },
                 },

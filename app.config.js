@@ -5,6 +5,23 @@
 const path = require('node:path');
 
 module.exports = {
+    /**
+     * Old Browserslist
+     */
+
+    // {
+    //     "production": [
+    //         ">0.2%",
+    //         "not dead",
+    //         "not op_mini all"
+    //     ],
+    //     "development": [
+    //         "last 1 chrome version",
+    //         "last 1 firefox version",
+    //         "last 1 safari version"
+    //     ]
+    // }
+
     name: 'UnpackJSDevelopmentPlugin',
 
     devServer: {
@@ -12,6 +29,14 @@ module.exports = {
         transport: 'ws',
         host: 'localhost',
     },
+
+    /**
+     * true: Run npm run enable-swc to enable SWC
+     * false: Run npm run disable-swc to disable SWC
+     */
+    useSWC: true,
+    useESBuildMinifier: true,
+
     /**
      * false: No jQuery package is loaded
      * true: You have to install the jQuery package
@@ -19,7 +44,6 @@ module.exports = {
      */
     useJQuery: false,
 
-    useSWC: false,
     usePurgeCSS: true,
     purgeCSSIgnore: [],
     useBundleAnalyzer: false,
@@ -33,18 +57,31 @@ module.exports = {
         return Encore.getWebpackConfig();
     },
 
+    /**
+     * Babel Transform Imports
+     */
+
+    // transformImports: {
+    //     lodash: {
+    //         preventFullImport: true,
+    //         transform: 'lodash/${member}',
+    //     },
+    // },
+
+    /**
+     * SWC Transform Imports
+     */
+
     transformImports: {
         lodash: {
-            preventFullImport: true,
-            transform: 'lodash/${member}',
+            transform: 'lodash/{{member}}',
         },
     },
 
-    // Change this to true if you want error checking...
     useTypeCheckInDev: false,
-
     outputPath: path.resolve(__dirname, 'build'),
     cacheDirectory: path.resolve(__dirname, 'cache'),
+
     get publicPath() {
         return `/wp-content/plugins/${this.name}/build`;
     },

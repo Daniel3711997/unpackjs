@@ -1,11 +1,10 @@
 {
     "compilerOptions": {
         "rootDirs": [".", "__generated__"],
-
         "noEmit": true,
         "strict": true,
         "allowJs": true,
-        "target": "ES5",
+        "target": "ESNext",
         "jsx": "preserve",
         "module": "ESNext",
         "baseUrl": "./src",
@@ -19,14 +18,14 @@
         "resolveJsonModule": true,
         "noUnusedParameters": true,
         "moduleResolution": "Node",
-        "downlevelIteration": true,
+        "downlevelIteration": false,
         "noUncheckedIndexedAccess": true,
         "noFallthroughCasesInSwitch": true,
         "allowSyntheticDefaultImports": true,
         "lib": ["DOM", "DOM.Iterable", "ESNext"],
-        "forceConsistentCasingInFileNames": true
+        "forceConsistentCasingInFileNames": true,
+        "tsBuildInfoFile": "cache/typescript/.tsbuildinfo"
     },
-
     "exclude": ["vendor", "node_modules"],
     "include": ["index.d.ts", "unpack.d.ts", "**/*.ts", "**/*.tsx"]
 }
