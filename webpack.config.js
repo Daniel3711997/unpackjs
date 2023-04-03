@@ -16,9 +16,12 @@ const WebpackBar = require('webpackbar');
 const Encore = require('@symfony/webpack-encore');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
+const Logger = require('@symfony/webpack-encore/lib/logger');
 const TSConfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+Logger.quiet(true);
 
 if (0 === app.routes.length) {
     throw new Error('No routes defined');
@@ -116,7 +119,7 @@ if (Encore.isProduction()) {
 
             babelConfig.plugins.push(
                 ['transform-imports', config.transformImports],
-                ['@babel/plugin-transform-runtime', { version: '^7.21.0', regenerator: false }]
+                ['@babel/plugin-transform-runtime', { version: '^7.21.4', regenerator: false }]
             );
         },
         {
@@ -180,7 +183,7 @@ if (Encore.isDevServer()) {
             babelConfig.plugins.push(
                 'react-refresh/babel',
                 ['transform-imports', config.transformImports],
-                ['@babel/plugin-transform-runtime', { version: '^7.21.0', regenerator: false }]
+                ['@babel/plugin-transform-runtime', { version: '^7.21.4', regenerator: false }]
             );
         },
         {
@@ -262,7 +265,7 @@ Encore
         })
     )
     .configureBabelPresetEnv(config => {
-        config.corejs = '3.29.0';
+        config.corejs = '3.29.1';
         config.useBuiltIns = 'usage';
     })
     .configureCssLoader(function (config) {
@@ -346,6 +349,56 @@ Encore
         test: /(?<!node_modules.*)[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
     });
 
+if (config.useSWC) {
+    const options = {
+        jsc: {
+            externalHelpers: true,
+            transform: {
+                react: {
+                    refresh: true,
+                    runtime: 'automatic',
+                },
+            },
+        },
+        env: {
+            mode: 'usage',
+            coreJs: '3.29.1',
+            targets: Encore.isProduction() ? pack.browserslist.production : pack.browserslist.development,
+        },
+    };
+
+    Encore.configureLoaderRule('javascript', loaderRule => {
+        loaderRule.use = {
+            loader: 'swc-loader',
+            options: {
+                ...options,
+                jsc: {
+                    ...options.jsc,
+                    parser: {
+                        jsx: true,
+                        syntax: 'ecmascript',
+                    },
+                },
+            },
+        };
+    });
+
+    Encore.configureLoaderRule('typescript', loaderRule => {
+        loaderRule.use = {
+            loader: 'swc-loader',
+            options: {
+                ...options,
+                jsc: {
+                    ...options.jsc,
+                    parser: {
+                        jsx: true,
+                        syntax: 'typescript',
+                    },
+                },
+            },
+        };
+    });
+}
 const webpackConfig = config.extra(Encore);
 
 // Enable CSS Modules

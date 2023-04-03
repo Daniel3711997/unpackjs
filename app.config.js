@@ -18,11 +18,14 @@ module.exports = {
      * external: The jQuery package is loaded by the current theme
      */
     useJQuery: false,
+
+    useSWC: false,
     usePurgeCSS: true,
     purgeCSSIgnore: [],
     useBundleAnalyzer: false,
     manifestKeyPrefix: 'build/',
     disableCssExtraction: false,
+
     /**
      * @param {typeof import('@symfony/webpack-encore')} Encore
      */
@@ -39,6 +42,7 @@ module.exports = {
 
     // Change this to true if you want error checking...
     useTypeCheckInDev: false,
+
     outputPath: path.resolve(__dirname, 'build'),
     cacheDirectory: path.resolve(__dirname, 'cache'),
     get publicPath() {
