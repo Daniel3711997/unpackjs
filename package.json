@@ -10,6 +10,7 @@
         "build-action": "encore production",
         "vanilla-start": "encore dev-server",
         "prestart": "composer dump-autoload",
+        "clear": "node ./scripts/_clearWorkspace.js",
         "update-db": "npx update-browserslist-db@latest",
         "postbuild-action": "node ./scripts/_postbuild.js",
         "configure-development": "npm install && composer install",

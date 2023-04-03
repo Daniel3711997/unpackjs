@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         "rootDirs": [".", "__generated__"],
+
         "noEmit": true,
         "strict": true,
         "allowJs": true,
@@ -26,6 +27,7 @@
         "forceConsistentCasingInFileNames": true,
         "tsBuildInfoFile": "cache/typescript/.tsbuildinfo"
     },
+
     "exclude": ["vendor", "node_modules"],
     "include": ["index.d.ts", "unpack.d.ts", "**/*.ts", "**/*.tsx"]
 }
