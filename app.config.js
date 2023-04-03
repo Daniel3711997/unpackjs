@@ -35,6 +35,7 @@ module.exports = {
      * false: Run npm run disable-swc to disable SWC
      */
     useSWC: true,
+    SWCToBabel: false,
     useESBuildMinifier: true,
 
     /**
@@ -58,6 +59,16 @@ module.exports = {
     },
 
     /**
+     * SWC Transform Imports
+     */
+
+    transformImports: {
+        lodash: {
+            transform: 'lodash/{{member}}',
+        },
+    },
+
+    /**
      * Babel Transform Imports
      */
 
@@ -67,16 +78,6 @@ module.exports = {
     //         transform: 'lodash/${member}',
     //     },
     // },
-
-    /**
-     * SWC Transform Imports
-     */
-
-    transformImports: {
-        lodash: {
-            transform: 'lodash/{{member}}',
-        },
-    },
 
     useTypeCheckInDev: false,
     outputPath: path.resolve(__dirname, 'build'),

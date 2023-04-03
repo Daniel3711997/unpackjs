@@ -44,5 +44,5 @@ console.log(`Run ${chalk.yellow('npm start')} to start the development server`);
 console.log(`Run ${chalk.yellow('npm run build')} to build the project for production`);
 console.log();
 
-console.log(`In ${chalk.yellow('app.config.js')} change the ${chalk.yellow('useSWC')} directive to ${chalk.yellow(shouldEnableSWC ? 'true' : 'false')}`);
+console.log(`In ${chalk.yellow('app.config.js')} change the ${chalk.yellow('useSWC')} directive to ${chalk.yellow(shouldEnableSWC.toString())}`);
 console.log();

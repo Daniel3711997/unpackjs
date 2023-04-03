@@ -117,7 +117,7 @@ if (Encore.isProduction()) {
             // https://webpack.js.org/loaders/babel-loader/
             babelConfig.cacheIdentifier = babelCacheIdentifier;
             babelConfig.cacheDirectory = path.join(config.cacheDirectory, 'babel');
-            babelConfig.presets[1] = ['@babel/preset-react', { runtime: 'automatic' }];
+            babelConfig.presets[config.SWCToBabel ? 2 : 1] = ['@babel/preset-react', { runtime: 'automatic' }];
 
             babelConfig.plugins.push(
                 ['transform-imports', config.transformImports],
@@ -180,7 +180,7 @@ if (Encore.isDevServer()) {
             // https://webpack.js.org/loaders/babel-loader/
             babelConfig.cacheIdentifier = babelCacheIdentifier;
             babelConfig.cacheDirectory = path.join(config.cacheDirectory, 'babel');
-            babelConfig.presets[1] = ['@babel/preset-react', { runtime: 'automatic' }];
+            babelConfig.presets[config.SWCToBabel ? 2 : 1] = ['@babel/preset-react', { runtime: 'automatic' }];
 
             babelConfig.plugins.push(
                 'react-refresh/babel',
@@ -194,14 +194,14 @@ if (Encore.isDevServer()) {
     );
 }
 
-// prettier-ignore
-Encore
-    .enableSassLoader()
-    .splitEntryChunks()
-    .enableReactPreset()
-    .enablePostCssLoader()
-    // https://www.npmjs.com/package/ts-loader
-    .enableTypeScriptLoader(options => {
+if (config.SWCToBabel) {
+    Encore.enableBabelTypeScriptPreset({
+        isTSX: true,
+        allExtensions: true,
+    });
+} else {
+    // https://github.com/TypeStrong/ts-loader
+    Encore.enableTypeScriptLoader(options => {
         options.experimentalWatchApi = true;
 
         options.compilerOptions = {
@@ -229,7 +229,15 @@ Encore
                 sourceMap: true,
             };
         }
-    })
+    });
+}
+
+// prettier-ignore
+Encore
+    .enableSassLoader()
+    .splitEntryChunks()
+    .enableReactPreset()
+    .enablePostCssLoader()
     .disableCssExtraction(config.disableCssExtraction && !Encore.isProduction())
     .enableBuildCache(
         {
@@ -286,8 +294,10 @@ Encore
         options.logLevel = 'WARNING';
     })
     .configureTerserPlugin(options => {
-        if (config.useESBuildMinifier) {
+        if (config.useSWC) {
             options.minify = TerserPlugin.swcMinify;
+        } if (config.useESBuildMinifier) {
+            options.minify = TerserPlugin.esbuildMinify;
         } else {
             options.extractComments = false;
 
@@ -362,7 +372,7 @@ Encore
         test: /(?<!node_modules.*)[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
     });
 
-if (config.useSWC) {
+if (config.useSWC && !config.SWCToBabel) {
     const options = {
         jsc: {
             externalHelpers: true,
@@ -418,6 +428,7 @@ if (config.useSWC) {
         };
     });
 }
+
 const webpackConfig = config.extra(Encore);
 
 // Enable CSS Modules
