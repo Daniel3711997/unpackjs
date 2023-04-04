@@ -286,7 +286,7 @@ Encore
         config.modules = {
             ...config.modules,
 
-            localIdentName: Encore.isProduction() ? '[hash:base64:7]' : '[name]__[local]--[hash:base64:7]'
+            localIdentName: Encore.isProduction() ? '[hash:base64:12]' : '[name]__[local]--[hash:base64:12]'
         };
     })
     .configureFriendlyErrorsPlugin(options => {
