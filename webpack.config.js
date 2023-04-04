@@ -374,6 +374,10 @@ Encore
 
 if (config.useSWC && !config.SWCToBabel) {
     const options = {
+        module: {
+            type: 'es6',
+            ignoreDynamic: true,
+        },
         jsc: {
             externalHelpers: true,
             transform: {
