@@ -136,5 +136,8 @@
         "vendor/php-stubs/wp-cli-stubs/wp-cli-i18n-stubs.php",
         "vendor/php-stubs/wordpress-stubs/wordpress-stubs.php",
         "vendor/php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php"
-    ]
+    ],
+
+    // Code Spell Checker
+    "cSpell.files": ["{app,src}/**/*.{php,js,jsx,ts,tsx,css,scss}"]
 }

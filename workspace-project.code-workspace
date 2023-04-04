@@ -20,7 +20,8 @@
             "shardulm94.trailing-spaces",
             "vincaslt.highlight-matching-tag",
             "christian-kohler.path-intellisense",
-            "bmewburn.vscode-intelephense-client"
+            "bmewburn.vscode-intelephense-client",
+            "streetsidesoftware.code-spell-checker"
         ]
     },
     "settings": {
@@ -161,6 +162,9 @@
             "vendor/php-stubs/wp-cli-stubs/wp-cli-i18n-stubs.php",
             "vendor/php-stubs/wordpress-stubs/wordpress-stubs.php",
             "vendor/php-stubs/wp-cli-stubs/wp-cli-commands-stubs.php"
-        ]
+        ],
+
+        // Code Spell Checker
+        "cSpell.files": ["{app,src}/**/*.{php,js,jsx,ts,tsx,css,scss}"]
     }
 }

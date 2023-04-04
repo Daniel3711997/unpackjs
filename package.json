@@ -5,7 +5,6 @@
     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
     "scripts": {
         "prepare": "husky install",
-        "build": "tsc && encore production",
         "prebuild": "npm run check-php",
         "build-action": "encore production",
         "vanilla-start": "encore dev-server",
@@ -21,6 +20,7 @@
         "check-php": "./vendor/bin/phpcs app --standard=.php-style.xml --cache",
         "postbuild": "composer dump-autoload --optimize && node ./scripts/_postbuild.js",
         "configure-production": "npm ci && composer install --no-interaction --optimize-autoloader",
+        "build": "npx cspell --no-progress \"{app,src}/**/*.{php,js,jsx,ts,tsx,css,scss}\" --cache --cache-strategy metadata --cache-location \"cache/tools/cspell\" && tsc && encore production",
         "start": "concurrently -r -k \"typed-scss-modules \\\"**/*.module.scss\\\" -L silent -n none -e default -w -o __generated__\" \"encore dev-server\""
     },
     "sideEffects": [
@@ -39,6 +39,9 @@
         ],
         "**/*.{js,jsx,ts,tsx,json,css,scss}": [
             "npx prettier --write --cache --cache-strategy metadata --cache-location \"cache/tools/prettier\""
+        ],
+        "{app,src}/**/*.{php,js,jsx,ts,tsx,css,scss}": [
+            "npx cspell --no-progress --cache --cache-strategy metadata --cache-location \"cache/tools/cspell\""
         ]
     },
     "browserslist": [
@@ -110,6 +113,7 @@
         "concurrently": "^8.0.1",
         "core-js": "^3.29.1",
         "cross-env": "^7.0.3",
+        "cspell": "^6.31.1",
         "dotenv-webpack": "^8.0.1",
         "esbuild": "^0.17.15",
         "eslint": "^8.37.0",

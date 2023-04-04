@@ -9,6 +9,7 @@
         "shardulm94.trailing-spaces",
         "vincaslt.highlight-matching-tag",
         "christian-kohler.path-intellisense",
-        "bmewburn.vscode-intelephense-client"
+        "bmewburn.vscode-intelephense-client",
+        "streetsidesoftware.code-spell-checker"
     ]
 }
