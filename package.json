@@ -6,12 +6,13 @@
     "scripts": {
         "prepare": "husky install",
         "prebuild": "npm run check-php",
-        "build-action": "encore production",
         "vanilla-start": "encore dev-server",
         "prestart": "composer dump-autoload",
+        "build": "tsc && npm run build-application",
         "clear": "node ./scripts/_clearWorkspace.js",
         "update-db": "npx update-browserslist-db@latest",
         "postbuild-action": "node ./scripts/_postbuild.js",
+        "build-action": "tsc && npm run build-application",
         "configure-development": "npm install && composer install",
         "postconfigure-production": "node ./scripts/_postconfigure.js",
         "postconfigure-development": "node ./scripts/_postconfigure.js",
@@ -20,8 +21,8 @@
         "check-php": "./vendor/bin/phpcs app --standard=.php-style.xml --cache",
         "postbuild": "composer dump-autoload --optimize && node ./scripts/_postbuild.js",
         "configure-production": "npm ci && composer install --no-interaction --optimize-autoloader",
-        "build": "npx cspell --no-progress \"{app,src}/**/*.{php,js,jsx,ts,tsx,css,scss}\" --cache --cache-strategy metadata --cache-location \"cache/tools/cspell\" && tsc && encore production",
-        "start": "concurrently -r -k \"typed-scss-modules \\\"**/*.module.scss\\\" -L silent -n none -e default -w -o __generated__\" \"encore dev-server\""
+        "start": "concurrently -r -k \"typed-scss-modules \\\"**/*.module.scss\\\" -L silent -n none -e default -w -o __generated__\" \"encore dev-server\"",
+        "build-application": "npx cspell --no-progress \"{app,src}/**/*.{php,js,jsx,ts,tsx,css,scss}\" --cache --cache-strategy metadata --cache-location \"cache/tools/cspell\" && encore production"
     },
     "sideEffects": [
         "*.css",

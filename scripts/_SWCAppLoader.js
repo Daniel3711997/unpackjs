@@ -10,7 +10,8 @@ const tsconfig = require('../tsconfig.json');
 const shouldEnableSWC = 'true' === process.env.SWC;
 const swcDirectory = path.join(__dirname, '..', '.swc');
 
-pack.scripts.build = shouldEnableSWC ? 'tsc && encore production' : 'encore production';
+pack.scripts.build = shouldEnableSWC ? 'tsc && npm run build-application' : 'npm run build-application';
+pack.scripts['build-action'] = shouldEnableSWC ? 'tsc && npm run build-application' : 'npm run build-application';
 tsconfig.compilerOptions = {
     ...tsconfig.compilerOptions,
     tsBuildInfoFile: shouldEnableSWC ? 'cache/typescript/.tsbuildinfo' : undefined,
