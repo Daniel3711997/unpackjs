@@ -169,11 +169,13 @@ if (Encore.isDevServer()) {
         ];
     });
 
-    Encore.addPlugin(
-        new ReactRefreshWebpackPlugin({
-            overlay: false,
-        })
-    );
+    if (!config.useSWC || (config.useSWC && config.SWCToBabel)) {
+        Encore.addPlugin(
+            new ReactRefreshWebpackPlugin({
+                overlay: false,
+            })
+        );
+    }
 
     Encore.configureBabel(
         babelConfig => {
