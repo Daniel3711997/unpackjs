@@ -458,13 +458,14 @@ module.exports = {
         optimization: {
             ...webpackConfig.optimization,
 
-            // sideEffects: true,
+            sideEffects: true,
             emitOnErrors: false,
         },
     }),
 
     ...(!Encore.isProduction() && {
         stats: 'none',
+        sideEffects: 'flag',
         devtool: 'inline-source-map',
         infrastructureLogging: {
             ...webpackConfig.infrastructureLogging,
@@ -491,7 +492,6 @@ module.exports = {
     optimization: {
         ...webpackConfig.optimization,
 
-        sideEffects: true,
         usedExports: true,
         providedExports: true,
     },
