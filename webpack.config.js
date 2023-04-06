@@ -131,6 +131,12 @@ if (Encore.isProduction()) {
 }
 
 if (Encore.isDevServer()) {
+    Encore.addPlugin(
+        new ReactRefreshWebpackPlugin({
+            overlay: false,
+        })
+    );
+
     Encore.configureDevServerOptions(options => {
         options.hot = true;
 
@@ -168,14 +174,6 @@ if (Encore.isDevServer()) {
             },
         ];
     });
-
-    if (!config.useSWC || (config.useSWC && config.SWCToBabel)) {
-        Encore.addPlugin(
-            new ReactRefreshWebpackPlugin({
-                overlay: false,
-            })
-        );
-    }
 
     Encore.configureBabel(
         babelConfig => {
@@ -468,6 +466,7 @@ module.exports = {
     output: {
         ...webpackConfig.output,
 
+        pathinfo: false,
         globalObject: 'self',
         chunkLoadingGlobal: 'unpack',
 
@@ -492,6 +491,7 @@ module.exports = {
     resolve: {
         ...webpackConfig.resolve,
 
+        symlinks: false,
         plugins: (webpackConfig.resolve.plugins || []).concat([
             new TSConfigPathsPlugin({
                 extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.css', '.scss', '.png', '.jpg', '.jpeg', '.gif', '.svg'],
