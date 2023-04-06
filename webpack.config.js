@@ -163,15 +163,15 @@ if (Encore.isDevServer()) {
         options.port = config.devServer.port;
         options.webSocketServer = config.devServer.transport;
         options.headers = [
-            // ...(options?.headers || []),
+            ...(Array.isArray(options?.headers) ? options?.headers : []),
             {
                 key: 'Access-Control-Allow-Origin',
                 value: '*',
             },
-            {
-                key: 'Cache-Control',
-                value: 'no-cache, no-store, max-age=0, must-revalidate',
-            },
+            // {
+            //     key: 'Cache-Control',
+            //     value: 'no-cache, no-store, max-age=0, must-revalidate',
+            // },
         ];
     });
 
@@ -465,11 +465,15 @@ module.exports = {
 
     ...(!Encore.isProduction() && {
         stats: 'none',
+        devtool: 'inline-source-map',
         infrastructureLogging: {
             ...webpackConfig.infrastructureLogging,
             level: 'warn',
         },
-        devtool: 'inline-source-map',
+        experiments: {
+            ...webpackConfig.experiments,
+            lazyCompilation: config.disableCssExtraction,
+        },
     }),
 
     output: {

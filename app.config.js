@@ -49,7 +49,12 @@ module.exports = {
     purgeCSSIgnore: [],
     useBundleAnalyzer: false,
     manifestKeyPrefix: 'build/',
-    disableCssExtraction: false,
+
+    /**
+     * true: The CSS is embedded in the bundle and webpack is able to lazy load the bundle
+     * false: The CSS is not embedded in the bundle and webpack is not able to lazy load the bundle
+     */
+    disableCssExtraction: true,
 
     /**
      * @param {typeof import('@symfony/webpack-encore')} Encore
@@ -84,6 +89,6 @@ module.exports = {
     cacheDirectory: path.resolve(__dirname, 'cache'),
 
     get publicPath() {
-        return `/wp-content/plugins/${this.name}/build`;
+        return `/wp-content/plugins/${this.name}/build/`;
     },
 };

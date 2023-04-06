@@ -85,7 +85,7 @@ class App {
                         $id,
                         isDevelopment() ? $entrypoint : UNPACK_PLUGIN_HOME_URL . $entrypoint,
                         $route['cssDependencies'] ?? [],
-                        isDevelopment() ? time() : null,
+                        null, // isDevelopment() ? time() : null,
                         $route['cssMedia'] ?? 'all'
                     );
                 }
@@ -103,7 +103,7 @@ class App {
                         $id,
                         isDevelopment() ? $entrypoint : UNPACK_PLUGIN_HOME_URL . $entrypoint,
                         $route['jsDependencies'] ?? [],
-                        isDevelopment() ? time() : null,
+                        null, // isDevelopment() ? time() : null,
                         $route['jsInFooter'] ?? true
                     );
 
