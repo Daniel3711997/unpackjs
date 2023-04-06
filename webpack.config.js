@@ -252,8 +252,12 @@ Encore
 
         appConfig => {
             appConfig.profile = false;
+            appConfig.maxAge = 5184000000;
+            // appConfig.memoryCacheUnaffected = true;
+            appConfig.allowCollectingMemory = !Encore.isProduction();
             appConfig.name = `cache-${Encore.isProduction() ? 'prod' : 'dev'}`;
             appConfig.cacheDirectory = path.join(config.cacheDirectory, 'webpack');
+            appConfig.maxMemoryGenerations = Encore.isProduction() ? Infinity : 10;
             appConfig.version = `${Encore.isProduction() ? 'prod' : 'dev'}~${pack.version}`;
         }
     )
@@ -444,12 +448,17 @@ module.exports = {
 
     target: 'browserslist',
 
+    // experiments: {
+    //     ...webpackConfig.experiments,
+    //     cacheUnaffected: true,
+    // },
+
     ...(Encore.isProduction() && {
         bail: true,
         optimization: {
             ...webpackConfig.optimization,
 
-            sideEffects: true,
+            // sideEffects: true,
             emitOnErrors: false,
         },
     }),
@@ -478,6 +487,7 @@ module.exports = {
     optimization: {
         ...webpackConfig.optimization,
 
+        sideEffects: true,
         usedExports: true,
         providedExports: true,
     },

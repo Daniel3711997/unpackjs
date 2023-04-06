@@ -37,10 +37,10 @@ jobs:
 
             - uses: actions/cache@v3
               with:
-                  path: cache/webpack/
-                  key: main-webpack-build
+                  path: cache/
+                  key: unpackjs-app-build-cache
                   restore-keys: |
-                      main-webpack-build
+                      unpackjs-app-build-cache
 
             - name: Build application
               run: npm run build-action
