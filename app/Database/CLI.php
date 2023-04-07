@@ -14,11 +14,23 @@ class CLI {
 
         try {
             if (!empty($associativeArguments['seed'])) {
-                return Migrator::seed($options);
+                $i = Migrator::seed($options);
+
+                if (0 === $i) {
+                    WP_CLI::warning('No seeds ran');
+                } else {
+                    WP_CLI::success($i . (1 === $i ? ' seed' : ' seeds') . ' ran successfully');
+                }
             }
 
             if (!empty($associativeArguments['migrate'])) {
-                return Migrator::migrate($options);
+                $i = Migrator::migrate($options);
+
+                if (0 === $i) {
+                    WP_CLI::warning('No migrations ran');
+                } else {
+                    WP_CLI::success($i . (1 === $i ? ' migration' : ' migrations') . ' ran successfully');
+                }
             }
         } catch (\Exception $e) {
             WP_CLI::error("An error has occurred: {$e->getMessage()}");

@@ -2,14 +2,15 @@
 
 namespace Unpack\Database\DbSeeds;
 
+use WP_CLI;
 use Unpack\Database\Abstracts\DbSeed;
 
 class Test extends DbSeed {
     public static function runSeed() {
-        echo 'The test seed ran!';
+        WP_CLI::log('The test seed ran!');
     }
 
     public static function rollbackSeed() {
-        echo 'The test seed was rolled back!';
+        WP_CLI::log('The test seed was rolled back!');
     }
 }

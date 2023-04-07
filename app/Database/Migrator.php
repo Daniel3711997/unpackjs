@@ -11,7 +11,7 @@ class Migrator {
         'files' => [],
         'rollback' => false
     ]) {
-        self::run(
+        return self::run(
             array_merge($options, [
                 'type' => 'seed'
             ])
@@ -22,7 +22,7 @@ class Migrator {
         'files' => [],
         'rollback' => false
     ]) {
-        self::run(
+        return self::run(
             array_merge($options, [
                 'type' => 'migrate'
             ])
@@ -30,6 +30,8 @@ class Migrator {
     }
 
     public static function run(array $options = []) {
+        $i = 0;
+
         if (0 === count($options)) {
             throw new \Exception(
                 'No options were passed to the run method'
@@ -50,7 +52,7 @@ class Migrator {
 
         if (is_array($files)) {
             if (0 === count($files)) {
-                WP_CLI::log('No files found');
+                WP_CLI::error('No files found');
             }
 
             foreach ($files as $file) {
@@ -65,7 +67,7 @@ class Migrator {
                 $method = $options['rollback'] ? ($isMigration ? 'rollbackMigration' : 'rollbackSeed') : ($isMigration ? 'runMigration' : 'runSeed');
 
                 if ($method === $fileStatus) {
-                    WP_CLI::log("Class '{$fileName}' has already been run, skipping...");
+                    WP_CLI::warning("Class '{$fileName}' has already been run, skipping...");
                     continue;
                 }
 
@@ -81,9 +83,12 @@ class Migrator {
                     );
                 }
 
+                $i++;
                 call_user_func([$namespace, $method]);
                 update_option(($isMigration ? "migration" : "seed") . "_{$fileName}", $method);
             }
         }
+
+        return $i;
     }
 }
