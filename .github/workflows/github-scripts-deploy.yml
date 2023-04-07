@@ -1,4 +1,4 @@
-name: Deploy to server
+name: Deploy the application to the remote server
 
 on:
     pull_request:
@@ -10,6 +10,7 @@ on:
 
 jobs:
     deploy:
+        name: Deploy the App
         runs-on: ubuntu-latest
         steps:
             - run: 'echo "No build required for this job"'
