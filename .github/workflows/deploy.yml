@@ -1,4 +1,4 @@
-name: Deploy UnpackJS to the App server
+name: Deploy the application to the remote server
 
 on:
     pull_request:
@@ -15,49 +15,47 @@ jobs:
         steps:
             - uses: actions/checkout@v3
 
-            - name: (1) Setup PHP & Composer
+            - name: Setup PHP & Composer
               uses: shivammathur/setup-php@v2
               with:
                   tools: composer
                   php-version: 7.4
 
-            - name: (2) Get composer cache directory
+            - name: Get composer cache directory
               id: composer-cache
               run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
-            - name: (3) Cache PHP dependencies
+            - name: Cache PHP dependencies
               uses: actions/cache@v3
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
                   key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-                  restore-keys: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
 
-            - name: (4) Install composer dependencies
+            - name: Install composer dependencies
               run: composer install --no-interaction --optimize-autoloader
 
-            - name: (5) Lint the PHP app directory against the project coding standard
+            - name: Lint the PHP app directory against the project coding standard
               run: ./vendor/bin/phpcs app --standard=.php-style.xml
 
-            - name: (6) Setup Node.JS
+            - name: Setup the Node.JS runtime
               uses: actions/setup-node@v3
               with:
                   node-version: 18
                   cache: 'npm'
 
-            - name: (7) Install the Node.JS dependencies
+            - name: Install the Node.JS dependencies
               run: npm ci
 
-            - name: (8) Cache UnpackJS dependencies
+            - name: Cache the application dependencies
               uses: actions/cache@v3
               with:
                   path: cache/
-                  key: ${{ runner.os }}-unpackjs-${{ hashFiles('**/package-lock.json') }}
-                  restore-keys: ${{ runner.os }}-unpackjs-${{ hashFiles('**/package-lock.json') }}
+                  key: ${{ runner.os }}-application-${{ hashFiles('**/package-lock.json') }}
 
-            - name: (9) Build the UnpackJS application
+            - name: Start building the application
               run: npm run build-action
 
-            - name: (10) Deploy to the remote server
+            - name: Deploy the application to the remote server
               run: node ./scripts/_deploy.js
               env:
                   HOST: ${{ secrets.HOST }}
