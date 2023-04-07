@@ -84,4 +84,4 @@ jobs:
               with:
                   to: ${{ secrets.TELEGRAM_TO }}
                   token: ${{ secrets.TELEGRAM_TOKEN }}
-                  message: 'The status of the ${{ secrets.PROJECT_NAME }} project build is: ${{steps.statuses.outputs.check-pr-status }}'
+                  message: 'The status of the ${{ secrets.PROJECT_NAME }} project build is: ${{steps.status.outputs.deploy-status }}'
