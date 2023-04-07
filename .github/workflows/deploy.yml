@@ -51,7 +51,7 @@ jobs:
               uses: actions/cache@v3
               with:
                   path: cache/
-                  key: ${{ runner.os }}-composer-${{ hashFiles('**/package-lock.json') }}
+                  key: ${{ runner.os }}-application-${{ hashFiles('**/package-lock.json') }}
 
             - name: Start building the application
               run: npm run build-action
@@ -67,7 +67,7 @@ jobs:
                   PRIVATE_KEY_PATH: ${{ secrets.PRIVATE_KEY_PATH }}
 
     notificaton:
-        name: Notify the administrator
+        name: Notify the Administrator
         if: always()
         needs: [deploy]
         runs-on: ubuntu-latest
@@ -77,7 +77,7 @@ jobs:
             - name: Get the "deploy" workflow status
               id: status
               run: |
-                  echo deploy-status=${{ needs.deploy.result }}" >> $GITHUB_OUTPUT
+                  echo "deploy-status=${{ needs.deploy.result }}" >> $GITHUB_OUTPUT
 
             - name: Send a notificaton to the project administrator
               uses: appleboy/telegram-action@master
