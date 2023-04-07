@@ -50,7 +50,7 @@ jobs:
               uses: actions/cache@v3
               with:
                   path: cache/
-                  key: ${{ runner.os }}-application-${{ hashFiles('**/package-lock.json') }}
+                  key: ${{ GITHUB_REF_NAME }}-webpack-application-cache
 
             - name: Start building the application
               run: npm run build-action
