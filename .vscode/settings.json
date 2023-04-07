@@ -139,5 +139,10 @@
     ],
 
     // Code Spell Checker
-    "cSpell.files": ["{app,src}/**/*.{php,js,jsx,ts,tsx,css,scss}"]
+    "cSpell.files": ["{app,src}/**/*.{php,js,jsx,ts,tsx,css,scss}"],
+
+    // YAML
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow.json": "./.github/workflows/deploy.yml"
+    }
 }
