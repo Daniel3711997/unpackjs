@@ -11,6 +11,7 @@ on:
 
 jobs:
     deploy:
+        name: Deploy the App
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
@@ -64,3 +65,23 @@ jobs:
                   PLUGIN_NAME: ${{ secrets.PLUGIN_NAME }}
                   REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
                   PRIVATE_KEY_PATH: ${{ secrets.PRIVATE_KEY_PATH }}
+
+    notificaton:
+        name: Notify the administrator
+        if: always()
+        needs: [deploy]
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@master
+
+            - name: Get the "deploy" workflow status
+              id: status
+              run: |
+                  echo deploy-status=${{ needs.deploy.result }}" >> $GITHUB_OUTPUT
+
+            - name: Send a notificaton to the project administrator
+              uses: appleboy/telegram-action@master
+              with:
+                  to: ${{ secrets.TELEGRAM_TO }}
+                  token: ${{ secrets.TELEGRAM_TOKEN }}
+                  message: 'The status of the ${{ secrets.PROJECT_NAME }} project build is: ${{steps.statuses.outputs.check-pr-status }}'
