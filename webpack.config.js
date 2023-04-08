@@ -282,7 +282,7 @@ Encore
         config.modules = "auto";
         config.corejs = '3.29.1';
         config.useBuiltIns = 'usage';
-        config.targets = pack.browserslist;
+        config.targets = Encore.isProduction() ? pack.browserslist.production : pack.browserslist.development;
     })
     .configureCssLoader(function (config) {
         config.url = true;
@@ -395,12 +395,10 @@ if (config.useSWC && !config.SWCToBabel) {
             },
         },
         env: {
+            debug: false,
             mode: 'usage',
             coreJs: '3.29.1',
-            targets: pack.browserslist,
-
-            // This is for the old browserslist config
-            // targets: Encore.isProduction() ? pack.browserslist.production : pack.browserslist.development,
+            targets: Encore.isProduction() ? pack.browserslist.production : pack.browserslist.development,
         },
     };
 
@@ -446,7 +444,7 @@ webpackConfig.module.rules[4].oneOf[0].test = /\.module\.s[ac]ss$/;
 module.exports = {
     ...webpackConfig,
 
-    target: 'browserslist',
+    target: `browserslist:${Encore.isProduction() ? 'production' : 'development'}`,
 
     // experiments: {
     //     ...webpackConfig.experiments,
@@ -465,7 +463,10 @@ module.exports = {
 
     ...(!Encore.isProduction() && {
         stats: 'none',
-        sideEffects: 'flag',
+        optimization: {
+            ...webpackConfig.optimization,
+            sideEffects: 'flag',
+        },
         devtool: 'inline-source-map',
         infrastructureLogging: {
             ...webpackConfig.infrastructureLogging,
