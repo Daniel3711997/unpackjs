@@ -84,6 +84,7 @@ module.exports = {
     //     },
     // },
 
+    useCompression: true,
     useTypeCheckInDev: false,
     outputPath: path.resolve(__dirname, 'build'),
     cacheDirectory: path.resolve(__dirname, 'cache'),

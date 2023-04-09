@@ -18,6 +18,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const Logger = require('@symfony/webpack-encore/lib/logger');
+const CompressionPlugin = require('compression-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TSConfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
@@ -112,6 +113,10 @@ if (config.useTypeCheckInDev || Encore.isProduction()) {
 }
 
 if (Encore.isProduction()) {
+    if (config.useCompression) {
+        Encore.addPlugin(new CompressionPlugin());
+    }
+
     Encore.configureBabel(
         babelConfig => {
             // https://webpack.js.org/loaders/babel-loader/
