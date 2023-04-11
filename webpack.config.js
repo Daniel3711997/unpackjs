@@ -114,7 +114,11 @@ if (config.useTypeCheckInDev || Encore.isProduction()) {
 
 if (Encore.isProduction()) {
     if (config.useCompression) {
-        Encore.addPlugin(new CompressionPlugin());
+        Encore.addPlugin(
+            new CompressionPlugin({
+                exclude: ['manifest.json'],
+            })
+        );
     }
 
     Encore.configureBabel(
@@ -122,7 +126,7 @@ if (Encore.isProduction()) {
             // https://webpack.js.org/loaders/babel-loader/
             babelConfig.cacheIdentifier = babelCacheIdentifier;
             babelConfig.cacheDirectory = path.join(config.cacheDirectory, 'babel');
-            babelConfig.presets[config.SWCToBabel ? 2 : 1] = ['@babel/preset-react', { runtime: 'automatic' }];
+            babelConfig.presets[config.switchToBabelPresetTypescript ? 2 : 1] = ['@babel/preset-react', { runtime: 'automatic' }];
 
             babelConfig.plugins.push(
                 ['transform-imports', config.transformImports],
@@ -185,7 +189,7 @@ if (Encore.isDevServer()) {
             // https://webpack.js.org/loaders/babel-loader/
             babelConfig.cacheIdentifier = babelCacheIdentifier;
             babelConfig.cacheDirectory = path.join(config.cacheDirectory, 'babel');
-            babelConfig.presets[config.SWCToBabel ? 2 : 1] = ['@babel/preset-react', { runtime: 'automatic' }];
+            babelConfig.presets[config.switchToBabelPresetTypescript ? 2 : 1] = ['@babel/preset-react', { runtime: 'automatic' }];
 
             babelConfig.plugins.push(
                 'react-refresh/babel',
@@ -199,7 +203,7 @@ if (Encore.isDevServer()) {
     );
 }
 
-if (config.SWCToBabel) {
+if (config.switchToBabelPresetTypescript) {
     Encore.enableBabelTypeScriptPreset({
         isTSX: true,
         allExtensions: true,
@@ -340,8 +344,8 @@ Encore
     })
     .configureFilenames({
         assets: 'assets/vendors/[name].[contenthash:12][ext]',
-        js: !Encore.isProduction() ? 'module~[name].js' : 'module~[name].[contenthash:12].js',
-        css: !Encore.isProduction() ? 'module~[name].css' : 'module~[name].[contenthash:12].css',
+        js: !Encore.isProduction() ? 'assets/js/module~[name].js' : 'assets/js/module~[name].[contenthash:12].js',
+        css: !Encore.isProduction() ? 'assets/css/module~[name].css' : 'assets/css/module~[name].[contenthash:12].css',
     })
     .configureSplitChunks(options => {
         options.chunks = 'all';
@@ -381,7 +385,7 @@ Encore
         test: /(?<!node_modules.*)[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
     });
 
-if (config.useSWC && !config.SWCToBabel) {
+if (config.useSWC && !config.switchToBabelPresetTypescript) {
     const options = {
         module: {
             type: 'es6',
