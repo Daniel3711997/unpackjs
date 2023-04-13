@@ -270,7 +270,7 @@ Encore
             appConfig.version = `${Encore.isProduction() ? 'prod' : 'dev'}~${pack.version}`;
         }
     )
-    .cleanupOutputBeforeBuild()
+    // .cleanupOutputBeforeBuild()
     .enableSingleRuntimeChunk()
     .setPublicPath(config.publicPath)
     .enableVersioning(Encore.isProduction())
@@ -490,6 +490,7 @@ module.exports = {
     output: {
         ...webpackConfig.output,
 
+        clean: true,
         pathinfo: false,
         globalObject: 'self',
         chunkLoadingGlobal: 'unpack',
