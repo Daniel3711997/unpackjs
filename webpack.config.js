@@ -358,16 +358,15 @@ Encore
         priority: 30,
         enforce: false,
         reuseExistingChunk: true,
-        test: /[\\/]src[\\/](?!styles)/,
+        test: /[\\/]src[\\/](?!styles)[\\/]/,
         name: !Encore.isProduction() ? 'unpack' : false,
     })
     .addCacheGroup('styles', {
         priority: 20,
-        enforce: true,
-        type: 'css/mini-extract',
+        enforce: false,
         reuseExistingChunk: true,
+        test: /[\\/]src[\\/]styles[\\/]/,
         name: !Encore.isProduction() ? 'styles' : false,
-        test: /[\\/]src[\\/]styles[\\/]|[\\/]node_modules[\\/]/,
     })
     .addCacheGroup('modules', {
         priority: 10,
