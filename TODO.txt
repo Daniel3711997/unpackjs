@@ -1,5 +1,6 @@
 # (Under Development)
 !!!! Add & Configure testing libraries for JS/PHP !!!!
+!!!! Maybe Add: https://github.com/release-it/release-it & https://github.com/release-it/conventional-changelog !!!!
 
 # (Done, Experimental)
 !!!! Replace Webpack Encore with Vite JS or change Babel with SWC/ESBuild !!!!
