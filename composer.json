@@ -5,8 +5,7 @@
     "license": "GPL-2.0-or-later",
     "autoload": {
         "psr-4": {
-            "Unpack\\": "app/",
-            "Tests\\": "__tests__/"
+            "Unpack\\": "app/"
         },
         "files": [
             "app/WP/Flow.php"
