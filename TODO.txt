@@ -1,4 +1,7 @@
-#### (Done, Experimental)
+# (Under Development)
+!!!! Add & Configure testing libraries for JS/PHP !!!!
+
+# (Done, Experimental)
 !!!! Replace Webpack Encore with Vite JS or change Babel with SWC/ESBuild !!!!
 
 https://github.dev/Daniel3711997/webpack-encore
