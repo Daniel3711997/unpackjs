@@ -5,7 +5,8 @@
     "license": "GPL-2.0-or-later",
     "autoload": {
         "psr-4": {
-            "Unpack\\": "app/"
+            "Unpack\\": "app/",
+            "Tests\\": "__tests__/"
         },
         "files": [
             "app/WP/Flow.php"
@@ -30,6 +31,7 @@
     "require-dev": {
         "squizlabs/php_codesniffer": "3.*",
         "wp-coding-standards/wpcs": "^2.3",
-        "php-stubs/wp-cli-stubs": "^2.7"
+        "php-stubs/wp-cli-stubs": "^2.7",
+        "phpunit/phpunit": "^9.6"
     }
 }

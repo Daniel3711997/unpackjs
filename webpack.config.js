@@ -385,61 +385,12 @@ Encore
     });
 
 if (config.useSWC && !config.switchToBabelPresetTypescript) {
-    const options = {
-        module: {
-            type: 'es6',
-            ignoreDynamic: true,
-        },
-        jsc: {
-            externalHelpers: true,
-            transform: {
-                react: {
-                    refresh: true,
-                    runtime: 'automatic',
-                },
-            },
-            experimental: {
-                plugins: [['@swc/plugin-transform-imports', config.transformImports]],
-            },
-        },
-        env: {
-            debug: false,
-            mode: 'usage',
-            coreJs: '3.29.1',
-            targets: Encore.isProduction() ? pack.browserslist.production : pack.browserslist.development,
-        },
-    };
-
     Encore.configureLoaderRule('javascript', loaderRule => {
-        loaderRule.use = {
-            loader: 'swc-loader',
-            options: {
-                ...options,
-                jsc: {
-                    ...options.jsc,
-                    parser: {
-                        jsx: true,
-                        syntax: 'ecmascript',
-                    },
-                },
-            },
-        };
+        loaderRule.use = config.swcRCConfig(Encore.isProduction(), 'javascript');
     });
 
     Encore.configureLoaderRule('typescript', loaderRule => {
-        loaderRule.use = {
-            loader: 'swc-loader',
-            options: {
-                ...options,
-                jsc: {
-                    ...options.jsc,
-                    parser: {
-                        tsx: true,
-                        syntax: 'typescript',
-                    },
-                },
-            },
-        };
+        loaderRule.use = config.swcRCConfig(Encore.isProduction(), 'typescript');
     });
 }
 

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders profile page unchanged 1`] = `
+<div>
+  <div>
+    <p
+      class="black"
+    >
+      Hello World
+    </p>
+  </div>
+</div>
+`;

@@ -2,6 +2,8 @@
 
 const path = require('node:path');
 
+const pack = require('./package.json');
+
 module.exports = {
     name: 'UnpackJSDevelopmentPlugin',
 
@@ -51,5 +53,66 @@ module.exports = {
 
     get publicPath() {
         return `/wp-content/plugins/${this.name}/build/`;
+    },
+    swcRCConfig(isProduction, type) {
+        const options = {
+            module: {
+                type: 'es6',
+                ignoreDynamic: true,
+            },
+            jsc: {
+                externalHelpers: true,
+                transform: {
+                    react: {
+                        refresh: true,
+                        runtime: 'automatic',
+                    },
+                },
+                experimental: {
+                    plugins: [['@swc/plugin-transform-imports', this.transformImports]],
+                },
+            },
+            env: {
+                debug: false,
+                mode: 'usage',
+                coreJs: '3.29.1',
+                targets: isProduction ? pack.browserslist.production : pack.browserslist.development,
+            },
+        };
+
+        switch (type) {
+            case 'javascript':
+                return {
+                    loader: 'swc-loader',
+                    options: {
+                        ...options,
+                        jsc: {
+                            ...options.jsc,
+                            parser: {
+                                jsx: true,
+                                syntax: 'ecmascript',
+                            },
+                        },
+                    },
+                };
+
+            case 'typescript':
+                return {
+                    loader: 'swc-loader',
+                    options: {
+                        ...options,
+                        jsc: {
+                            ...options.jsc,
+                            parser: {
+                                tsx: true,
+                                syntax: 'typescript',
+                            },
+                        },
+                    },
+                };
+
+            default:
+                throw new Error(`Unknown type: ${type}`);
+        }
     },
 };
