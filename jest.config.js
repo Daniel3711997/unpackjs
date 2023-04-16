@@ -1,22 +1,36 @@
 const config = require('./app.config');
+const tsconfig = require('./tsconfig.json');
 
 const swcOptions = config.swcRCConfig(false, 'typescript').options;
 
 module.exports = {
     testEnvironment: 'jest-environment-jsdom',
     moduleDirectories: ['node_modules', 'src'],
-    transform: {
-        '^.+\\.(t|j)sx?$': [
-            '@swc/jest',
-            {
-                ...swcOptions,
-                jsc: {
-                    ...swcOptions.jsc,
-                    experimental: undefined,
-                },
-            },
-        ],
-    },
+    transform: config.useSWC
+        ? {
+              '^.+\\.(t|j)sx?$': [
+                  '@swc/jest',
+                  {
+                      ...swcOptions,
+                      jsc: {
+                          ...swcOptions.jsc,
+                          experimental: undefined,
+                      },
+                  },
+              ],
+          }
+        : {
+              '^.+\\.(t|j)sx?$': [
+                  'ts-jest',
+                  {
+                      isolatedModules: true,
+                      tsconfig: {
+                          ...tsconfig.compilerOptions,
+                          jsx: 'react-jsx',
+                      },
+                  },
+              ],
+          },
     moduleNameMapper: {
         '^@/(.*)$': '<rootDir>/src/$1',
         '^.+\\.module\\.(css|scss)$': 'identity-obj-proxy',

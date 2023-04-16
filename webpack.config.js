@@ -38,16 +38,34 @@ process.env.BABEL_ENV = process.env.NODE_ENV;
 process.env.UNPACK_ENV = process.env.NODE_ENV;
 process.env.BROWSERSLIST_ENV = process.env.NODE_ENV;
 
-// https://github.com/symfony/webpack-encore/blob/main/index.js
-// https://github.com/symfony/webpack-encore/blob/main/CHANGELOG.md
-
-// npm install webpack webpack-cli @babel/core @babel/preset-env --save-dev
-// npm remove @babel/plugin-syntax-dynamic-import @babel/plugin-proposal-class-properties
-
 const babelCoreVersion = require('@babel/core/package.json').version;
 const babelLoaderVersion = require('babel-loader/package.json').version;
 const contentOfWebpackConfig = crypto.createHash('md5').update(require('fs').readFileSync(__filename, 'utf8')).digest('hex');
 const babelCacheIdentifier = `${Encore.isProduction() ? 'prod' : 'dev'}-${babelCoreVersion}~${babelLoaderVersion}-${contentOfWebpackConfig}`;
+
+const patchPlugin = plugin => {
+    if ('AssetsWebpackPlugin' === plugin.constructor.name) {
+        const processOutput = plugin.options.processOutput;
+
+        plugin.options.processOutput = assets => {
+            if ('function' === typeof processOutput) {
+                assets = JSON.parse(processOutput(assets));
+            }
+
+            if (Encore.isProduction()) {
+                assets = {
+                    production: true,
+                    publicPath: config.publicPath,
+                    ...assets,
+                };
+            }
+
+            return JSON.stringify(assets, null, 4);
+        };
+    }
+
+    return true; // Return true to keep the plugin in the array or false to remove it
+};
 
 if (!Encore.isRuntimeEnvironmentConfigured()) {
     // prettier-ignore
@@ -123,10 +141,9 @@ if (Encore.isProduction()) {
 
     Encore.configureBabel(
         babelConfig => {
-            // https://webpack.js.org/loaders/babel-loader/
             babelConfig.cacheIdentifier = babelCacheIdentifier;
             babelConfig.cacheDirectory = path.join(config.cacheDirectory, 'babel');
-            babelConfig.presets[config.switchToBabelPresetTypescript ? 2 : 1] = ['@babel/preset-react', { runtime: 'automatic' }];
+            babelConfig.presets[1] = ['@babel/preset-react', { runtime: 'automatic' }];
 
             babelConfig.plugins.push(
                 ['transform-imports', config.transformImports],
@@ -177,19 +194,14 @@ if (Encore.isDevServer()) {
                 key: 'Access-Control-Allow-Origin',
                 value: '*',
             },
-            // {
-            //     key: 'Cache-Control',
-            //     value: 'no-cache, no-store, max-age=0, must-revalidate',
-            // },
         ];
     });
 
     Encore.configureBabel(
         babelConfig => {
-            // https://webpack.js.org/loaders/babel-loader/
             babelConfig.cacheIdentifier = babelCacheIdentifier;
             babelConfig.cacheDirectory = path.join(config.cacheDirectory, 'babel');
-            babelConfig.presets[config.switchToBabelPresetTypescript ? 2 : 1] = ['@babel/preset-react', { runtime: 'automatic' }];
+            babelConfig.presets[1] = ['@babel/preset-react', { runtime: 'automatic' }];
 
             babelConfig.plugins.push(
                 'react-refresh/babel',
@@ -203,14 +215,37 @@ if (Encore.isDevServer()) {
     );
 }
 
-if (config.switchToBabelPresetTypescript) {
-    Encore.enableBabelTypeScriptPreset({
-        isTSX: true,
-        allExtensions: true,
-    });
-} else {
-    // https://github.com/TypeStrong/ts-loader
-    Encore.enableTypeScriptLoader(options => {
+// prettier-ignore
+Encore
+    .enableSassLoader()
+    .splitEntryChunks()
+    .enableReactPreset()
+    .enablePostCssLoader()
+    .disableCssExtraction(config.disableCssExtraction && !Encore.isProduction())
+    .enableBuildCache(
+        {
+            config: [
+                __filename,
+                path.join(__dirname, 'package.json'),
+                path.join(__dirname, 'tsconfig.json'),
+                path.join(__dirname, 'app.config.js'),
+                path.join(__dirname, 'postcss.config.js')
+            ],
+        },
+
+        appConfig => {
+            appConfig.profile = false;
+            appConfig.maxAge = 5184000000;
+            appConfig.allowCollectingMemory = !Encore.isProduction();
+            appConfig.name = `cache-${Encore.isProduction() ? 'prod' : 'dev'}`;
+            appConfig.cacheDirectory = path.join(config.cacheDirectory, 'webpack');
+            appConfig.maxMemoryGenerations = Encore.isProduction() ? Infinity : 10;
+            appConfig.version = `${Encore.isProduction() ? 'prod' : 'dev'}~${pack.version}`;
+        }
+    )
+    .enableSingleRuntimeChunk()
+    .setPublicPath(config.publicPath)
+    .enableTypeScriptLoader(options => {
         options.experimentalWatchApi = true;
 
         options.compilerOptions = {
@@ -238,41 +273,7 @@ if (config.switchToBabelPresetTypescript) {
                 sourceMap: true,
             };
         }
-    });
-}
-
-// prettier-ignore
-Encore
-    .enableSassLoader()
-    .splitEntryChunks()
-    .enableReactPreset()
-    .enablePostCssLoader()
-    .disableCssExtraction(config.disableCssExtraction && !Encore.isProduction())
-    .enableBuildCache(
-        {
-            config: [
-                __filename,
-                path.join(__dirname, 'package.json'),
-                path.join(__dirname, 'tsconfig.json'),
-                path.join(__dirname, 'app.config.js'),
-                path.join(__dirname, 'postcss.config.js')
-            ],
-        },
-
-        appConfig => {
-            appConfig.profile = false;
-            appConfig.maxAge = 5184000000;
-            // appConfig.memoryCacheUnaffected = true;
-            appConfig.allowCollectingMemory = !Encore.isProduction();
-            appConfig.name = `cache-${Encore.isProduction() ? 'prod' : 'dev'}`;
-            appConfig.cacheDirectory = path.join(config.cacheDirectory, 'webpack');
-            appConfig.maxMemoryGenerations = Encore.isProduction() ? Infinity : 10;
-            appConfig.version = `${Encore.isProduction() ? 'prod' : 'dev'}~${pack.version}`;
-        }
-    )
-    // .cleanupOutputBeforeBuild()
-    .enableSingleRuntimeChunk()
-    .setPublicPath(config.publicPath)
+    })
     .enableVersioning(Encore.isProduction())
     .enableSourceMaps(!Encore.isProduction())
     .setManifestKeyPrefix(config.manifestKeyPrefix)
@@ -384,7 +385,7 @@ Encore
         test: /(?<!node_modules.*)[\\/]node_modules[\\/](react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
     });
 
-if (config.useSWC && !config.switchToBabelPresetTypescript) {
+if (config.useSWC) {
     Encore.configureLoaderRule('javascript', loaderRule => {
         loaderRule.use = config.swcRCConfig(Encore.isProduction(), 'javascript');
     });
@@ -396,7 +397,6 @@ if (config.useSWC && !config.switchToBabelPresetTypescript) {
 
 const webpackConfig = config.extra(Encore);
 
-// Enable CSS Modules
 delete webpackConfig.module.rules[4].oneOf[0].resourceQuery;
 webpackConfig.module.rules[4].oneOf[0].test = /\.module\.s[ac]ss$/;
 
@@ -404,11 +404,6 @@ module.exports = {
     ...webpackConfig,
 
     target: `browserslist:${Encore.isProduction() ? 'production' : 'development'}`,
-
-    // experiments: {
-    //     ...webpackConfig.experiments,
-    //     cacheUnaffected: true,
-    // },
 
     ...(Encore.isProduction() && {
         bail: true,
@@ -457,6 +452,10 @@ module.exports = {
         providedExports: true,
     },
 
+    plugins: webpackConfig.plugins.filter(plugin => {
+        return patchPlugin(plugin);
+    }),
+
     snapshot: {
         ...webpackConfig.snapshot,
 
@@ -473,47 +472,4 @@ module.exports = {
             }),
         ]),
     },
-
-    plugins: webpackConfig.plugins.filter(plugin => {
-        if ('AssetsWebpackPlugin' === plugin.constructor.name) {
-            const processOutput = plugin.options.processOutput;
-
-            // const replacer = (key, value) => {
-            //     if ('string' !== typeof value) {
-            //         return value;
-            //     }
-
-            //     return Encore.isProduction()
-            //         ? value
-            //         : value
-            //               .replace(/localhost:/g, `${config.devServer.host}:`)
-            //               .replace(/:8080/g, `:${'auto' !== config.devServer.port ? config.devServer.port : '8080'}`);
-            // };
-
-            plugin.options.processOutput = assets => {
-                if ('function' === typeof processOutput) {
-                    assets = JSON.parse(processOutput(assets));
-                }
-
-                if (Encore.isProduction()) {
-                    assets = {
-                        // prettier-ignore
-                        // [Encore.isProduction()
-                        //     ? 'production'
-                        //     : 'development']: Encore.isProduction(),
-
-                        production: true,
-                        publicPath: config.publicPath,
-                        ...assets,
-                    };
-                }
-
-                return JSON.stringify(assets, null /* replacer */, 4);
-            };
-        }
-
-        return (
-            'EnabledButKeepHere_WebpackManifestPlugin' !== plugin.constructor.name && 'EnabledButKeepHere_AssetOutputDisplayPlugin' !== plugin.constructor.name
-        );
-    }),
 };

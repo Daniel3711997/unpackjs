@@ -18,7 +18,6 @@ module.exports = {
      */
     useSWC: true,
     useESBuildMinifier: true,
-    switchToBabelPresetTypescript: false,
     /**
      * false: No jQuery package is loaded
      * true: You have to install the jQuery package
