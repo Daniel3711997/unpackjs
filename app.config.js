@@ -47,8 +47,8 @@ module.exports = {
             /* Babel Template: ${member} | SWC Template: {{member}} */
         },
     },
-    outputPath: path.resolve(__dirname, 'build'),
-    cacheDirectory: path.resolve(__dirname, 'cache'),
+    outputPath: path.join(__dirname, 'build'),
+    cacheDirectory: path.join(__dirname, 'cache'),
 
     get publicPath() {
         return `/wp-content/plugins/${this.name}/build/`;

@@ -1,11 +1,15 @@
+const path = require('node:path');
+
 const config = require('./app.config');
 const tsconfig = require('./tsconfig.json');
 
 const swcOptions = config.swcRCConfig(false, 'typescript').options;
 
+/** @type {import('jest').Config} */
 module.exports = {
     testEnvironment: 'jest-environment-jsdom',
     moduleDirectories: ['node_modules', 'src'],
+    cacheDirectory: path.join(config.cacheDirectory, 'tools', 'jest'),
     transform: config.useSWC
         ? {
               '^.+\\.(t|j)sx?$': [
@@ -23,7 +27,8 @@ module.exports = {
               '^.+\\.(t|j)sx?$': [
                   'ts-jest',
                   {
-                      isolatedModules: true,
+                      // https://kulshekhar.github.io/ts-jest/docs/getting-started/options/isolatedModules
+                      isolatedModules: false,
                       tsconfig: {
                           ...tsconfig.compilerOptions,
                           jsx: 'react-jsx',

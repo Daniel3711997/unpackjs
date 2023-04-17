@@ -10,9 +10,6 @@ const config = require('./app.config');
 const app = require('./src/routes.json');
 const DotEnv = require('dotenv-webpack');
 const WebpackBar = require('webpackbar');
-/**
- * @type {typeof import('@symfony/webpack-encore')}
- */
 const Encore = require('@symfony/webpack-encore');
 const TerserPlugin = require('terser-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
