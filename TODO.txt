@@ -32,3 +32,5 @@ https://github.dev/Daniel3711997/webpack-encore
 }
 
 // https://github.com/bjankord/stylelint-config-sass-guidelines/commit/bf4d9cd08d9472c18f8b14df51f6c1a2664c79fb#diff-e727e4bdf3657fd1d798edcd6b099d6e092f8573cba266154583a746bba0f346
+
+// Jest (https://jestjs.io/docs/getting-started) & Webpack Encore (Symphony) -> https://github.com/symfony/webpack-encore/blob/main/index.js#L1180
