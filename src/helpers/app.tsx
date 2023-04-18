@@ -24,10 +24,14 @@ export const createContainer =
         }
 
         if ('development' === process.env.NODE_ENV) {
-            createRoot(rootElement).render(excludeWrapper ? <ReactAppContainer /> : <App Component={ReactAppContainer} />);
+            createRoot(rootElement).render(
+                excludeWrapper ? <ReactAppContainer /> : <App Component={ReactAppContainer} />
+            );
         } else {
             window.addEventListener('DOMContentLoaded', () => {
-                createRoot(rootElement).render(excludeWrapper ? <ReactAppContainer /> : <App Component={ReactAppContainer} />);
+                createRoot(rootElement).render(
+                    excludeWrapper ? <ReactAppContainer /> : <App Component={ReactAppContainer} />
+                );
             });
         }
     };
