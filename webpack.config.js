@@ -37,8 +37,13 @@ process.env.BROWSERSLIST_ENV = process.env.NODE_ENV;
 
 const babelCoreVersion = require('@babel/core/package.json').version;
 const babelLoaderVersion = require('babel-loader/package.json').version;
-const contentOfWebpackConfig = crypto.createHash('md5').update(require('fs').readFileSync(__filename, 'utf8')).digest('hex');
-const babelCacheIdentifier = `${Encore.isProduction() ? 'prod' : 'dev'}-${babelCoreVersion}~${babelLoaderVersion}-${contentOfWebpackConfig}`;
+const contentOfWebpackConfig = crypto
+    .createHash('md5')
+    .update(require('fs').readFileSync(__filename, 'utf8'))
+    .digest('hex');
+const babelCacheIdentifier = `${
+    Encore.isProduction() ? 'prod' : 'dev'
+}-${babelCoreVersion}~${babelLoaderVersion}-${contentOfWebpackConfig}`;
 
 const patchPlugin = plugin => {
     if ('AssetsWebpackPlugin' === plugin.constructor.name) {
@@ -465,7 +470,20 @@ module.exports = {
         symlinks: false,
         plugins: (webpackConfig.resolve.plugins || []).concat([
             new TSConfigPathsPlugin({
-                extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.css', '.scss', '.png', '.jpg', '.jpeg', '.gif', '.svg'],
+                extensions: [
+                    '.ts',
+                    '.tsx',
+                    '.js',
+                    '.jsx',
+                    '.json',
+                    '.css',
+                    '.scss',
+                    '.png',
+                    '.jpg',
+                    '.jpeg',
+                    '.gif',
+                    '.svg',
+                ],
             }),
         ]),
     },
