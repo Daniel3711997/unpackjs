@@ -74,7 +74,7 @@ module.exports = {
             env: {
                 debug: false,
                 mode: 'usage',
-                coreJs: '3.29.1',
+                coreJs: '3.30.1',
                 targets: isProduction ? pack.browserslist.production : pack.browserslist.development,
             },
         };

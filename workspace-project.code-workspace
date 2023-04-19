@@ -38,7 +38,7 @@
         "files.insertFinalNewline": true,
         "editor.codeActionsOnSave": {
             "source.fixAll.eslint": true,
-            "source.fixAll.stylelint": false
+            "source.fixAll.stylelint": true
         },
         "javascript.suggest.paths": false,
         "typescript.suggest.paths": false,
