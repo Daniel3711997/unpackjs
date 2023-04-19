@@ -1,11 +1,11 @@
 /.swc
-*.log
 
 /build
 /cache
 /vendor
 /node_modules
 /src/routes.hash
+/build_temporary
 
 .env
 .DS_Store
