@@ -1,10 +1,15 @@
 /.swc
-
-.env
-.DS_Store
+*.log
 
 /build
 /cache
 /vendor
 /node_modules
 /src/routes.hash
+
+.env
+.DS_Store
+.env.local
+.env.test.local
+.env.production.local
+.env.development.local
