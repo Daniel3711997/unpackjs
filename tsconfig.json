@@ -28,9 +28,9 @@
         "allowSyntheticDefaultImports": true,
         "lib": ["DOM", "DOM.Iterable", "ESNext"],
         "forceConsistentCasingInFileNames": true,
+
         "tsBuildInfoFile": "cache/typescript/.tsbuildinfo"
     },
 
-    "exclude": ["vendor", "node_modules"],
-    "include": ["index.d.ts", "unpack.d.ts", "**/*.ts", "**/*.tsx"]
+    "include": ["index.d.ts", "unpack.d.ts", "src/**/*.ts", "src/**/*.tsx"]
 }

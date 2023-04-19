@@ -15,7 +15,7 @@ module.exports = {
         'postcss-flexbugs-fixes': {},
         ...(config.usePurgeCSS && {
             '@fullhuman/postcss-purgecss': {
-                content: ['./src/**/*.{js,jsx,ts,tsx}'],
+                content: ['./{app,themes}/**/*.php', './src/**/*.{js,jsx,ts,tsx}'],
                 defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
                 safelist: [...PurgeCSSWithWordpress.safelist, ...config.purgeCSSIgnore],
             },

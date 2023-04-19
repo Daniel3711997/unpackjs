@@ -302,6 +302,7 @@ Encore
         config.modules = {
             ...config.modules,
 
+            auto: true,
             localIdentName: Encore.isProduction() ? '[hash:base64:12]' : '[name]__[local]--[hash:base64:12]'
         };
     })
@@ -399,8 +400,8 @@ if (config.useSWC) {
 
 const webpackConfig = config.extra(Encore);
 
-delete webpackConfig.module.rules[4].oneOf[0].resourceQuery;
-webpackConfig.module.rules[4].oneOf[0].test = /\.module\.s[ac]ss$/;
+// delete webpackConfig.module.rules[4].oneOf[0].resourceQuery;
+// webpackConfig.module.rules[4].oneOf[0].test = /\.module\.s[ac]ss$/;
 
 module.exports = {
     ...webpackConfig,

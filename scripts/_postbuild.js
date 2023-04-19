@@ -57,7 +57,7 @@ SetEnvIfNoCase Request_URI "\.(?:gif|jpe?g|png)$" no-gzip
 
 # Cache static files for a year because they have a hash in their name
 <IfModule mod_headers.c>
-    <FilesMatch "\.(js|css)$">
+    <FilesMatch "\.(js|css|js\.gz|css\.gz)$">
         Header set Cache-Control "public, max-age=31536000, immutable"
     </FilesMatch>
 

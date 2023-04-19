@@ -6,10 +6,10 @@
     "scripts": {
         "release": "release-it",
         "prepare": "husky install",
-        "prebuild": "npm run check-php",
         "test": "jest --passWithNoTests",
         "vanilla-start": "encore dev-server",
         "prestart": "composer dump-autoload",
+        "build-application": "encore production",
         "build": "tsc && npm run build-application",
         "clear": "node ./scripts/_clearWorkspace.js",
         "update-db": "npx update-browserslist-db@latest",
@@ -24,8 +24,8 @@
         "postbuild": "composer dump-autoload --optimize && node ./scripts/_postbuild.js",
         "configure-production": "npm ci && composer install --no-interaction --optimize-autoloader",
         "test-php": "php ./vendor/bin/phpunit __tests__/php --testdox --cache-result-file \"cache/tools/phpunit\" --cache-result",
-        "start": "concurrently -r -k \"typed-scss-modules \\\"**/*.module.scss\\\" -L silent -n none -e default -w -o .generated\" \"encore dev-server\"",
-        "build-application": "npx cspell --no-progress \"{app,src}/**/*.{php,js,jsx,ts,tsx,css,scss}\" --cache --cache-strategy metadata --cache-location \"cache/tools/cspell\" && encore production"
+        "prebuild": "cspell --no-progress \"{app,src}/**/*.{php,js,jsx,ts,tsx,css,scss}\" --cache --cache-strategy metadata --cache-location \"cache/tools/cspell\" && npm run check-php",
+        "start": "concurrently -r -k \"typed-scss-modules \\\"**/*.module.scss\\\" -L silent -n none -e default -w -o .generated\" \"encore dev-server\""
     },
     "sideEffects": [
         "*.css",
@@ -36,16 +36,16 @@
             "./vendor/bin/phpcs --standard=.php-style.xml --cache"
         ],
         "**/*.{js,jsx,ts,tsx}": [
-            "npx eslint --cache --cache-strategy metadata --cache-location \"cache/eslint/\""
+            "eslint --cache --cache-strategy metadata --cache-location \"cache/eslint/\""
         ],
         "**/*.{css,scss}": [
-            "npx stylelint --cache --cache-strategy metadata --cache-location \"cache/stylelint/\""
+            "stylelint --cache --cache-strategy metadata --cache-location \"cache/stylelint/\""
         ],
         "**/*.{js,jsx,ts,tsx,json,css,scss}": [
-            "npx prettier --write --cache --cache-strategy metadata --cache-location \"cache/tools/prettier\""
+            "prettier --write --cache --cache-strategy metadata --cache-location \"cache/tools/prettier\""
         ],
         "{app,src}/**/*.{php,js,jsx,ts,tsx,css,scss}": [
-            "npx cspell --no-progress --cache --cache-strategy metadata --cache-location \"cache/tools/cspell\""
+            "cspell --no-progress --cache --cache-strategy metadata --cache-location \"cache/tools/cspell\""
         ]
     },
     "browserslist": {
@@ -66,8 +66,8 @@
         "node": ">=18.0.0"
     },
     "includeNodeModules": [
-        "@tanstack/query-core",
-        "@tanstack/react-query"
+        "disabled-@tanstack/query-core",
+        "disabled-@tanstack/react-query"
     ],
     "overrides": {
         "css-modules-loader-core": {
@@ -86,11 +86,11 @@
         "@tanstack/react-query": "^4.29.3",
         "clsx": "^1.2.1",
         "final-form": "^4.20.9",
-        "immer": "^9.0.21",
+        "immer": "^10.0.1",
         "jquery": "^3.6.4",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-error-boundary": "^4.0.3",
+        "react-error-boundary": "^4.0.4",
         "react-final-form": "^6.5.9",
         "tslib": "^2.5.0",
         "zod": "^3.21.4"
@@ -113,15 +113,15 @@
         "@tanstack/eslint-plugin-query": "^4.29.0",
         "@testing-library/jest-dom": "^5.16.5",
         "@testing-library/react": "^14.0.0",
-        "@types/jest": "^29.5.0",
+        "@types/jest": "^29.5.1",
         "@types/jquery": "^3.5.16",
         "@types/loadable__component": "^5.13.4",
         "@types/node": "^18.15.11",
-        "@types/react": "^18.0.35",
+        "@types/react": "^18.0.37",
         "@types/react-dom": "^18.0.11",
         "@types/webpack-env": "^1.18.0",
-        "@typescript-eslint/eslint-plugin": "^5.58.0",
-        "@typescript-eslint/parser": "^5.58.0",
+        "@typescript-eslint/eslint-plugin": "^5.59.0",
+        "@typescript-eslint/parser": "^5.59.0",
         "babel-plugin-transform-imports": "^2.0.0",
         "chalk": "^4.1.2",
         "compression-webpack-plugin": "^10.0.0",
