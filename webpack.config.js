@@ -85,7 +85,9 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 app.routes.forEach(route => {
     Encore.addEntry(route.entry.name, path.join(__dirname, route.entry.path));
 
-    console.log(`Loading route ${chalk.yellow(route.entry.name)} from ${chalk.yellow(route.entry.path)}`);
+    console.log(
+        `Loading route ${chalk.yellow(route.entry.name)} from ${chalk.magenta(path.dirname(route.entry.path))}`
+    );
 });
 
 if (config.useJQuery) {

@@ -15,19 +15,6 @@
         },
         {
             "app": "react",
-            "tests": [
-                {
-                    "function": "is_page_template",
-                    "arguments": ["unpack-template.php"]
-                }
-            ],
-            "entry": {
-                "name": "profile",
-                "path": "src/app/containers/Profile/index.ts"
-            }
-        },
-        {
-            "app": "react",
             "server": {
                 "key": "profile",
                 "method": "getUserProfileData"
@@ -50,6 +37,19 @@
                     "query": "index.php?pagename=profile&profile-id=$matches[1]"
                 }
             ]
+        },
+        {
+            "app": "react",
+            "tests": [
+                {
+                    "function": "is_page_template",
+                    "arguments": ["unpack-template.php"]
+                }
+            ],
+            "entry": {
+                "name": "profile",
+                "path": "src/app/containers/Profile/index.ts"
+            }
         }
     ]
 }
