@@ -212,6 +212,10 @@ add_filter(
                     $search = ' src';
                     $replace = ' defer src';
 
+                    if (isDevelopment()) {
+                        $replace = ' defer crossorigin="anonymous" src';
+                    }
+
                     if (false !== strpos($url, $script) && false === strpos($url, $replace)) {
                         return str_replace($search, $replace, $url);
                     }
