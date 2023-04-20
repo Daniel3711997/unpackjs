@@ -7,12 +7,6 @@ const isProduction = 'production' === process.env.NODE_ENV;
 
 module.exports = {
     plugins: {
-        'postcss-logical': {},
-        'postcss-preset-env': {
-            stage: 2,
-            browsers: isProduction ? pack.browserslist.production : pack.browserslist.development,
-        },
-        'postcss-flexbugs-fixes': {},
         ...(config.usePurgeCSS && {
             '@fullhuman/postcss-purgecss': {
                 content: ['./{app,themes}/**/*.php', './src/**/*.{js,jsx,ts,tsx}'],
@@ -20,5 +14,9 @@ module.exports = {
                 safelist: [...PurgeCSSWithWordpress.safelist, ...config.purgeCSSIgnore],
             },
         }),
+        'postcss-preset-env': {
+            stage: 4,
+            browsers: isProduction ? pack.browserslist.production : pack.browserslist.development,
+        },
     },
 };

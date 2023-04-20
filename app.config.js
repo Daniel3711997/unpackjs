@@ -24,7 +24,7 @@ module.exports = {
      * external: The jQuery package is loaded by the current theme
      */
     useJQuery: false,
-    usePurgeCSS: true,
+    usePurgeCSS: false,
     purgeCSSIgnore: [],
     useBundleAnalyzer: false,
     manifestKeyPrefix: 'build/',

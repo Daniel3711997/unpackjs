@@ -21,11 +21,9 @@ https://github.dev/Daniel3711997/webpack-encore
 
 "overrides": {
     "css-modules-loader-core": {
-        "postcss": "^7.0.39"
+        "postcss": "^7.0.0"
     },
     "@symfony/webpack-encore": {
-        "typescript": "^5.0.0",
-        "eslint-webpack-plugin": "^4.0.0",
         "css-minimizer-webpack-plugin": "^5.0.0",
         "fork-ts-checker-webpack-plugin": "^8.0.0"
     }
