@@ -8,7 +8,3 @@ const renderContainer = createContainer({
 });
 
 renderContainer();
-
-export { Profile };
-
-export { renderContainer as renderProfile };
