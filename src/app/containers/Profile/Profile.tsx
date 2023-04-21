@@ -1,4 +1,4 @@
-import styles from './Profile.module.scss';
+import styles from './StylesProfile.module.scss';
 
 export const Profile = () => {
     return (

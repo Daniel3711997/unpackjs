@@ -54,6 +54,9 @@
         "stylelint.snippet": ["css", "less", "postcss", "scss", "sass"],
         "stylelint.validate": ["css", "less", "postcss", "scss", "sass"],
 
+        // ESLint
+        "eslint.codeActionsOnSave.rules": ["!/*", "react-hooks/*", "import/*", "sort-exports/*"],
+
         // Error Lens
         "errorLens.margin": "25px",
         "errorLens.fontSize": "12px",

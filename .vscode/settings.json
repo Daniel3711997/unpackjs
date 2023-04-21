@@ -25,8 +25,11 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
 
     // Stylelint
-    "stylelint.snippet": ["css", "less", "postcss", "scss", "sass"],
-    "stylelint.validate": ["css", "less", "postcss", "scss", "sass"],
+    "stylelint.snippet": ["css", "less", "sass", "scss", "postcss"],
+    "stylelint.validate": ["css", "less", "sass", "scss", "postcss"],
+
+    // ESLint
+    "eslint.codeActionsOnSave.rules": ["!/*", "react-hooks/*", "import/*", "sort-exports/*"],
 
     // Error Lens
     "errorLens.margin": "25px",
