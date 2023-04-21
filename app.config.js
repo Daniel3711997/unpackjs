@@ -35,17 +35,28 @@ module.exports = {
         return Encore.getWebpackConfig();
     },
     useCompression: true,
-    useTypeCheckInDev: false,
     /**
+     * ESLint & StyleLint
+     * TypeScript is not supported, always enabled
+     */
+    useTypeCheckInProduction: true,
+    /**
+     * ESLint & StyleLint
+     * TypeScript is not supported, always enabled, but on another thread
+     */
+    useTypeCheckInDevelopment: false,
+    /**
+     * Note: This should be always true
+     *
      * true: The CSS is embedded in the bundle and webpack is able to lazy load the bundle
      * false: The CSS is not embedded in the bundle and webpack is not able to lazy load the bundle
      */
     disableCssExtraction: true,
     transformImports: {
-        lodash: {
-            transform: 'lodash/{{member}}',
-            /* Babel Template: ${member} | SWC Template: {{member}} */
-        },
+        // lodash: {
+        //     transform: '<<TEMPLATE>>'
+        //     /* Babel Template: ${member} | SWC Template: {{member}} */
+        // }
     },
     outputPath: path.join(__dirname, 'build'),
     cacheDirectory: path.join(__dirname, 'cache'),

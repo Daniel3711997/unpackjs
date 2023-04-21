@@ -104,17 +104,17 @@ if (config.useBundleAnalyzer && Encore.isProduction()) {
     Encore.addPlugin(new BundleAnalyzerPlugin());
 }
 
-if (config.useTypeCheckInDev && !Encore.isProduction()) {
+if (config.useTypeCheckInDevelopment && !Encore.isProduction()) {
     Encore.enableForkedTypeScriptTypesChecking();
 }
 
-if (config.useTypeCheckInDev || Encore.isProduction()) {
+if (config.useTypeCheckInDevelopment || (Encore.isProduction() && config.useTypeCheckInProduction)) {
     Encore.addPlugin(
         new ESLintPlugin({
             cache: true,
+            context: './src',
             failOnError: true,
             failOnWarning: false,
-            context: './src/app',
             cacheStrategy: 'metadata',
             extensions: ['js', 'jsx', 'ts', 'tsx'],
             cacheLocation: path.join(config.cacheDirectory, 'eslint/'),
@@ -240,6 +240,9 @@ Encore
         appConfig => {
             appConfig.profile = false;
             appConfig.maxAge = 5184000000;
+            appConfig.idleTimeout = 60000;
+            appConfig.idleTimeoutForInitialStore = 5000;
+            appConfig.idleTimeoutAfterLargeChanges = 1000;
             appConfig.allowCollectingMemory = !Encore.isProduction();
             appConfig.name = `cache-${Encore.isProduction() ? 'prod' : 'dev'}`;
             appConfig.cacheDirectory = path.join(config.cacheDirectory, 'webpack');
@@ -328,7 +331,7 @@ Encore
                 },
                 compress: {
                     ...options.terserOptions?.compress,
-                    drop_console: false,
+                    drop_console: true,
                 },
             };
         }
