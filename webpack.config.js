@@ -37,10 +37,12 @@ process.env.BROWSERSLIST_ENV = process.env.NODE_ENV;
 
 const babelCoreVersion = require('@babel/core/package.json').version;
 const babelLoaderVersion = require('babel-loader/package.json').version;
+
 const contentOfWebpackConfig = crypto
     .createHash('md5')
     .update(require('fs').readFileSync(__filename, 'utf8'))
     .digest('hex');
+
 const babelCacheIdentifier = `${
     Encore.isProduction() ? 'prod' : 'dev'
 }-${babelCoreVersion}~${babelLoaderVersion}-${contentOfWebpackConfig}`;
@@ -57,6 +59,7 @@ const patchPlugin = plugin => {
             if (Encore.isProduction()) {
                 assets = {
                     production: true,
+
                     publicPath: config.publicPath,
                     ...assets,
                 };
