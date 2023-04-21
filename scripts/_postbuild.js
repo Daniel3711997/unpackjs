@@ -21,7 +21,8 @@ if (fs.existsSync(temporaryDirectory)) {
 
 fs.writeFileSync(
     path.join(config.outputPath, '.htaccess'),
-    `<IfModule mod_authz_host.c>
+    `
+<IfModule mod_authz_host.c>
     Require all granted
 </IfModule>
 
