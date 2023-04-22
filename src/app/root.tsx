@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { type ComponentType, StrictMode } from 'react';
 
 import { RequestBoundary } from 'app/components/RequestBoundary';
@@ -22,6 +23,8 @@ export const App = ({ Component }: IAppProps) => {
     return (
         <StrictMode>
             <QueryClientProvider client={queryClient}>
+                <ReactQueryDevtools initialIsOpen={false} />
+
                 <RequestBoundary
                     fallback={({ resetErrorBoundary }) => (
                         <div>
