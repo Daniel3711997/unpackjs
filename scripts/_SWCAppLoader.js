@@ -8,7 +8,8 @@ const pack = require('../package.json');
 const tsconfig = require('../tsconfig.json');
 
 const shouldEnableSWC = 'true' === process.env.SWC;
-const swcDirectory = path.join(__dirname, '..', '.swc');
+
+// const swcDirectory = path.join(__dirname, '..', '.swc');
 
 pack.scripts.build = shouldEnableSWC ? 'tsc && npm run build-application' : 'npm run build-application';
 pack.scripts['build-action'] = shouldEnableSWC ? 'tsc && npm run build-application' : 'npm run build-application';
@@ -17,11 +18,11 @@ tsconfig.compilerOptions = {
     tsBuildInfoFile: shouldEnableSWC ? 'cache/typescript/.tsbuildinfo' : undefined,
 };
 
-if (fs.existsSync(swcDirectory)) {
-    fs.rmSync(swcDirectory, {
-        recursive: true,
-    });
-}
+// if (fs.existsSync(swcDirectory)) {
+//     fs.rmSync(swcDirectory, {
+//         recursive: true,
+//     });
+// }
 
 if (fs.existsSync(config.outputPath)) {
     fs.rmSync(config.outputPath, {
@@ -45,5 +46,9 @@ console.log(`Run ${chalk.yellow('npm start')} to start the development server`);
 console.log(`Run ${chalk.yellow('npm run build')} to build the project for production`);
 console.log();
 
-console.log(`In ${chalk.yellow('app.config.js')} change the ${chalk.yellow('useSWC')} directive to ${chalk.yellow(shouldEnableSWC.toString())}`);
+console.log(
+    `In ${chalk.yellow('app.config.js')} change the ${chalk.yellow('useSWC')} directive to ${chalk.yellow(
+        shouldEnableSWC.toString()
+    )}`
+);
 console.log();

@@ -79,6 +79,7 @@ module.exports = {
                     },
                 },
                 experimental: {
+                    cacheRoot: path.join(this.cacheDirectory, 'swc'),
                     plugins: [['@swc/plugin-transform-imports', this.transformImports]],
                 },
             },
