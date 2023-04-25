@@ -1,7 +1,7 @@
 name: Deploy the application to the remote server
 
 on:
-    pull_request:
+    push:
         branches:
             - main
         paths:
