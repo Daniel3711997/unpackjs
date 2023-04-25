@@ -7,6 +7,9 @@ const isProduction = 'production' === process.env.NODE_ENV;
 
 module.exports = {
     plugins: {
+        'postcss-flexbugs-fixes': {
+            // silence is golden
+        },
         ...(config.usePurgeCSS && {
             '@fullhuman/postcss-purgecss': {
                 content: ['./{app,themes}/**/*.php', './src/**/*.{js,jsx,ts,tsx}'],
@@ -15,7 +18,13 @@ module.exports = {
             },
         }),
         'postcss-preset-env': {
-            stage: 4,
+            stage: 3,
+            autoprefixer: {
+                flexbox: 'no-2009',
+            },
+            features: {
+                'custom-properties': false,
+            },
             browsers: isProduction ? pack.browserslist.production : pack.browserslist.development,
         },
     },
