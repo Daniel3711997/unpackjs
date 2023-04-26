@@ -17,7 +17,7 @@ class Engine {
             self::$instance = new Psr16Adapter(
                 'Files',
                 new ConfigurationOption([
-                    'defaultTtl' => 0,
+                    'defaultTtl' => 3600,
                     'path' => getPluginDirectory() . 'cache/unpack',
                 ])
             );

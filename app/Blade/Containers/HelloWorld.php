@@ -20,7 +20,7 @@ class HelloWorld implements Renderer, RendererArguments {
     }
 
     public static function render(array $params = []): void {
-        if (isset($params['includeHeader'])) {
+        if (!empty($params['includeHeader'])) {
             get_header(
                 is_string($params['includeHeader']) ? $params['includeHeader'] : null
             );
@@ -38,7 +38,7 @@ class HelloWorld implements Renderer, RendererArguments {
             );
         }
 
-        if (isset($params['includeFooter'])) {
+        if (!empty($params['includeFooter'])) {
             get_footer(
                 is_string($params['includeFooter']) ? $params['includeFooter'] : null
             );
