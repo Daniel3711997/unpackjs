@@ -1,0 +1,77 @@
+name: Check the application
+
+on:
+    pull_request:
+        branches:
+            - main
+
+        paths-ignore:
+            - '.github/**'
+            - 'scripts/**'
+
+jobs:
+    check:
+        name: Check the App
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Setup PHP & Composer
+              uses: shivammathur/setup-php@v2
+              with:
+                  tools: composer
+                  php-version: 7.4
+
+            - name: Get composer cache directory
+              id: composer-cache
+              run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+            - name: Cache PHP dependencies
+              uses: actions/cache@v3
+              with:
+                  path: ${{ steps.composer-cache.outputs.dir }}
+                  key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+
+            - name: Install composer dependencies
+              run: composer install --no-interaction --optimize-autoloader
+
+            - name: Lint the PHP app directory against the project coding standard
+              run: ./vendor/bin/phpcs app --standard=.php-style.xml
+
+            - name: Setup the Node.JS runtime
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 18
+                  cache: 'npm'
+
+            - name: Install the Node.JS dependencies
+              run: npm ci
+
+            - name: Cache the application dependencies
+              uses: actions/cache@v3
+              with:
+                  path: cache/
+                  key: ${{ runner.os }}-application-${{ hashFiles('**/package-lock.json') }}
+
+            - name: Check the application
+              run: npm run check
+
+    notificaton:
+        name: Notify the Administrator
+        if: always()
+        needs: [check]
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@master
+
+            - name: Get the "check" workflow status
+              id: status
+              run: |
+                  echo "check-status=${{ needs.check.result }}" >> $GITHUB_OUTPUT
+
+            - name: Send a notificaton to the project administrator
+              uses: appleboy/telegram-action@master
+              with:
+                  to: ${{ secrets.TELEGRAM_TO }}
+                  token: ${{ secrets.TELEGRAM_TOKEN }}
+                  message: 'The status of the ${{ secrets.PROJECT_NAME }} project check is -> ${{steps.status.outputs.check-status }}'
