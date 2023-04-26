@@ -8,7 +8,4 @@ use Unpack\Blade\Containers\HelloWorld;
 
 /* Template Name: Unpack Template */
 
-HelloWorld::render([
-    'includeHeader' => true,
-    'includeFooter' => true,
-]);
+HelloWorld::render(['includeHeader' => true, 'includeFooter' => true]);

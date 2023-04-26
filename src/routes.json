@@ -42,8 +42,8 @@
             "app": "react",
             "tests": [
                 {
-                    "function": "is_page_template",
-                    "arguments": ["unpack-template.php"]
+                    "function": "is_single",
+                    "arguments": [9]
                 }
             ],
             "entry": {

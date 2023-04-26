@@ -162,7 +162,7 @@ function readDirectory(string $directory): array {
     $files = array_diff(scandir($directory) ?: [], ['.', '..', '.DS_Store']);
 
     if (isProduction()) {
-        $cache->set($cacheKey, $files);
+        $cache->set($cacheKey, $files, 0);
     }
 
     return $files;

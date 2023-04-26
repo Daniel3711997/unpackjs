@@ -39,7 +39,7 @@ class Loader {
         $result = self::cachedFindClass($file);
 
         if ($result && isProduction()) {
-            $cache->set($cacheKey, $result);
+            $cache->set($cacheKey, $result, 0);
         }
 
         return $result;
