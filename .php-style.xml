@@ -5,6 +5,8 @@
 
     <description>The "Next Level Digital" Standard</description>
 
+    <include-pattern>*\.php$</include-pattern>
+
     <rule ref="Internal.NoCodeFound">
         <severity>0</severity>
     </rule>
