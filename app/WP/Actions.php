@@ -4,7 +4,17 @@ declare(strict_types=1);
 
 namespace Unpack\WP;
 
+use Phpfastcache\Exceptions\PhpfastcacheDriverCheckException;
+use Phpfastcache\Exceptions\PhpfastcacheDriverException;
+use Phpfastcache\Exceptions\PhpfastcacheDriverNotFoundException;
+use Phpfastcache\Exceptions\PhpfastcacheInvalidArgumentException;
+use Phpfastcache\Exceptions\PhpfastcacheInvalidConfigurationException;
+use Phpfastcache\Exceptions\PhpfastcacheLogicException;
+use Phpfastcache\Exceptions\PhpfastcacheSimpleCacheException;
+use Psr\Cache\InvalidArgumentException;
+use ReflectionAttribute;
 use ReflectionClass;
+use ReflectionException;
 use Unpack\Annotations\Action;
 use Doctrine\Common\Annotations\AnnotationReader;
 
@@ -16,6 +26,17 @@ use function Unpack\{
 class Actions {
     private array $actions = [];
 
+    /**
+     * @throws InvalidArgumentException
+     * @throws PhpfastcacheSimpleCacheException
+     * @throws PhpfastcacheDriverNotFoundException
+     * @throws PhpfastcacheInvalidConfigurationException
+     * @throws PhpfastcacheDriverCheckException
+     * @throws ReflectionException
+     * @throws PhpfastcacheLogicException
+     * @throws PhpfastcacheDriverException
+     * @throws PhpfastcacheInvalidArgumentException
+     */
     public function __construct() {
         $directory = getPluginDirectory() . 'app/Actions';
 
@@ -35,7 +56,7 @@ class Actions {
             if ('php-annotations' === UNPACK_SYSTEM && method_exists($reflectionClass, 'getAttributes')) {
                 $attributes = $reflectionClass->getAttributes(
                     Action::class,
-                    \ReflectionAttribute::IS_INSTANCEOF
+                    ReflectionAttribute::IS_INSTANCEOF
                 );
 
                 foreach ($attributes as $attribute) {
@@ -84,11 +105,11 @@ class Actions {
 
         foreach ($this->actions as $action => $options) {
             if (isset($options['controller'], $options['controllerMethod']) && class_exists(
-                $options['controller']
-            ) && method_exists(
-                $options['controller'],
-                $options['controllerMethod']
-            )) {
+                    $options['controller']
+                ) && method_exists(
+                    $options['controller'],
+                    $options['controllerMethod']
+                )) {
                 $callback = $this->registerCallbackMethod($options);
 
                 if (!empty($options['id'])) {
@@ -103,7 +124,6 @@ class Actions {
                             $action,
                             $callback,
                             $options['priority'],
-                            $options['acceptedArgs']
                         );
                     };
                 }

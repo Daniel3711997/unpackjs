@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace Unpack\Helpers;
 
 class Escape {
     /**
@@ -17,7 +17,7 @@ class Escape {
                 $value = esc_html($value);
             } elseif (is_iterable($value)) {
                 // Recursively escape the value
-                self::recursiveEscape((array) $value);
+                self::recursiveEscape((array)$value);
             }
         }
 

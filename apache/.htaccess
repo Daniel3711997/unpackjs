@@ -1,37 +1,16 @@
-/* eslint-disable no-useless-escape */
-
-const fs = require('node:fs');
-const path = require('node:path');
-
-const chalk = require('chalk');
-
-const config = require('../app.config');
-
-const temporaryDirectory = config.outputPath + '_temporary';
-
-if (fs.existsSync(temporaryDirectory)) {
-    if (fs.existsSync(config.outputPath)) {
-        fs.rmSync(config.outputPath, {
-            recursive: true,
-        });
-    }
-
-    fs.renameSync(temporaryDirectory, config.outputPath);
-}
-
-fs.writeFileSync(
-    path.join(config.outputPath, '.htaccess'),
-    `
 Options -Indexes
 
-<IfModule mod_authz_host.c>
-    Require all granted
-</IfModule>
+# BEGIN WordPress
 
-<IfModule !mod_authz_host.c>
-    Order Allow,Deny
-    Allow from all
-</IfModule>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+
+# END WordPress
 
 SetOutputFilter DEFLATE
 SetEnvIfNoCase Request_URI "\.(?:gif|jpe?g|png)$" no-gzip
@@ -68,8 +47,3 @@ SetEnvIfNoCase Request_URI "\.(?:gif|jpe?g|png)$" no-gzip
         Header set Cache-Control "public, max-age=31536000, immutable"
     </FilesMatch>
 </IfModule>
-`
-);
-
-console.log();
-console.log(chalk.magenta('Project built successfully!'));

@@ -29,9 +29,20 @@ declare(strict_types=1);
 namespace Unpack;
 
 use Dotenv\Dotenv;
+use Phpfastcache\Exceptions\PhpfastcacheDriverCheckException;
+use Phpfastcache\Exceptions\PhpfastcacheDriverException;
+use Phpfastcache\Exceptions\PhpfastcacheDriverNotFoundException;
+use Phpfastcache\Exceptions\PhpfastcacheInvalidArgumentException;
+use Phpfastcache\Exceptions\PhpfastcacheInvalidConfigurationException;
+use Phpfastcache\Exceptions\PhpfastcacheLogicException;
+use Phpfastcache\Exceptions\PhpfastcacheSimpleCacheException;
+use Psr\Cache\InvalidArgumentException;
+use ReflectionException;
+use Throwable;
 use Unpack\Database\CLI;
 use Unpack\Framework\App;
 use Unpack\Cache\Engine as CacheEngine;
+use WP_CLI;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -80,7 +91,7 @@ set_error_handler(
 );
 
 set_exception_handler(
-    function (\Throwable $exception) {
+    function (Throwable $exception) {
         error_log(
             sprintf(
                 '(%d) There was an error in the file %s on line %d: %s',
@@ -147,6 +158,17 @@ function isDevelopment(): bool {
     return 'development' === UNPACK_PLUGIN_ENVIRONMENT;
 }
 
+/**
+ * @throws InvalidArgumentException
+ * @throws PhpfastcacheSimpleCacheException
+ * @throws PhpfastcacheDriverNotFoundException
+ * @throws PhpfastcacheInvalidConfigurationException
+ * @throws PhpfastcacheDriverCheckException
+ * @throws PhpfastcacheLogicException
+ * @throws ReflectionException
+ * @throws PhpfastcacheDriverException
+ * @throws PhpfastcacheInvalidArgumentException
+ */
 function readDirectory(string $directory): array {
     $cache = CacheEngine::getInstance();
     $cacheKey = md5('readDirectory' . '-' . $directory);
@@ -180,13 +202,15 @@ add_shortcode(
         /**
          * Do not escape the loader because we want to allow HTML to be passed in
          */
-        $html =  '<div id="' . esc_attr($attributes['id']) . '">' . $attributes['loader'] . '</div>';
+        $html = '<div id="' . esc_attr($attributes['id']) . '">' . $attributes['loader'] . '</div>';
 
         if ($attributes['echo']) {
             echo $html;
         } else {
             return $html;
         }
+
+        return null;
     }
 );
 
@@ -197,7 +221,7 @@ add_action('admin_enqueue_scripts', [App::class, 'load']);
 add_filter('query_vars', [App::class, 'registerQueryVars']);
 
 if (defined('WP_CLI')) {
-    \WP_CLI::add_command('unpack', CLI::class);
+    WP_CLI::add_command('unpack', CLI::class);
 }
 register_theme_directory(UNPACK_PLUGIN_DIRECTORY . 'themes');
 
@@ -229,7 +253,7 @@ add_filter(
 
 add_filter('theme_root_uri', function (string $themeRootURI): string {
     if (false === strpos($themeRootURI, 'http') && false !== strpos($themeRootURI, '/themes')) {
-        $themeRootURI =  UNPACK_PLUGIN_URL . 'themes';
+        $themeRootURI = UNPACK_PLUGIN_URL . 'themes';
     }
 
     return $themeRootURI;

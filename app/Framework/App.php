@@ -137,7 +137,7 @@ JS;
         }
 
         if ($localizedId) {
-            wp_localize_script($localizedId, 'appServer', (object) self::$server);
+            wp_localize_script($localizedId, 'appServer', self::$server);
             wp_localize_script($localizedId, 'appRuntime', Runtime::getRuntimeConfig());
         }
     }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Unpack\Blade\Containers;
 
+use Exception;
 use Unpack\Interfaces\{
     Renderer,
     RendererArguments
@@ -30,7 +31,7 @@ class HelloWorld implements Renderer, RendererArguments {
             echo Engine::getInstance()
                 ->getEngine()
                 ->run('HelloWorld.Example', array_merge($params, self::getArguments($params)));
-        } catch (\Exception  $e) {
+        } catch (Exception  $e) {
             wp_die(
                 $e->getMessage(),
                 'Unpack App Error',
