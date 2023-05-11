@@ -80,13 +80,13 @@ module.exports = {
                 },
                 experimental: {
                     cacheRoot: path.join(this.cacheDirectory, 'swc'),
-                    plugins: [['@swc/plugin-transform-imports', this.transformImports]],
+                    // plugins: [['@swc/plugin-transform-imports', this.transformImports]],
                 },
             },
             env: {
                 debug: false,
                 mode: 'usage',
-                coreJs: '3.30.1',
+                coreJs: '3.30.2',
                 targets: isProduction ? pack.browserslist.production : pack.browserslist.development,
             },
         };

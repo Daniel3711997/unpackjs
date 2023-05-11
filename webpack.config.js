@@ -300,7 +300,7 @@ Encore
     )
     .configureBabelPresetEnv(config => {
         config.modules = "auto";
-        config.corejs = '3.30.1';
+        config.corejs = '3.30.2';
         config.useBuiltIns = 'usage';
         config.targets = Encore.isProduction() ? pack.browserslist.production : pack.browserslist.development;
     })
