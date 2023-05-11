@@ -4,7 +4,17 @@ declare(strict_types=1);
 
 namespace Unpack\WP;
 
+use Phpfastcache\Exceptions\PhpfastcacheDriverCheckException;
+use Phpfastcache\Exceptions\PhpfastcacheDriverException;
+use Phpfastcache\Exceptions\PhpfastcacheDriverNotFoundException;
+use Phpfastcache\Exceptions\PhpfastcacheInvalidArgumentException;
+use Phpfastcache\Exceptions\PhpfastcacheInvalidConfigurationException;
+use Phpfastcache\Exceptions\PhpfastcacheLogicException;
+use Phpfastcache\Exceptions\PhpfastcacheSimpleCacheException;
+use Psr\Cache\InvalidArgumentException;
+use ReflectionAttribute;
 use ReflectionClass;
+use ReflectionException;
 use Unpack\Annotations\AjaxRoute;
 use Doctrine\Common\Annotations\AnnotationReader;
 
@@ -15,9 +25,9 @@ use function  Unpack\{
 
 class Ajax {
     /**
-     * 1 - Register the action only for logged in users
-     * 2 - Register the action only for logged out users
-     * 3 - Register the action for both logged in and logged out users
+     * 1 - Register the action only for logged-in users
+     * 2 - Register the action only for logged-out users
+     * 3 - Register the action for both logged in and logged-out users
      */
     private array $actions = [];
 
@@ -25,6 +35,17 @@ class Ajax {
         return $this->actions;
     }
 
+    /**
+     * @throws InvalidArgumentException
+     * @throws PhpfastcacheSimpleCacheException
+     * @throws PhpfastcacheDriverNotFoundException
+     * @throws PhpfastcacheInvalidConfigurationException
+     * @throws PhpfastcacheDriverCheckException
+     * @throws ReflectionException
+     * @throws PhpfastcacheLogicException
+     * @throws PhpfastcacheDriverException
+     * @throws PhpfastcacheInvalidArgumentException
+     */
     public function __construct() {
         $directory = getPluginDirectory() . 'app/Ajax';
 
@@ -44,7 +65,7 @@ class Ajax {
             if ('php-annotations' === UNPACK_SYSTEM && method_exists($reflectionClass, 'getAttributes')) {
                 $attributes = $reflectionClass->getAttributes(
                     AjaxRoute::class,
-                    \ReflectionAttribute::IS_INSTANCEOF
+                    ReflectionAttribute::IS_INSTANCEOF
                 );
 
                 foreach ($attributes as $attribute) {

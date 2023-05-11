@@ -4,7 +4,16 @@ declare(strict_types=1);
 
 namespace Unpack\WP;
 
+use Phpfastcache\Exceptions\PhpfastcacheDriverCheckException;
+use Phpfastcache\Exceptions\PhpfastcacheDriverException;
+use Phpfastcache\Exceptions\PhpfastcacheDriverNotFoundException;
+use Phpfastcache\Exceptions\PhpfastcacheInvalidArgumentException;
+use Phpfastcache\Exceptions\PhpfastcacheInvalidConfigurationException;
+use Phpfastcache\Exceptions\PhpfastcacheLogicException;
+use Phpfastcache\Exceptions\PhpfastcacheSimpleCacheException;
+use Psr\Cache\InvalidArgumentException;
 use ReflectionClass;
+use ReflectionException;
 
 use function Unpack\{
     readDirectory,
@@ -17,6 +26,17 @@ use function Unpack\{
 class REST {
     private array $endpoints = [];
 
+    /**
+     * @throws InvalidArgumentException
+     * @throws PhpfastcacheSimpleCacheException
+     * @throws PhpfastcacheDriverNotFoundException
+     * @throws PhpfastcacheInvalidConfigurationException
+     * @throws PhpfastcacheDriverCheckException
+     * @throws ReflectionException
+     * @throws PhpfastcacheLogicException
+     * @throws PhpfastcacheDriverException
+     * @throws PhpfastcacheInvalidArgumentException
+     */
     public function __construct() {
         $APIDirectory = getPluginDirectory() . 'app/API/Versions';
 

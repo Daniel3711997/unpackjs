@@ -2,15 +2,21 @@
 
 namespace Unpack\Database;
 
+use Exception;
 use WP_CLI;
 
 use function Unpack\getPluginDirectory;
 
 class Migrator {
-    public static function seed(array $options = [
-        'files' => [],
-        'rollback' => false
-    ]) {
+    /**
+     * @throws Exception
+     */
+    public static function seed(
+        array $options = [
+            'files' => [],
+            'rollback' => false
+        ]
+    ): int {
         return self::run(
             array_merge($options, [
                 'type' => 'seed'
@@ -18,10 +24,15 @@ class Migrator {
         );
     }
 
-    public static function migrate(array $options = [
-        'files' => [],
-        'rollback' => false
-    ]) {
+    /**
+     * @throws Exception
+     */
+    public static function migrate(
+        array $options = [
+            'files' => [],
+            'rollback' => false
+        ]
+    ): int {
         return self::run(
             array_merge($options, [
                 'type' => 'migrate'
@@ -29,11 +40,14 @@ class Migrator {
         );
     }
 
-    public static function run(array $options = []) {
+    /**
+     * @throws Exception
+     */
+    public static function run(array $options = []): int {
         $i = 0;
 
         if (0 === count($options)) {
-            throw new \Exception(
+            throw new Exception(
                 'No options were passed to the run method'
             );
         }
@@ -43,7 +57,7 @@ class Migrator {
             . 'app/Database' . ($isMigration ? '/Migrations' : '/DbSeeds');
 
         if (!file_exists($runPath)) {
-            throw new \Exception(
+            throw new Exception(
                 "The '" . ($isMigration ? 'Migrations' : 'DbSeeds') . "' directory does not exist"
             );
         }
@@ -72,13 +86,13 @@ class Migrator {
                 }
 
                 if (!class_exists($namespace)) {
-                    throw new \Exception(
+                    throw new Exception(
                         "Class '{$namespace}' does not exist"
                     );
                 }
 
                 if (!method_exists($namespace, $method)) {
-                    throw new \Exception(
+                    throw new Exception(
                         "Class '{$namespace}' does not have a '{$method}' method"
                     );
                 }

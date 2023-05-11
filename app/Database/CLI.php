@@ -3,10 +3,10 @@
 namespace Unpack\Database;
 
 use WP_CLI;
-use Unpack\Database\Migrator;
+use Exception;
 
 class CLI {
-    public function __invoke($arguments, $associativeArguments) {
+    public function __invoke($arguments, $associativeArguments): void {
         $options = [
             'files' => $arguments,
             'rollback' => !empty($associativeArguments['rollback'])
@@ -32,7 +32,7 @@ class CLI {
                     WP_CLI::success($i . (1 === $i ? ' migration' : ' migrations') . ' ran successfully');
                 }
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             WP_CLI::error("An error has occurred: {$e->getMessage()}");
         }
     }

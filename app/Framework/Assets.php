@@ -32,5 +32,7 @@ class Assets {
                 );
             }
         }
+
+        return [];
     }
 }
