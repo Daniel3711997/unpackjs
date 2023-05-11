@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection PhpElementIsNotAvailableInCurrentPhpVersionInspection */
+
 declare(strict_types=1);
 
 namespace Unpack\WP;

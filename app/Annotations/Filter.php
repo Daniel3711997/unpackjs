@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection PhpLanguageLevelInspection */
+
 declare(strict_types=1);
 
 namespace Unpack\Annotations;
@@ -21,7 +23,15 @@ final class Filter {
     public bool $disabled;
     public int $acceptedArgs;
 
-    public function __construct($name, $method, $priority = 10, $acceptedArgs = 0, $id = null, $admin = false, $disabled = false) {
+    public function __construct(
+        $name,
+        $method,
+        $priority = 10,
+        $acceptedArgs = 0,
+        $id = null,
+        $admin = false,
+        $disabled = false
+    ) {
         $this->id = $id;
         $this->name = $name;
         $this->admin = $admin;

@@ -80,6 +80,9 @@ module.exports = {
                 },
                 experimental: {
                     cacheRoot: path.join(this.cacheDirectory, 'swc'),
+                    /**
+                     * https://github.com/swc-project/plugins/issues/181
+                     */
                     // plugins: [['@swc/plugin-transform-imports', this.transformImports]],
                 },
             },
