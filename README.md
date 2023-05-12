@@ -1,6 +1,6 @@
 # Unpack
 
-# Sponsors
+## Sponsors
 
 <a href="https://jb.gg/OpenSourceSupport">
     <img src="https://resources.jetbrains.com/storage/products/company/brand/logos/PhpStorm.svg" alt="PHP Storm" width="250" height="250"/>
