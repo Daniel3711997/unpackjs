@@ -64,7 +64,7 @@ SetEnvIfNoCase Request_URI "\.(?:gif|jpe?g|png)$" no-gzip
         Header set Cache-Control "public, max-age=31536000, immutable"
     </FilesMatch>
 
-    <FilesMatch "\.(jpe?g|png|gif|svg)$">
+    <FilesMatch "\.(jpe?g|png|gif|svg|otf|ttf|woff|woff2)$">
         Header set Cache-Control "public, max-age=31536000, immutable"
     </FilesMatch>
 </IfModule>

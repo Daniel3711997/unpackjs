@@ -1,36 +1,14 @@
 <?php
 
+/** @noinspection PhpFullyQualifiedNameUsageInspection */
+
 declare(strict_types=1);
 
 namespace Unpack\WP;
 
-use InvalidArgumentException;
-use Phpfastcache\Exceptions\PhpfastcacheDriverCheckException;
-use Phpfastcache\Exceptions\PhpfastcacheDriverException;
-use Phpfastcache\Exceptions\PhpfastcacheDriverNotFoundException;
-use Phpfastcache\Exceptions\PhpfastcacheInvalidArgumentException;
-use Phpfastcache\Exceptions\PhpfastcacheInvalidConfigurationException;
-use Phpfastcache\Exceptions\PhpfastcacheLogicException;
-use Phpfastcache\Exceptions\PhpfastcacheSimpleCacheException;
-use ReflectionException;
 use Unpack\Cache\Engine as CacheEngine;
 
-use function count;
-use function defined;
-use function in_array;
 use function Unpack\isProduction;
-
-use const T_CLASS;
-use const T_COMMENT;
-use const T_DOC_COMMENT;
-use const T_DOUBLE_COLON;
-use const T_INLINE_HTML;
-use const T_NAME_QUALIFIED;
-use const T_NAMESPACE;
-use const T_NEW;
-use const T_NS_SEPARATOR;
-use const T_STRING;
-use const T_WHITESPACE;
 
 class Loader {
     /**
@@ -40,16 +18,16 @@ class Loader {
      *
      * @return string|null
      *
-     * @throws ReflectionException
-     * @throws InvalidArgumentException
+     * @throws \ReflectionException
+     * @throws \InvalidArgumentException
      * @throws \Psr\Cache\InvalidArgumentException
-     * @throws PhpfastcacheLogicException
-     * @throws PhpfastcacheDriverException
-     * @throws PhpfastcacheDriverCheckException
-     * @throws PhpfastcacheSimpleCacheException
-     * @throws PhpfastcacheDriverNotFoundException
-     * @throws PhpfastcacheInvalidArgumentException
-     * @throws PhpfastcacheInvalidConfigurationException
+     * @throws \Phpfastcache\Exceptions\PhpfastcacheLogicException
+     * @throws \Phpfastcache\Exceptions\PhpfastcacheDriverException
+     * @throws \Phpfastcache\Exceptions\PhpfastcacheDriverCheckException
+     * @throws \Phpfastcache\Exceptions\PhpfastcacheSimpleCacheException
+     * @throws \Phpfastcache\Exceptions\PhpfastcacheDriverNotFoundException
+     * @throws \Phpfastcache\Exceptions\PhpfastcacheInvalidArgumentException
+     * @throws \Phpfastcache\Exceptions\PhpfastcacheInvalidConfigurationException
      *
      */
     public static function findClass(string $file): ?string {
@@ -80,8 +58,8 @@ class Loader {
         $namespace = false;
         $tokens = token_get_all(file_get_contents($file));
 
-        if (1 === count($tokens) && T_INLINE_HTML === $tokens[0][0]) {
-            throw new InvalidArgumentException(
+        if (1 === \count($tokens) && \T_INLINE_HTML === $tokens[0][0]) {
+            throw new \InvalidArgumentException(
                 sprintf(
                     'The file "%s" does not contain PHP code. Did you forgot to add the "<?php" start tag at the beginning of the file?',
                     $file
@@ -89,10 +67,10 @@ class Loader {
             );
         }
 
-        $nsTokens = [T_NS_SEPARATOR => true, T_STRING => true];
+        $nsTokens = [\T_NS_SEPARATOR => true, \T_STRING => true];
 
-        if (defined('T_NAME_QUALIFIED')) {
-            $nsTokens[T_NAME_QUALIFIED] = true;
+        if (\defined('T_NAME_QUALIFIED')) {
+            $nsTokens[\T_NAME_QUALIFIED] = true;
         }
 
         for ($i = 0; isset($tokens[$i]); ++$i) {
@@ -102,7 +80,7 @@ class Loader {
                 continue;
             }
 
-            if (true === $class && T_STRING === $token[0]) {
+            if (true === $class && \T_STRING === $token[0]) {
                 return $namespace . '\\' . $token[1];
             }
 
@@ -116,7 +94,7 @@ class Loader {
                 $token = $tokens[$i];
             }
 
-            if (T_CLASS === $token[0]) {
+            if (\T_CLASS === $token[0]) {
                 $skipClassToken = false;
 
                 for ($j = $i - 1; $j > 0; --$j) {
@@ -127,10 +105,10 @@ class Loader {
                         break;
                     }
 
-                    if (T_DOUBLE_COLON === $tokens[$j][0] || T_NEW === $tokens[$j][0]) {
+                    if (\T_DOUBLE_COLON === $tokens[$j][0] || \T_NEW === $tokens[$j][0]) {
                         $skipClassToken = true;
                         break;
-                    } elseif (!in_array($tokens[$j][0], [T_WHITESPACE, T_DOC_COMMENT, T_COMMENT])) {
+                    } elseif (!\in_array($tokens[$j][0], [\T_WHITESPACE, \T_DOC_COMMENT, \T_COMMENT])) {
                         break;
                     }
                 }
@@ -140,7 +118,7 @@ class Loader {
                 }
             }
 
-            if (T_NAMESPACE === $token[0]) {
+            if (\T_NAMESPACE === $token[0]) {
                 $namespace = true;
             }
         }

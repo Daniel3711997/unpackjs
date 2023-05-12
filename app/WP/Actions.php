@@ -6,19 +6,19 @@ declare(strict_types=1);
 
 namespace Unpack\WP;
 
-use Phpfastcache\Exceptions\PhpfastcacheDriverCheckException;
+use ReflectionClass;
+use ReflectionException;
+use ReflectionAttribute;
+use Unpack\Annotations\Action;
+use Psr\Cache\InvalidArgumentException;
+use Doctrine\Common\Annotations\AnnotationReader;
+use Phpfastcache\Exceptions\PhpfastcacheLogicException;
 use Phpfastcache\Exceptions\PhpfastcacheDriverException;
+use Phpfastcache\Exceptions\PhpfastcacheDriverCheckException;
+use Phpfastcache\Exceptions\PhpfastcacheSimpleCacheException;
 use Phpfastcache\Exceptions\PhpfastcacheDriverNotFoundException;
 use Phpfastcache\Exceptions\PhpfastcacheInvalidArgumentException;
 use Phpfastcache\Exceptions\PhpfastcacheInvalidConfigurationException;
-use Phpfastcache\Exceptions\PhpfastcacheLogicException;
-use Phpfastcache\Exceptions\PhpfastcacheSimpleCacheException;
-use Psr\Cache\InvalidArgumentException;
-use ReflectionAttribute;
-use ReflectionClass;
-use ReflectionException;
-use Unpack\Annotations\Action;
-use Doctrine\Common\Annotations\AnnotationReader;
 
 use function Unpack\{
     readDirectory,
@@ -29,15 +29,15 @@ class Actions {
     private array $actions = [];
 
     /**
-     * @throws InvalidArgumentException
-     * @throws PhpfastcacheSimpleCacheException
-     * @throws PhpfastcacheDriverNotFoundException
-     * @throws PhpfastcacheInvalidConfigurationException
-     * @throws PhpfastcacheDriverCheckException
      * @throws ReflectionException
+     * @throws InvalidArgumentException
      * @throws PhpfastcacheLogicException
      * @throws PhpfastcacheDriverException
+     * @throws PhpfastcacheSimpleCacheException
+     * @throws PhpfastcacheDriverCheckException
+     * @throws PhpfastcacheDriverNotFoundException
      * @throws PhpfastcacheInvalidArgumentException
+     * @throws PhpfastcacheInvalidConfigurationException
      */
     public function __construct() {
         $directory = getPluginDirectory() . 'app/Actions';
