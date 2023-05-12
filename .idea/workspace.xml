@@ -8,21 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="211a72ef-14d0-4fe3-ba20-ba6586d17e2e" name="Changes" comment="chore: changes">
-      <change beforePath="$PROJECT_DIR$/.idea/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpunit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apache/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/apache/.htaccess" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Actions/Preload.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Actions/Preload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Cache/Engine.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Cache/Engine.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/WP/Actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/WP/Actions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/WP/Ajax.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/WP/Ajax.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/WP/Filters.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/WP/Filters.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/WP/Forms.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/WP/Forms.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/WP/Loader.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/WP/Loader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/WP/REST.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/WP/REST.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/_postbuild.js" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/_postbuild.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unpack.php" beforeDir="false" afterPath="$PROJECT_DIR$/unpack.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,30 +110,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;js.linters.configure.manually.selectedeslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;/Users/onofreicostineldanut/Documents/Studio/UnpackJS/node_modules/eslint&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.stylelint&quot;: &quot;/Users/onofreicostineldanut/Documents/Studio/UnpackJS/node_modules/stylelint&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;/Users/onofreicostineldanut/.nvm/versions/node/v19.9.0/bin/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/onofreicostineldanut/Documents/Studio/UnpackJS/node_modules/prettier&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pUnpackJS&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Users/onofreicostineldanut/Documents/Studio/UnpackJS/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "dev",
+    "js.linters.configure.manually.selectedeslint": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "/Users/onofreicostineldanut/Documents/Studio/UnpackJS/node_modules/eslint",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.stylelint": "/Users/onofreicostineldanut/Documents/Studio/UnpackJS/node_modules/stylelint",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "/Users/onofreicostineldanut/.nvm/versions/node/v19.9.0/bin/node",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/onofreicostineldanut/Documents/Studio/UnpackJS/node_modules/prettier",
+    "run.code.analysis.last.selected.profile": "pUnpackJS",
+    "settings.editor.selected.configurable": "Errors",
+    "ts.external.directory.path": "/Users/onofreicostineldanut/Documents/Studio/UnpackJS/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
@@ -190,6 +176,7 @@
       <workItem from="1683888560741" duration="15000" />
       <workItem from="1683889210504" duration="103000" />
       <workItem from="1683889478567" duration="42000" />
+      <workItem from="1683889634461" duration="586000" />
     </task>
     <task id="LOCAL-00001" summary="chore: changes">
       <created>1683812743107</created>
