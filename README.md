@@ -1,4 +1,4 @@
-# Unpack
+# UnpackJS
 
 ## Sponsors
 
