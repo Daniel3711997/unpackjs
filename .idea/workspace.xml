@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AnalysisUIOptions">
-    <option name="SPLITTER_PROPORTION" value="0.59933776" />
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="211a72ef-14d0-4fe3-ba20-ba6586d17e2e" name="Changes" comment="chore: updated readme">
+    <list default="true" id="0eb56f09-eeb5-495a-8102-1dda34ec4855" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/UnpackJS.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/UnpackJS.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/phpunit.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Actions/Init.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Actions/Init.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Actions/Preload.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Actions/Preload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Actions/RemoveWPActions.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Actions/RemoveWPActions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Ajax/Profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Ajax/Profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Annotations/Action.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Annotations/Action.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Annotations/Filter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Annotations/Filter.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Filters/Init.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/Init.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Forms/Profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Forms/Profile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Framework/App.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Framework/App.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Framework/Initialize.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Framework/Initialize.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/WP/Ajax.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/WP/Ajax.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/WP/Forms.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/WP/Forms.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +31,7 @@
   <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
-      <executable path="/usr/local/bin/composer" />
+      <executable path="composer" />
     </execution>
   </component>
   <component name="DrupalConfiguration">
@@ -103,10 +115,7 @@
       <path value="$PROJECT_DIR$/vendor/wp-coding-standards/wpcs" />
     </include_path>
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
-  <component name="ProjectId" id="2PeGYfRZLC8ldjNwYwwxgRRm6DC" />
+  <component name="ProjectId" id="2PgxztAYiEMdauXVRpYVCKrkrr0" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -118,11 +127,12 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "dev",
     "js.linters.configure.manually.selectedeslint": "true",
+    "last_opened_file_path": "/Users/onofreicostineldanut/Documents/Studio/UnpackJS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.standard": "true",
     "node.js.detected.package.stylelint": "true",
     "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "/Users/onofreicostineldanut/Documents/Studio/UnpackJS/node_modules/eslint",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.standard": "",
     "node.js.selected.package.stylelint": "/Users/onofreicostineldanut/Documents/Studio/UnpackJS/node_modules/stylelint",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -130,86 +140,25 @@
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "/Users/onofreicostineldanut/Documents/Studio/UnpackJS/node_modules/prettier",
     "run.code.analysis.last.selected.profile": "pUnpackJS",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.spelling",
-    "ts.external.directory.path": "/Users/onofreicostineldanut/Documents/Studio/UnpackJS/node_modules/typescript/lib",
+    "settings.editor.selected.configurable": "Errors",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="211a72ef-14d0-4fe3-ba20-ba6586d17e2e" name="Changes" comment="" />
-      <created>1683810183836</created>
+      <changelist id="0eb56f09-eeb5-495a-8102-1dda34ec4855" name="Changes" comment="" />
+      <created>1683892571430</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1683810183836</updated>
-      <workItem from="1683810186612" duration="1257000" />
-      <workItem from="1683811453896" duration="974000" />
-      <workItem from="1683812431527" duration="25000" />
-      <workItem from="1683812458174" duration="21000" />
-      <workItem from="1683812485327" duration="19000" />
-      <workItem from="1683812510035" duration="143000" />
-      <workItem from="1683812654825" duration="14000" />
-      <workItem from="1683812677040" duration="149000" />
-      <workItem from="1683812828603" duration="140000" />
-      <workItem from="1683812978996" duration="17000" />
-      <workItem from="1683813092891" duration="83000" />
-      <workItem from="1683813206016" duration="8000" />
-      <workItem from="1683813832284" duration="118000" />
-      <workItem from="1683813962422" duration="14000" />
-      <workItem from="1683813988464" duration="390000" />
-      <workItem from="1683814393202" duration="73000" />
-      <workItem from="1683814494153" duration="40000" />
-      <workItem from="1683814546852" duration="128000" />
-      <workItem from="1683814686313" duration="27000" />
-      <workItem from="1683814720471" duration="29000" />
-      <workItem from="1683814756254" duration="54000" />
-      <workItem from="1683814821152" duration="46000" />
-      <workItem from="1683814873527" duration="13000" />
-      <workItem from="1683814892620" duration="32000" />
-      <workItem from="1683814936101" duration="4000" />
-      <workItem from="1683815088611" duration="26000" />
-      <workItem from="1683815150494" duration="19000" />
-      <workItem from="1683887984402" duration="524000" />
-      <workItem from="1683888560741" duration="15000" />
-      <workItem from="1683889210504" duration="103000" />
-      <workItem from="1683889478567" duration="42000" />
-      <workItem from="1683889634461" duration="2008000" />
+      <updated>1683892571430</updated>
+      <workItem from="1683892793678" duration="1449000" />
+      <workItem from="1683894898437" duration="1452000" />
     </task>
-    <task id="LOCAL-00001" summary="chore: changes">
-      <created>1683812743107</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1683812743107</updated>
-    </task>
-    <task id="LOCAL-00002" summary="chore: changes">
-      <created>1683815162998</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1683815162998</updated>
-    </task>
-    <task id="LOCAL-00003" summary="chore: updated readme">
-      <created>1683890245205</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1683890245205</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="chore: changes" />
-    <MESSAGE value="chore: updated readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: updated readme" />
   </component>
   <component name="WordPressConfiguration" enabled="true">
     <wordpressPath>$PROJECT_DIR$/../UnpackJSDevelopment</wordpressPath>

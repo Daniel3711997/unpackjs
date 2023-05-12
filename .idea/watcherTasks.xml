@@ -6,9 +6,9 @@
       <option name="checkSyntaxErrors" value="true" />
       <option name="description" />
       <option name="exitCodeBehavior" value="ERROR" />
-      <option name="fileExtension" value="scss" />
+      <option name="fileExtension" value="css" />
       <option name="immediateSync" value="false" />
-      <option name="name" value="Auto fix SCSS with StyleLint" />
+      <option name="name" value="Auto fix CSS with Stylelint" />
       <option name="output" value="" />
       <option name="outputFilters">
         <array />
@@ -26,9 +26,9 @@
       <option name="checkSyntaxErrors" value="true" />
       <option name="description" />
       <option name="exitCodeBehavior" value="ERROR" />
-      <option name="fileExtension" value="css" />
+      <option name="fileExtension" value="scss" />
       <option name="immediateSync" value="false" />
-      <option name="name" value="Auto fix CSS with StyleLint" />
+      <option name="name" value="Auto fix SCSS with Stylelint" />
       <option name="output" value="" />
       <option name="outputFilters">
         <array />

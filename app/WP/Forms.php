@@ -1,6 +1,6 @@
 <?php
 
-/** @noinspection PhpElementIsNotAvailableInCurrentPhpVersionInspection */
+/** @noinspection DuplicatedCode, PhpElementIsNotAvailableInCurrentPhpVersionInspection */
 
 declare(strict_types=1);
 
