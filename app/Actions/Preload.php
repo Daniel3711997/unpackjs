@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Unpack\Actions;
 
-use Phpfastcache\Exceptions\PhpfastcacheDriverCheckException;
-use Phpfastcache\Exceptions\PhpfastcacheDriverException;
-use Phpfastcache\Exceptions\PhpfastcacheDriverNotFoundException;
-use Phpfastcache\Exceptions\PhpfastcacheInvalidArgumentException;
-use Phpfastcache\Exceptions\PhpfastcacheInvalidConfigurationException;
-use Phpfastcache\Exceptions\PhpfastcacheLogicException;
-use Phpfastcache\Exceptions\PhpfastcacheSimpleCacheException;
-use Psr\Cache\InvalidArgumentException;
 use ReflectionException;
 use Unpack\Framework\App;
 use Unpack\Annotations\Action;
+use Psr\Cache\InvalidArgumentException;
 use Unpack\Interfaces\Action as ActionInterface;
+use Phpfastcache\Exceptions\PhpfastcacheLogicException;
+use Phpfastcache\Exceptions\PhpfastcacheDriverException;
+use Phpfastcache\Exceptions\PhpfastcacheSimpleCacheException;
+use Phpfastcache\Exceptions\PhpfastcacheDriverCheckException;
+use Phpfastcache\Exceptions\PhpfastcacheDriverNotFoundException;
+use Phpfastcache\Exceptions\PhpfastcacheInvalidArgumentException;
+use Phpfastcache\Exceptions\PhpfastcacheInvalidConfigurationException;
 
 use function Unpack\{
     isProduction,
@@ -36,15 +36,15 @@ class Preload implements ActionInterface {
     }
 
     /**
-     * @throws InvalidArgumentException
-     * @throws PhpfastcacheSimpleCacheException
-     * @throws PhpfastcacheDriverNotFoundException
-     * @throws PhpfastcacheInvalidConfigurationException
-     * @throws PhpfastcacheDriverCheckException
      * @throws ReflectionException
+     * @throws InvalidArgumentException
      * @throws PhpfastcacheLogicException
      * @throws PhpfastcacheDriverException
+     * @throws PhpfastcacheSimpleCacheException
+     * @throws PhpfastcacheDriverCheckException
+     * @throws PhpfastcacheDriverNotFoundException
      * @throws PhpfastcacheInvalidArgumentException
+     * @throws PhpfastcacheInvalidConfigurationException
      */
     public static function construct(): void {
         global $preloadJS, $preloadCSS, $preloadFonts;
@@ -55,23 +55,21 @@ class Preload implements ActionInterface {
             $publicPath = App::getManifest()['publicPath'] . '/assets/fonts';
 
             if ($preloadFonts && file_exists($fontsDirectory)) {
-                foreach (
-                    array_map(function ($font) use ($fontsDirectory, $preloadFonts, $publicPath) {
-                        $fontInfo = pathinfo($font);
+                foreach (array_map(function ($font) use ($fontsDirectory, $preloadFonts, $publicPath) {
+                    $fontInfo = pathinfo($font);
 
-                        if ('woff2' === $fontInfo['extension'] && self::inArray($font, $preloadFonts)) {
-                            return $fontsDirectory . '/' . $font;
-                        }
+                    if ('woff2' === $fontInfo['extension'] && self::inArray($font, $preloadFonts)) {
+                        return $fontsDirectory . '/' . $font;
+                    }
 
-                        return null;
-                    }, readDirectory($fontsDirectory)) as $font
-                ) {
+                    return null;
+                }, readDirectory($fontsDirectory)) as $font) {
                     if ($font && is_file($font)) {
                         echo '<link rel="preload" href="' . str_replace(
-                                $fontsDirectory,
-                                $publicPath,
-                                $font
-                            ) . '" as="font" type="font/woff2" crossorigin />' . PHP_EOL;
+                            $fontsDirectory,
+                            $publicPath,
+                            $font
+                        ) . '" as="font" type="font/woff2" crossorigin />' . PHP_EOL;
                     }
                 }
             }
