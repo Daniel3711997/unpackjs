@@ -1,6 +1,6 @@
 <?php
 
-/** @noinspection PhpLanguageLevelInspection */
+/** @noinspection DuplicatedCode, PhpLanguageLevelInspection */
 
 declare(strict_types=1);
 
