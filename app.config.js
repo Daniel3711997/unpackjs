@@ -1,3 +1,5 @@
+/* eslint-disable no-template-curly-in-string */
+
 'use strict';
 
 const path = require('node:path');
@@ -5,46 +7,87 @@ const path = require('node:path');
 const pack = require('./package.json');
 
 module.exports = {
+    /**
+     * The name of the plugin folder
+     */
     name: 'UnpackJSDevelopmentPlugin',
 
+    /**
+     * Webpack development server configuration
+     */
     devServer: {
         port: '4000',
         transport: 'ws',
         host: 'localhost',
     },
     /**
+     * Enable or disable the SWC loader
+     *
      * true: Run "npm run enable-swc" to enable SWC
      * false: Run "npm run disable-swc" to disable SWC
      */
     useSWC: true,
-    useESBuildMinifier: true,
+
     /**
+     * Enable or disable the ESBuild minifier
+     */
+    useESBuildMinifier: true,
+
+    /**
+     * Enable or disable jQuery
+     *
      * false: No jQuery package is loaded
      * true: You have to install the jQuery package
      * external: The jQuery package is loaded by the current theme
      */
     useJQuery: false,
-    usePurgeCSS: false,
-    purgeCSSIgnore: [],
-    useBundleAnalyzer: false,
-    manifestKeyPrefix: 'build/',
+
     /**
+     * Enable or disable the PurgeCSS plugin
+     */
+    usePurgeCSS: false,
+
+    /**
+     * PurgeCSS ignore list
+     */
+    purgeCSSIgnore: [],
+
+    /**
+     * Enable or disable the bundle analyzer plugin
+     */
+    useBundleAnalyzer: false,
+
+    /**
+     * Manifest key prefix
+     */
+    manifestKeyPrefix: 'build/',
+
+    /**
+     * Encore configuration
+     *
      * @param {typeof import('@symfony/webpack-encore')} Encore
      */
     extra(Encore) {
         return Encore.getWebpackConfig();
     },
+
+    /**
+     * Enable or disable the compression plugin
+     */
     useCompression: true,
+
     /**
      * ESLint & StyleLint
      * TypeScript is not supported, always enabled
      */
     useTypeCheckInProduction: true,
+
     /**
      * ESLint & StyleLint
      * TypeScript is not supported, always enabled, but on another thread
      */
     useTypeCheckInDevelopment: false,
+
     /**
      * Note: This should be always true
      *
@@ -52,18 +95,38 @@ module.exports = {
      * false: The CSS is not embedded in the bundle and webpack is not able to lazy load the bundle
      */
     disableCssExtraction: true,
-    transformImports: {
-        // lodash: {
-        //     transform: '<<TEMPLATE>>'
-        //     /* Babel Template: ${member} | SWC Template: {{member}} */
-        // }
-    },
+
+    /**
+     * Output path
+     */
     outputPath: path.join(__dirname, 'build'),
+
+    /**
+     * Cache directory
+     */
     cacheDirectory: path.join(__dirname, 'cache'),
 
+    /**
+     * Public path
+     */
     get publicPath() {
         return `/wp-content/plugins/${this.name}/build/`;
     },
+
+    /**
+     * Transform imports
+     */
+    get transformImports() {
+        return {
+            // lodash: {
+            //     transform: `lodash/${this.useSWC ? '{{member}}' : '${member}'}`,
+            // },
+        };
+    },
+
+    /**
+     * SWC configuration
+     */
     swcRCConfig(isProduction, type) {
         const options = {
             module: {
