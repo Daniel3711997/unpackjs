@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0eb56f09-eeb5-495a-8102-1dda34ec4855" name="Changes" comment="chore: changes">
       <change beforePath="$PROJECT_DIR$/.idea/phpunit.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpunit.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UPGRADE.md" beforeDir="false" afterPath="$PROJECT_DIR$/UPGRADE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,6 +144,7 @@
       <workItem from="1683894898437" duration="1563000" />
       <workItem from="1684135547171" duration="547000" />
       <workItem from="1684136163528" duration="85000" />
+      <workItem from="1684395192302" duration="153000" />
     </task>
     <task id="LOCAL-00001" summary="chore: changes">
       <created>1683896403366</created>
