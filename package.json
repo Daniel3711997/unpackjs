@@ -1,7 +1,7 @@
 {
     "private": true,
     "name": "unpackjs",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
     "scripts": {
         "release": "release-it",
