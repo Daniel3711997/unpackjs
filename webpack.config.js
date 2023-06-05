@@ -156,7 +156,7 @@ if (Encore.isProduction()) {
 
             babelConfig.plugins.push(
                 ['transform-imports', config.transformImports],
-                ['@babel/plugin-transform-runtime', { version: '^7.21.5', regenerator: false }]
+                ['@babel/plugin-transform-runtime', { version: '^7.22.4', regenerator: false }]
             );
         },
         {
@@ -215,7 +215,7 @@ if (Encore.isDevServer()) {
             babelConfig.plugins.push(
                 'react-refresh/babel',
                 ['transform-imports', config.transformImports],
-                ['@babel/plugin-transform-runtime', { version: '^7.21.5', regenerator: false }]
+                ['@babel/plugin-transform-runtime', { version: '^7.22.4', regenerator: false }]
             );
         },
         {
