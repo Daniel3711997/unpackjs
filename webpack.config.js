@@ -6,20 +6,28 @@
 
 const chalk = require('chalk');
 const path = require('node:path');
+
 const crypto = require('node:crypto');
 const pack = require('./package.json');
+
 const config = require('./app.config');
 const app = require('./src/routes.json');
+
 const DotEnv = require('dotenv-webpack');
 const WebpackBar = require('webpackbar');
+
 const Encore = require('@symfony/webpack-encore');
 const TerserPlugin = require('terser-webpack-plugin');
+
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
+
 const Logger = require('@symfony/webpack-encore/lib/logger');
 const CompressionPlugin = require('compression-webpack-plugin');
+
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TSConfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -410,9 +418,6 @@ if (config.useSWC) {
 
 const webpackConfig = config.extra(Encore);
 
-// delete webpackConfig.module.rules[4].oneOf[0].resourceQuery;
-// webpackConfig.module.rules[4].oneOf[0].test = /\.module\.s[ac]ss$/;
-
 module.exports = {
     ...webpackConfig,
 
@@ -481,19 +486,13 @@ module.exports = {
         symlinks: false,
         plugins: (webpackConfig.resolve.plugins || []).concat([
             new TSConfigPathsPlugin({
+                // prettier-ignore
                 extensions: [
                     '.ts',
                     '.tsx',
                     '.js',
                     '.jsx',
                     '.json',
-                    '.css',
-                    '.scss',
-                    '.png',
-                    '.jpg',
-                    '.jpeg',
-                    '.gif',
-                    '.svg',
                 ],
             }),
         ]),
