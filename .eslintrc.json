@@ -20,6 +20,7 @@
         "standard",
         "prettier",
         "plugin:jest/recommended",
+        "plugin:jsx-a11y/recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@tanstack/eslint-plugin-query/recommended"
     ],
@@ -66,6 +67,11 @@
                     },
                     {
                         "pattern": "helpers/**",
+                        "group": "unknown",
+                        "position": "after"
+                    },
+                    {
+                        "pattern": "services/**",
                         "group": "unknown",
                         "position": "after"
                     },
