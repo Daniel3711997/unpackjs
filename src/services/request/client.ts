@@ -5,9 +5,13 @@ export const client = axios.create({
 });
 
 export const setupClient = (token: string) => {
-    client.interceptors.request.use(config => {
+    const interceptor = client.interceptors.request.use(config => {
         config.headers.Authorization = `Bearer ${token}`;
 
         return config;
     });
+
+    return () => {
+        client.interceptors.request.eject(interceptor);
+    };
 };
