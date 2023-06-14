@@ -164,7 +164,7 @@ if (Encore.isProduction()) {
 
             babelConfig.plugins.push(
                 ['transform-imports', config.transformImports],
-                ['@babel/plugin-transform-runtime', { version: '^7.22.4', regenerator: false }]
+                ['@babel/plugin-transform-runtime', { version: '^7.22.5', regenerator: false }]
             );
         },
         {
@@ -223,7 +223,7 @@ if (Encore.isDevServer()) {
             babelConfig.plugins.push(
                 'react-refresh/babel',
                 ['transform-imports', config.transformImports],
-                ['@babel/plugin-transform-runtime', { version: '^7.22.4', regenerator: false }]
+                ['@babel/plugin-transform-runtime', { version: '^7.22.5', regenerator: false }]
             );
         },
         {
@@ -310,7 +310,7 @@ Encore
     )
     .configureBabelPresetEnv(config => {
         config.modules = "auto";
-        config.corejs = '3.30.2';
+        config.corejs = '3.31.0';
         config.useBuiltIns = 'usage';
         config.targets = Encore.isProduction() ? pack.browserslist.production : pack.browserslist.development;
     })
