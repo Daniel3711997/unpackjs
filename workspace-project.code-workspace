@@ -11,8 +11,10 @@
     ],
     "extensions": {
         "recommendations": [
+            "xdebug.php-debug",
             "mrmlnc.vscode-apache",
             "usernamehw.errorlens",
+            "Gruntfuggly.todo-tree",
             "esbenp.prettier-vscode",
             "dbaeumer.vscode-eslint",
             "valeryanm.vscode-phpsab",

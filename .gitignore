@@ -1,4 +1,5 @@
-/.swc
+.env
+.DS_Store
 
 /build
 /cache
@@ -6,10 +7,3 @@
 /node_modules
 /src/routes.hash
 /build_temporary
-
-.env
-.DS_Store
-.env.local
-.env.test.local
-.env.production.local
-.env.development.local
