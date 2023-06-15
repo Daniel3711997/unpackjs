@@ -68,48 +68,52 @@ if (!file_exists(__DIR__ . '/vendor')) {
 
 set_error_handler(
     function (int $errorNumber, string $errorString, string $errorFile, int $errorLine) {
-        error_log(
-            sprintf(
-                '(%d) There was an error in the file %s on line %d: %s',
-                $errorNumber,
-                $errorFile,
-                $errorLine,
+        if (!(error_reporting() & $errorNumber)) {
+            return false;
+        }
+
+        $error = sprintf(
+            '(%d) There was an error in the file %s on line %d: %s',
+            $errorNumber,
+            $errorFile,
+            $errorLine,
+            htmlspecialchars(
                 $errorString
             )
         );
 
-        wp_die(
-            sprintf(
-                '(%d) There was an error in the file %s on line %d: %s',
-                $errorNumber,
-                $errorFile,
-                $errorLine,
-                $errorString
-            )
+        error_log(
+            $error
         );
+
+        if (E_USER_ERROR === $errorNumber) {
+            wp_die(
+                $error
+            );
+        } else {
+            echo $error;
+        }
+
+        return true;
     }
 );
 
 set_exception_handler(
     function (Throwable $exception) {
+        $error = sprintf(
+            '(%d) There was an error in the file %s on line %d: %s',
+            $exception->getCode(),
+            $exception->getFile(),
+            $exception->getLine(),
+            $exception->getMessage()
+        );
+
         error_log(
-            sprintf(
-                '(%d) There was an error in the file %s on line %d: %s',
-                $exception->getCode(),
-                $exception->getFile(),
-                $exception->getLine(),
-                $exception->getMessage()
-            )
+            $error
         );
 
         wp_die(
-            sprintf(
-                '(%d) There was an error in the file %s on line %d: %s',
-                $exception->getCode(),
-                $exception->getFile(),
-                $exception->getLine(),
-                $exception->getMessage()
-            )
+            $error
         );
     }
 );

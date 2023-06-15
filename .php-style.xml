@@ -5,7 +5,8 @@
 
     <description>The "Next Level Digital" Standard</description>
 
-    <include-pattern>*\.php$</include-pattern>
+    <include-pattern>app</include-pattern>
+    <include-pattern>unpack.php</include-pattern>
 
     <rule ref="Internal.NoCodeFound">
         <severity>0</severity>
@@ -17,6 +18,9 @@
     <rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie"/>
 
     <rule ref="PSR12">
+
+        <include-pattern>app</include-pattern>
+        <include-pattern>unpack.php</include-pattern>
 
         <exclude name="Generic.Files.LineLength.TooLong" />
         <exclude name="PSR1.Files.SideEffects.FoundWithSymbols" />
