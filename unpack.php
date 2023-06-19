@@ -3,10 +3,10 @@
 /**
  * Unpack App
  *
+ * @license           MIT
  * @package           Unpack
- * @author            Next Level Digital
- * @copyright         2022 Next Level Digital
- * @license           GPL-2.0-or-later
+ * @author            Daniel3711997
+ * @copyright         2023 © Next Level Digital
  *
  * @wordpress-plugin
  * Plugin Name:       Unpack
@@ -15,13 +15,13 @@
  * Version:           1.0.2
  * Requires at least: 5.2
  * Requires PHP:      7.4
- * Author:            Next Level Digital
- * Author URI:        https://gotonxtlevel.com
+ * Author:            Daniel3711997
+ * Author URI:        https://github.com/Daniel3711997
  * Text Domain:       unpack
  * Domain Path:       /languages
  * License:           MIT
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Update URI:        https://gotonxtlevel.com/unpack/update
+ * License URI:       https://github.com/Daniel3711997/unpackjs/blob/main/LICENSE.md
  */
 
 declare(strict_types=1);
