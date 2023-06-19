@@ -203,10 +203,12 @@ add_shortcode(
             'loader' => '<div class="framework-loader"><p>Loading...</p></div>',
         ], $reactJSShortCodeAttributes);
 
+        $noScript = '<noscript>Could not load the application the JavaScript runtime seems to be disabled</noscript>';
+
         /**
          * Do not escape the loader because we want to allow HTML to be passed in
          */
-        $html = '<div id="' . esc_attr($attributes['id']) . '">' . $attributes['loader'] . '</div>';
+        $html = '<div id="' . esc_attr($attributes['id']) . '">' . $attributes['loader'] . $noScript . '</div>';
 
         if ($attributes['echo']) {
             echo $html;
