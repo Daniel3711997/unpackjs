@@ -12,14 +12,14 @@
  * Plugin Name:       Unpack
  * Plugin URI:        https://gotonxtlevel.com/unpack
  * Description:       Integrates React JS with WordPress
- * Version:           1.0.1
+ * Version:           1.0.2
  * Requires at least: 5.2
  * Requires PHP:      7.4
  * Author:            Next Level Digital
  * Author URI:        https://gotonxtlevel.com
  * Text Domain:       unpack
  * Domain Path:       /languages
- * License:           GPL v2 or later
+ * License:           MIT
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Update URI:        https://gotonxtlevel.com/unpack/update
  */
