@@ -12,14 +12,14 @@
  * Plugin Name:       Unpack
  * Plugin URI:        https://gotonxtlevel.com/unpack
  * Description:       Integrates React JS with WordPress
- * Version:           1.0.1
+ * Version:           1.0.2
  * Requires at least: 5.2
  * Requires PHP:      7.4
  * Author:            Next Level Digital
  * Author URI:        https://gotonxtlevel.com
  * Text Domain:       unpack
  * Domain Path:       /languages
- * License:           GPL v2 or later
+ * License:           MIT
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Update URI:        https://gotonxtlevel.com/unpack/update
  */
@@ -203,10 +203,12 @@ add_shortcode(
             'loader' => '<div class="framework-loader"><p>Loading...</p></div>',
         ], $reactJSShortCodeAttributes);
 
+        $noScript = '<noscript>Could not load the application the JavaScript runtime seems to be disabled</noscript>';
+
         /**
          * Do not escape the loader because we want to allow HTML to be passed in
          */
-        $html = '<div id="' . esc_attr($attributes['id']) . '">' . $attributes['loader'] . '</div>';
+        $html = '<div id="' . esc_attr($attributes['id']) . '">' . $attributes['loader'] . $noScript . '</div>';
 
         if ($attributes['echo']) {
             echo $html;

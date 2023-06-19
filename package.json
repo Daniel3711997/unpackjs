@@ -1,8 +1,13 @@
 {
     "private": true,
-    "name": "unpackjs",
-    "version": "1.0.1",
-    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
+    "license": "MIT",
+    "version": "1.0.2",
+    "name": "@daniel3711997/unpackjs",
+    "author": {
+        "name": "Daniel3711997",
+        "url": "https://github.com/Daniel3711997"
+    },
+    "description": "Integrates React JS with WordPress",
     "scripts": {
         "release": "release-it",
         "prepare": "husky install",
