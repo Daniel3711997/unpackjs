@@ -1,8 +1,16 @@
 {
-    "name": "nextleveldigital/unpack",
-    "description": "Integrates React JS with WordPress",
+    "license": "MIT",
     "type": "library",
-    "license": "GPL-2.0-or-later",
+    "version": "1.0.2",
+    "minimum-stability": "stable",
+    "name": "daniel3711997/unpackjs",
+    "authors": [
+        {
+            "name": "Daniel3711997",
+            "homepage": "https://github.com/Daniel3711997"
+        }
+    ],
+    "description": "Integrates React JS with WordPress",
     "autoload": {
         "psr-4": {
             "Unpack\\": "app/"
@@ -11,13 +19,12 @@
             "app/WP/Flow.php"
         ]
     },
-    "authors": [
-        {
-            "name": "Next Level Digital",
-            "email": "support@gotonxtlevel.com"
-        }
-    ],
-    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^9.6",
+        "php-stubs/wp-cli-stubs": "^2.7",
+        "wp-coding-standards/wpcs": "^2.3",
+        "squizlabs/php_codesniffer": "3.*"
+    },
     "require": {
         "php": ">=7.4",
         "ext-json": "*",
@@ -26,11 +33,5 @@
         "guzzlehttp/guzzle": "^7.0",
         "doctrine/annotations": "^2.0",
         "phpfastcache/phpfastcache": "^8.1"
-    },
-    "require-dev": {
-        "squizlabs/php_codesniffer": "3.*",
-        "wp-coding-standards/wpcs": "^2.3",
-        "php-stubs/wp-cli-stubs": "^2.7",
-        "phpunit/phpunit": "^9.6"
     }
 }
