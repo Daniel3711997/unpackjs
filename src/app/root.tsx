@@ -14,7 +14,8 @@ interface IAppProps {
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
-            suspense: true,
+            staleTime: 1000 * 60 * 20, // 20 minutes
+            cacheTime: 1000 * 60 * 60 * 2, // 2 hours
         },
     },
 });
