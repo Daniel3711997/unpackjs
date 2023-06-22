@@ -8,6 +8,18 @@ exports[`example 1`] = `
     >
       Hello World
     </p>
+    <h2>
+      Photos
+    </h2>
+    <p>
+      Looking...
+    </p>
+    <h2>
+      Todos
+    </h2>
+    <p>
+      Looking...
+    </p>
   </div>
 </div>
 `;

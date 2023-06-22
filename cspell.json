@@ -3,15 +3,16 @@
     "language": "en-US",
     "ignorePaths": ["**/vendor/**", "**/node_modules/**"],
     "words": [
-        "eftec",
-        "bladeone",
         "ABSPATH",
-        "shortcode",
-        "Phpfastcache",
-        "entrypoints",
-        "nopriv",
+        "bladeone",
         "clsx",
+        "eftec",
+        "entrypoints",
+        "lukemorales",
+        "nopriv",
+        "Phpfastcache",
+        "shortcode",
         "tanstack",
-        "lukemorales"
+        "todos"
     ]
 }
