@@ -12,7 +12,7 @@
  * Plugin Name:       Unpack
  * Plugin URI:        https://gotonxtlevel.com/unpack
  * Description:       Integrates React JS with WordPress
- * Version:           1.0.2
+ * Version:           1.0.3
  * Requires at least: 5.2
  * Requires PHP:      7.4
  * Author:            Daniel3711997

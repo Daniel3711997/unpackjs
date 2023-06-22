@@ -1,7 +1,7 @@
 {
     "license": "MIT",
     "type": "library",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "minimum-stability": "stable",
     "name": "daniel3711997/unpackjs",
     "authors": [
