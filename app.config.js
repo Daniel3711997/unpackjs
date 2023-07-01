@@ -129,6 +129,7 @@ module.exports = {
      */
     swcRCConfig(isProduction, type) {
         const options = {
+            $schema: 'https://json.schemastore.org/swcrc',
             module: {
                 type: 'es6',
                 ignoreDynamic: true,
