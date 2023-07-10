@@ -99,7 +99,7 @@ app.routes.forEach(route => {
     Encore.addEntry(route.entry.name, path.join(__dirname, route.entry.path));
 
     console.log(
-        `Loading route ${chalk.yellow(route.entry.name)} from ${chalk.magenta(path.dirname(route.entry.path))}`
+        `Loading route ${chalk.yellow(route.entry.name)} from ${chalk.magenta(path.dirname(route.entry.path))}`,
     );
 });
 
@@ -131,7 +131,7 @@ if (config.useTypeCheckInDevelopment || (Encore.isProduction() && config.useType
             cacheStrategy: 'metadata',
             extensions: ['js', 'jsx', 'ts', 'tsx'],
             cacheLocation: path.join(config.cacheDirectory, 'eslint/'),
-        })
+        }),
     );
 
     Encore.addPlugin(
@@ -143,7 +143,7 @@ if (config.useTypeCheckInDevelopment || (Encore.isProduction() && config.useType
             cacheStrategy: 'metadata',
             extensions: ['css', 'scss'],
             cacheLocation: path.join(config.cacheDirectory, 'stylelint/'),
-        })
+        }),
     );
 }
 
@@ -152,7 +152,7 @@ if (Encore.isProduction()) {
         Encore.addPlugin(
             new CompressionPlugin({
                 exclude: ['manifest.json'],
-            })
+            }),
         );
     }
 
@@ -164,12 +164,12 @@ if (Encore.isProduction()) {
 
             babelConfig.plugins.push(
                 ['transform-imports', config.transformImports],
-                ['@babel/plugin-transform-runtime', { version: '^7.22.5', regenerator: false }]
+                ['@babel/plugin-transform-runtime', { version: '^7.22.7', regenerator: false }],
             );
         },
         {
             includeNodeModules: pack.includeNodeModules,
-        }
+        },
     );
 }
 
@@ -177,7 +177,7 @@ if (Encore.isDevServer()) {
     Encore.addPlugin(
         new ReactRefreshWebpackPlugin({
             overlay: false,
-        })
+        }),
     );
 
     Encore.configureDevServerOptions(options => {
@@ -223,12 +223,12 @@ if (Encore.isDevServer()) {
             babelConfig.plugins.push(
                 'react-refresh/babel',
                 ['transform-imports', config.transformImports],
-                ['@babel/plugin-transform-runtime', { version: '^7.22.5', regenerator: false }]
+                ['@babel/plugin-transform-runtime', { version: '^7.22.7', regenerator: false }],
             );
         },
         {
             includeNodeModules: pack.includeNodeModules,
-        }
+        },
     );
 }
 
@@ -310,7 +310,7 @@ Encore
     )
     .configureBabelPresetEnv(config => {
         config.modules = "auto";
-        config.corejs = '3.31.0';
+        config.corejs = '3.31.1';
         config.useBuiltIns = 'usage';
         config.targets = Encore.isProduction() ? pack.browserslist.production : pack.browserslist.development;
     })
