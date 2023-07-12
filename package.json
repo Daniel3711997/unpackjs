@@ -27,7 +27,7 @@
         "build-action": "tsc && npm run build-application",
         "postbuild-action": "node ./scripts/_postbuild.js",
         "prestart": "check-engine && echo '\n' && composer dump-autoload",
-        "start": "concurrently -r -k \"typed-scss-modules \\\"**/*.module.scss\\\" -L silent -n none -e default -w -o .generated\" \"encore dev-server\"",
+        "start": "concurrently -r -k \"typed-scss-modules \\\"**/*.module.scss\\\" -L silent -n camel -e default -w -o .generated\" \"encore dev-server\"",
         "configure-development": "npm install && composer install",
         "postconfigure-development": "node ./scripts/_postconfigure.js",
         "configure-production": "npm ci && composer install --no-interaction --optimize-autoloader",
