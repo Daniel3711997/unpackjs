@@ -321,6 +321,7 @@ Encore
             ...config.modules,
 
             auto: true,
+            exportLocalsConvention: 'camelCaseOnly',
             localIdentName: Encore.isProduction() ? '[hash:base64:12]' : '[name]__[local]--[hash:base64:12]'
         };
     })
