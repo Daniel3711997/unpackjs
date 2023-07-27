@@ -1,5 +1,7 @@
 # UnpackJS
 
+## Moved to https://github.com/Daniel3711997/quick
+
 ## Sponsors
 
 <a href="https://jb.gg/OpenSourceSupport">
