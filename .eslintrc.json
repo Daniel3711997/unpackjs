@@ -12,26 +12,27 @@
     },
     "parser": "@typescript-eslint/parser",
     "extends": [
-        "plugin:react/recommended",
-        "plugin:react/jsx-runtime",
-        "plugin:react-hooks/recommended",
-        "plugin:import/recommended",
-        "plugin:import/typescript",
+        "eslint:recommended",
         "standard",
         "prettier",
-        "plugin:jest/recommended",
+        "plugin:import/typescript",
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime",
+        "plugin:import/recommended",
         "plugin:jsx-a11y/recommended",
+        "plugin:react-hooks/recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:@tanstack/eslint-plugin-query/recommended"
+        "plugin:@tanstack/eslint-plugin-query/recommended",
+        "plugin:@typescript-eslint/recommended-type-checked"
     ],
     "parserOptions": {
-        "parserOptions": {
-            "ecmaFeatures": {
-                "jsx": true
-            },
-            "sourceType": "module",
-            "ecmaVersion": "latest"
-        }
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "project": true,
+        "sourceType": "module",
+        "ecmaVersion": "latest",
+        "tsconfigRootDir": "./"
     },
     "rules": {
         "yoda": [
@@ -42,13 +43,9 @@
             }
         ],
 
-        "spaced-comment": "off",
-        "no-unused-vars": "off",
-
         "no-use-before-define": "off",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
-        "@typescript-eslint/no-var-requires": "off",
 
         "import/order": [
             "error",
@@ -97,7 +94,6 @@
         {
             "files": ["**/*.js", "**/*.jsx"],
             "rules": {
-                "no-unused-vars": "error",
                 "no-use-before-define": "error"
             }
         },
