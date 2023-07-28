@@ -1,7 +1,5 @@
 # UnpackJS
 
-## Moved to https://github.com/Daniel3711997/quick
-
 https://github.com/Daniel3711997/unpackjs/assets/58903924/6456e1df-8112-4b13-b4cc-823d5e5302c5
 
 ## Sponsors
