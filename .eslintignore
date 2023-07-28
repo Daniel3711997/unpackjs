@@ -2,3 +2,5 @@
 /build
 /vendor
 /node_modules
+/app.config.js
+/webpack.config.js

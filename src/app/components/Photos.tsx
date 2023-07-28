@@ -38,9 +38,13 @@ const PhotosComponent = () => {
                 onClick={() => {
                     if (!queryError) currentPage.current++;
 
-                    query.fetchNextPage({
-                        cancelRefetch: false,
-                    });
+                    query
+                        .fetchNextPage({
+                            cancelRefetch: false,
+                        })
+                        .catch(() => {
+                            // Silence is golden
+                        });
                 }}
             >
                 {query.isFetchingNextPage ? 'Loading...' : query.hasNextPage ? 'Load More' : 'Nothing more to load'}
@@ -52,7 +56,7 @@ const PhotosComponent = () => {
                         <p>{photo.title}</p>
                         <img src={photo.thumbnailUrl} alt={photo.title} />
                     </div>
-                ))
+                )),
             )}
         </div>
     );

@@ -6,7 +6,7 @@ export const fakeAPI = createQueryKeys('fakeAPI', {
     todos: {
         queryKey: ['todos'],
         queryFn: (
-            context
+            context,
         ): Promise<
             Array<{
                 id: number;
@@ -22,13 +22,20 @@ export const fakeAPI = createQueryKeys('fakeAPI', {
                     throw new Error('Something went wrong');
                 }
 
-                return response.json();
+                return response.json() as Promise<
+                    Array<{
+                        id: number;
+                        title: string;
+                        userId: number;
+                        completed: boolean;
+                    }>
+                >;
             }),
     },
     photos: {
         queryKey: ['photos', itemsPerPage],
         queryFn: (
-            context
+            context,
         ): Promise<
             Array<{
                 id: number;
@@ -44,13 +51,21 @@ export const fakeAPI = createQueryKeys('fakeAPI', {
                 }&_limit=${itemsPerPage}`,
                 {
                     signal: context.signal,
-                }
+                },
             ).then(response => {
                 if (!response.ok || context.pageParam > 4) {
                     throw new Error('Something went wrong');
                 }
 
-                return response.json();
+                return response.json() as Promise<
+                    Array<{
+                        id: number;
+                        url: string;
+                        title: string;
+                        albumId: number;
+                        thumbnailUrl: string;
+                    }>
+                >;
             }),
     },
 });
