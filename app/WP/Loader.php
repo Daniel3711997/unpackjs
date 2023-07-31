@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpFullyQualifiedNameUsageInspection */
-
 declare(strict_types=1);
 
 namespace Unpack\WP;
@@ -13,22 +11,6 @@ use function Unpack\isProduction;
 class Loader {
     /**
      * https://github.com/symfony/symfony/blob/6.3/src/Symfony/Component/Routing/Loader/AnnotationFileLoader.php
-     *
-     * @param string $file
-     *
-     * @return string|null
-     *
-     * @throws \ReflectionException
-     * @throws \InvalidArgumentException
-     * @throws \Psr\Cache\InvalidArgumentException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheLogicException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheDriverException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheDriverCheckException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheSimpleCacheException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheDriverNotFoundException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheInvalidArgumentException
-     * @throws \Phpfastcache\Exceptions\PhpfastcacheInvalidConfigurationException
-     *
      */
     public static function findClass(string $file): ?string {
         $cache = CacheEngine::getInstance();
@@ -49,9 +31,6 @@ class Loader {
 
     /**
      * https://github.com/symfony/symfony/blob/6.3/src/Symfony/Component/Routing/Loader/AnnotationFileLoader.php
-     *
-     * @param string $file
-     * @return string|null
      */
     public static function cachedFindClass(string $file): ?string {
         $class = false;

@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection DuplicatedCode */
-
 declare(strict_types=1);
 
 namespace Unpack\Framework;

@@ -32,17 +32,8 @@ use WP_CLI;
 use Throwable;
 use Dotenv\Dotenv;
 use Unpack\Database\CLI;
-use ReflectionException;
 use Unpack\Framework\App;
 use Unpack\Cache\Engine as CacheEngine;
-use Psr\Cache\InvalidArgumentException;
-use Phpfastcache\Exceptions\PhpfastcacheLogicException;
-use Phpfastcache\Exceptions\PhpfastcacheDriverException;
-use Phpfastcache\Exceptions\PhpfastcacheDriverCheckException;
-use Phpfastcache\Exceptions\PhpfastcacheSimpleCacheException;
-use Phpfastcache\Exceptions\PhpfastcacheDriverNotFoundException;
-use Phpfastcache\Exceptions\PhpfastcacheInvalidArgumentException;
-use Phpfastcache\Exceptions\PhpfastcacheInvalidConfigurationException;
 
 if (!defined('ABSPATH')) {
     exit;
@@ -162,17 +153,6 @@ function isDevelopment(): bool {
     return 'development' === UNPACK_PLUGIN_ENVIRONMENT;
 }
 
-/**
- * @throws ReflectionException
- * @throws InvalidArgumentException
- * @throws PhpfastcacheLogicException
- * @throws PhpfastcacheDriverException
- * @throws PhpfastcacheSimpleCacheException
- * @throws PhpfastcacheDriverCheckException
- * @throws PhpfastcacheDriverNotFoundException
- * @throws PhpfastcacheInvalidArgumentException
- * @throws PhpfastcacheInvalidConfigurationException
- */
 function readDirectory(string $directory): array {
     $cache = CacheEngine::getInstance();
     $cacheKey = md5('readDirectory' . '-' . $directory);

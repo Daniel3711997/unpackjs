@@ -1,8 +1,4 @@
-// noinspection JSUnresolvedReference,NpmUsedModulesInstalled,HttpUrlsUsage
-
 'use strict';
-
-/* eslint-disable import/order */
 
 const chalk = require('chalk');
 const path = require('node:path');
@@ -130,6 +126,7 @@ if (config.useTypeCheckInDevelopment || (Encore.isProduction() && config.useType
             failOnWarning: false,
             cacheStrategy: 'metadata',
             extensions: ['js', 'jsx', 'ts', 'tsx'],
+            reportUnusedDisableDirectives: 'error',
             cacheLocation: path.join(config.cacheDirectory, 'eslint/'),
         }),
     );
@@ -142,6 +139,7 @@ if (config.useTypeCheckInDevelopment || (Encore.isProduction() && config.useType
             context: './src/styles',
             cacheStrategy: 'metadata',
             extensions: ['css', 'scss'],
+            reportNeedlessDisables: true,
             cacheLocation: path.join(config.cacheDirectory, 'stylelint/'),
         }),
     );

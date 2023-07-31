@@ -1,23 +1,12 @@
 <?php
 
-/** @noinspection PhpUnusedAliasInspection */
-
 declare(strict_types=1);
 
 namespace Unpack\Actions;
 
-use ReflectionException;
 use Unpack\Framework\App;
 use Unpack\Annotations\Action;
-use Psr\Cache\InvalidArgumentException;
 use Unpack\Interfaces\Action as ActionInterface;
-use Phpfastcache\Exceptions\PhpfastcacheLogicException;
-use Phpfastcache\Exceptions\PhpfastcacheDriverException;
-use Phpfastcache\Exceptions\PhpfastcacheSimpleCacheException;
-use Phpfastcache\Exceptions\PhpfastcacheDriverCheckException;
-use Phpfastcache\Exceptions\PhpfastcacheDriverNotFoundException;
-use Phpfastcache\Exceptions\PhpfastcacheInvalidArgumentException;
-use Phpfastcache\Exceptions\PhpfastcacheInvalidConfigurationException;
 
 use function Unpack\{
     isProduction,
@@ -37,17 +26,6 @@ class Preload implements ActionInterface {
         return false;
     }
 
-    /**
-     * @throws ReflectionException
-     * @throws InvalidArgumentException
-     * @throws PhpfastcacheLogicException
-     * @throws PhpfastcacheDriverException
-     * @throws PhpfastcacheSimpleCacheException
-     * @throws PhpfastcacheDriverCheckException
-     * @throws PhpfastcacheDriverNotFoundException
-     * @throws PhpfastcacheInvalidArgumentException
-     * @throws PhpfastcacheInvalidConfigurationException
-     */
     public static function construct(): void {
         global $preloadJS, $preloadCSS, $preloadFonts;
 
