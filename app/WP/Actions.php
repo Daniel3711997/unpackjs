@@ -1,24 +1,13 @@
 <?php
 
-/** @noinspection PhpElementIsNotAvailableInCurrentPhpVersionInspection */
-
 declare(strict_types=1);
 
 namespace Unpack\WP;
 
 use ReflectionClass;
-use ReflectionException;
 use ReflectionAttribute;
 use Unpack\Annotations\Action;
-use Psr\Cache\InvalidArgumentException;
 use Doctrine\Common\Annotations\AnnotationReader;
-use Phpfastcache\Exceptions\PhpfastcacheLogicException;
-use Phpfastcache\Exceptions\PhpfastcacheDriverException;
-use Phpfastcache\Exceptions\PhpfastcacheDriverCheckException;
-use Phpfastcache\Exceptions\PhpfastcacheSimpleCacheException;
-use Phpfastcache\Exceptions\PhpfastcacheDriverNotFoundException;
-use Phpfastcache\Exceptions\PhpfastcacheInvalidArgumentException;
-use Phpfastcache\Exceptions\PhpfastcacheInvalidConfigurationException;
 
 use function Unpack\{
     readDirectory,
@@ -28,17 +17,6 @@ use function Unpack\{
 class Actions {
     private array $actions = [];
 
-    /**
-     * @throws ReflectionException
-     * @throws InvalidArgumentException
-     * @throws PhpfastcacheLogicException
-     * @throws PhpfastcacheDriverException
-     * @throws PhpfastcacheSimpleCacheException
-     * @throws PhpfastcacheDriverCheckException
-     * @throws PhpfastcacheDriverNotFoundException
-     * @throws PhpfastcacheInvalidArgumentException
-     * @throws PhpfastcacheInvalidConfigurationException
-     */
     public function __construct() {
         $directory = getPluginDirectory() . 'app/Actions';
 
@@ -107,11 +85,11 @@ class Actions {
 
         foreach ($this->actions as $action => $options) {
             if (isset($options['controller'], $options['controllerMethod']) && class_exists(
-                    $options['controller']
-                ) && method_exists(
-                    $options['controller'],
-                    $options['controllerMethod']
-                )) {
+                $options['controller']
+            ) && method_exists(
+                $options['controller'],
+                $options['controllerMethod']
+            )) {
                 $callback = $this->registerCallbackMethod($options);
 
                 if (!empty($options['id'])) {

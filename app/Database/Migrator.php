@@ -2,15 +2,11 @@
 
 namespace Unpack\Database;
 
-use Exception;
 use WP_CLI;
 
 use function Unpack\getPluginDirectory;
 
 class Migrator {
-    /**
-     * @throws Exception
-     */
     public static function seed(
         array $options = [
             'files' => [],
@@ -24,9 +20,6 @@ class Migrator {
         );
     }
 
-    /**
-     * @throws Exception
-     */
     public static function migrate(
         array $options = [
             'files' => [],
@@ -40,14 +33,11 @@ class Migrator {
         );
     }
 
-    /**
-     * @throws Exception
-     */
     public static function run(array $options = []): int {
         $i = 0;
 
         if (0 === count($options)) {
-            throw new Exception(
+            throw new \Exception(
                 'No options were passed to the run method'
             );
         }
@@ -57,7 +47,7 @@ class Migrator {
             . 'app/Database' . ($isMigration ? '/Migrations' : '/DbSeeds');
 
         if (!file_exists($runPath)) {
-            throw new Exception(
+            throw new \Exception(
                 "The '" . ($isMigration ? 'Migrations' : 'DbSeeds') . "' directory does not exist"
             );
         }
@@ -86,13 +76,13 @@ class Migrator {
                 }
 
                 if (!class_exists($namespace)) {
-                    throw new Exception(
+                    throw new \Exception(
                         "Class '{$namespace}' does not exist"
                     );
                 }
 
                 if (!method_exists($namespace, $method)) {
-                    throw new Exception(
+                    throw new \Exception(
                         "Class '{$namespace}' does not have a '{$method}' method"
                     );
                 }

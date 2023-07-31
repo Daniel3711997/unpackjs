@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpUnusedLocalVariableInspection */
-
 namespace Unpack\Framework;
 
 use Unpack\WP\{
@@ -31,9 +29,9 @@ if (!defined('WP_CLI')) {
 
         foreach ($formsInstance->getActions() as $action => $options) {
             if (isset($options['controller'], $options['controllerMethod'], $options['availability']) && 1 === $options['availability'] && method_exists(
-                    $options['controller'],
-                    $options['controllerMethod']
-                )) {
+                $options['controller'],
+                $options['controllerMethod']
+            )) {
                 $formsNonces[$action] = wp_create_nonce("forms-$action");
             }
         }

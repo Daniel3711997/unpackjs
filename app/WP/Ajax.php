@@ -1,24 +1,13 @@
 <?php
 
-/** @noinspection DuplicatedCode, PhpElementIsNotAvailableInCurrentPhpVersionInspection */
-
 declare(strict_types=1);
 
 namespace Unpack\WP;
 
 use ReflectionClass;
-use ReflectionException;
 use ReflectionAttribute;
 use Unpack\Annotations\AjaxRoute;
-use Psr\Cache\InvalidArgumentException;
 use Doctrine\Common\Annotations\AnnotationReader;
-use Phpfastcache\Exceptions\PhpfastcacheLogicException;
-use Phpfastcache\Exceptions\PhpfastcacheDriverException;
-use Phpfastcache\Exceptions\PhpfastcacheSimpleCacheException;
-use Phpfastcache\Exceptions\PhpfastcacheDriverCheckException;
-use Phpfastcache\Exceptions\PhpfastcacheDriverNotFoundException;
-use Phpfastcache\Exceptions\PhpfastcacheInvalidArgumentException;
-use Phpfastcache\Exceptions\PhpfastcacheInvalidConfigurationException;
 
 use function  Unpack\{
     readDirectory,
@@ -37,17 +26,6 @@ class Ajax {
         return $this->actions;
     }
 
-    /**
-     * @throws ReflectionException
-     * @throws InvalidArgumentException
-     * @throws PhpfastcacheLogicException
-     * @throws PhpfastcacheDriverException
-     * @throws PhpfastcacheSimpleCacheException
-     * @throws PhpfastcacheDriverCheckException
-     * @throws PhpfastcacheDriverNotFoundException
-     * @throws PhpfastcacheInvalidArgumentException
-     * @throws PhpfastcacheInvalidConfigurationException
-     */
     public function __construct() {
         $directory = getPluginDirectory() . 'app/Ajax';
 

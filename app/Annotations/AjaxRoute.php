@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpLanguageLevelInspection */
-
 declare(strict_types=1);
 
 namespace Unpack\Annotations;
