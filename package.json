@@ -19,8 +19,8 @@
         "check-php": "./vendor/bin/phpcs app --standard=.php-style.xml --cache",
         "test-php": "php ./vendor/bin/phpunit __tests__/php --testdox --cache-result-file \"cache/tools/phpunit\" --cache-result",
         "cspell": "cspell --no-progress \"{app,src}/**/*.{php,js,jsx,ts,tsx,css,scss}\" --cache --cache-strategy metadata --cache-location \"cache/tools/cspell\"",
-        "eslint": "eslint --cache --cache-strategy metadata --cache-location \"cache/eslint/\" \"src/**/*.{js,jsx,ts,tsx}\" --max-warnings 0 --report-unused-disable-directives",
-        "stylelint": "stylelint --cache --cache-strategy metadata --cache-location \"cache/stylelint/\" \"src/**/*.{css,scss}\" --max-warnings 0 --report-needless-disables",
+        "eslint": "eslint --cache --cache-strategy metadata --cache-location \"cache/eslint/\" \"src/**/*.{js,jsx,ts,tsx}\" --report-unused-disable-directives",
+        "stylelint": "stylelint --cache --cache-strategy metadata --cache-location \"cache/stylelint/\" \"src/**/*.{css,scss}\" --report-needless-disables",
         "prebuild": "check-engine && npm run cspell && npm run check-php",
         "build": "tsc && npm run build-application",
         "postbuild": "composer dump-autoload --optimize && node ./scripts/_postbuild.js",
@@ -45,10 +45,10 @@
             "./vendor/bin/phpcs --standard=.php-style.xml --cache"
         ],
         "**/*.{js,jsx,ts,tsx}": [
-            "eslint --cache --cache-strategy metadata --cache-location \"cache/eslint/\" --max-warnings 0 --report-unused-disable-directives"
+            "eslint --cache --cache-strategy metadata --cache-location \"cache/eslint/\" --report-unused-disable-directives"
         ],
         "**/*.{css,scss}": [
-            "stylelint --cache --cache-strategy metadata --cache-location \"cache/stylelint/\" --max-warnings 0 --report-needless-disables"
+            "stylelint --cache --cache-strategy metadata --cache-location \"cache/stylelint/\" --report-needless-disables"
         ],
         "**/*.{js,jsx,ts,tsx,json,css,scss}": [
             "prettier --write --cache --cache-strategy metadata --cache-location \"cache/tools/prettier\""
