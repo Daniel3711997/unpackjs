@@ -1,6 +1,6 @@
 import { createQueryKeys } from '@lukemorales/query-key-factory';
 
-import { itemsPerPage } from 'api/settings';
+import { itemsPerPage } from '@app/api/settings';
 
 export const fakeAPI = createQueryKeys('fakeAPI', {
     todos: {

@@ -1,7 +1,7 @@
 import { AsyncBoundary } from '@suspensive/react';
 import { useSuspenseQuery } from '@suspensive/react-query';
 
-import { queryKeys } from 'api';
+import { queryKeys } from '@app/api';
 
 const TodosComponent = () => {
     const query = useSuspenseQuery(queryKeys.fakeAPI.todos);

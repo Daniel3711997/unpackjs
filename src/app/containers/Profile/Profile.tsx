@@ -1,5 +1,5 @@
-import { Photos } from 'app/components/Photos';
-import { Todos } from 'app/components/Todos';
+import { Photos } from '@app/app/components/Photos';
+import { Todos } from '@app/app/components/Todos';
 
 import styles from './StylesProfile.module.scss';
 

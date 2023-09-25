@@ -132,7 +132,7 @@ module.exports = {
             $schema: 'https://json.schemastore.org/swcrc',
             module: {
                 type: 'es6',
-                ignoreDynamic: true,
+                // ignoreDynamic: true,
             },
             jsc: {
                 externalHelpers: true,
@@ -150,7 +150,7 @@ module.exports = {
             env: {
                 debug: false,
                 mode: 'usage',
-                coreJs: '3.32.0',
+                coreJs: '3.32.2',
                 targets: isProduction ? pack.browserslist.production : pack.browserslist.development,
             },
         };
