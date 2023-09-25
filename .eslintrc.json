@@ -3,7 +3,7 @@
     "env": {
         "node": true,
         "jest": true,
-        "es2022": true,
+        "es2024": true,
         "browser": true
     },
     "globals": {
@@ -13,26 +13,23 @@
     "parser": "@typescript-eslint/parser",
     "extends": [
         "eslint:recommended",
+        "plugin:react/recommended",
         "standard",
         "prettier",
         "plugin:import/typescript",
-        "plugin:react/recommended",
         "plugin:react/jsx-runtime",
         "plugin:import/recommended",
         "plugin:jsx-a11y/recommended",
         "plugin:react-hooks/recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:@tanstack/eslint-plugin-query/recommended",
-        "plugin:@typescript-eslint/recommended-type-checked"
+        "plugin:@tanstack/eslint-plugin-query/recommended"
     ],
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
         },
-        "project": true,
         "sourceType": "module",
-        "ecmaVersion": "latest",
-        "tsconfigRootDir": "./"
+        "ecmaVersion": "latest"
     },
     "rules": {
         "yoda": [
@@ -50,43 +47,32 @@
         "import/order": [
             "error",
             {
+                "distinctGroup": true,
                 "newlines-between": "always",
+                "warnOnUnassignedImports": true,
+                "pathGroupsExcludedImportTypes": ["type"],
                 "pathGroups": [
                     {
-                        "pattern": "app/**",
                         "group": "unknown",
-                        "position": "after"
+                        "position": "after",
+                        "pattern": "**/!(*.module).{css,scss}"
                     },
                     {
-                        "pattern": "assets/**",
                         "group": "unknown",
-                        "position": "after"
+                        "position": "after",
+                        "pattern": "{@app/styles,@app/styles/**}"
                     },
                     {
-                        "pattern": "helpers/**",
                         "group": "unknown",
-                        "position": "after"
+                        "pattern": "{@app,@app/**}"
                     },
                     {
-                        "pattern": "services/**",
                         "group": "unknown",
-                        "position": "after"
-                    },
-                    {
-                        "pattern": "styles/**",
-                        "group": "unknown",
-                        "position": "after"
+                        "pattern": "{@generated,@generated/**}"
                     }
                 ],
-                "distinctGroup": true,
-                "alphabetize": {
-                    "order": "asc",
-                    "orderImportKind": "asc",
-                    "caseInsensitive": true
-                },
-                "warnOnUnassignedImports": true,
-                "pathGroupsExcludedImportTypes": [],
-                "groups": ["builtin", "external", "internal", "unknown", "parent", "sibling", "index", "object", "type"]
+                "alphabetize": { "order": "asc", "orderImportKind": "asc", "caseInsensitive": true },
+                "groups": ["type", "builtin", "external", "internal", "unknown", "parent", "sibling", "index", "object"]
             }
         ]
     },
@@ -96,6 +82,14 @@
             "rules": {
                 "no-use-before-define": "error"
             }
+        },
+        {
+            "files": ["**/*.ts", "**/*.tsx"],
+            "parserOptions": {
+                "project": true,
+                "tsconfigRootDir": "./"
+            },
+            "extends": ["plugin:@typescript-eslint/recommended-type-checked"]
         },
         {
             "plugins": ["sort-exports"],

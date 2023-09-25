@@ -1,4 +1,4 @@
-import { createContainer } from 'helpers/app';
+import { createContainer } from '@app/helpers/app';
 
 import { Profile } from './Profile';
 

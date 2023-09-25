@@ -162,7 +162,7 @@ if (Encore.isProduction()) {
 
             babelConfig.plugins.push(
                 ['transform-imports', config.transformImports],
-                ['@babel/plugin-transform-runtime', { version: '^7.22.9', regenerator: false }],
+                ['@babel/plugin-transform-runtime', { version: '^7.22.15', regenerator: false }],
             );
         },
         {
@@ -221,7 +221,7 @@ if (Encore.isDevServer()) {
             babelConfig.plugins.push(
                 'react-refresh/babel',
                 ['transform-imports', config.transformImports],
-                ['@babel/plugin-transform-runtime', { version: '^7.22.9', regenerator: false }],
+                ['@babel/plugin-transform-runtime', { version: '^7.22.15', regenerator: false }],
             );
         },
         {
@@ -236,6 +236,12 @@ Encore
     .splitEntryChunks()
     .enableReactPreset()
     .enablePostCssLoader()
+    .addRule({
+        test: /\.m?js/,
+        resolve: {
+            fullySpecified: false,
+        },
+    })
     .disableCssExtraction(config.disableCssExtraction && !Encore.isProduction())
     .enableBuildCache(
         {
@@ -308,7 +314,7 @@ Encore
     )
     .configureBabelPresetEnv(config => {
         config.modules = "auto";
-        config.corejs = '3.32.0';
+        config.corejs = '3.32.2';
         config.useBuiltIns = 'usage';
         config.targets = Encore.isProduction() ? pack.browserslist.production : pack.browserslist.development;
     })
@@ -319,7 +325,7 @@ Encore
             ...config.modules,
 
             auto: true,
-            exportLocalsConvention: 'camelCaseOnly',
+            // exportLocalsConvention: 'camelCaseOnly',
             localIdentName: Encore.isProduction() ? '[hash:base64:12]' : '[name]__[local]--[hash:base64:12]'
         };
     })

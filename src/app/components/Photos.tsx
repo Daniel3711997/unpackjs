@@ -2,8 +2,8 @@ import { Suspense } from '@suspensive/react';
 import { useSuspenseInfiniteQuery } from '@suspensive/react-query';
 import { useRef } from 'react';
 
-import { queryKeys } from 'api';
-import { itemsPerPage } from 'api/settings';
+import { queryKeys } from '@app/api';
+import { itemsPerPage } from '@app/api/settings';
 
 export const Photos = () => (
     <Suspense fallback={<p>Looking...</p>}>

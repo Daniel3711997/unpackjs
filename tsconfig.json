@@ -1,17 +1,11 @@
 {
     "compilerOptions": {
-        "rootDirs": [".", ".generated"],
-
         "noEmit": true,
         "strict": true,
         "allowJs": true,
         "target": "ESNext",
-        "paths": {
-            "@/*": ["./*"]
-        },
         "jsx": "preserve",
         "module": "ESNext",
-        "baseUrl": "./src",
         "incremental": true,
         "skipLibCheck": true,
         "noImplicitAny": true,
@@ -20,6 +14,9 @@
         "isolatedModules": true,
         "esModuleInterop": true,
         "resolveJsonModule": true,
+        "paths": {
+            "@app/*": ["./src/*"]
+        },
         "noUnusedParameters": true,
         "moduleResolution": "Node",
         "downlevelIteration": false,
